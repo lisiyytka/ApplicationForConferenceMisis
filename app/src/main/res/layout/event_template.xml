@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="12dp"
             android:layout_marginHorizontal="36dp"
-            android:background="@drawable/btn_bg"
+            android:background="@drawable/bg_white"
             android:elevation="10dp"
             android:outlineAmbientShadowColor="@color/purple"
             android:outlineSpotShadowColor="@color/purple"

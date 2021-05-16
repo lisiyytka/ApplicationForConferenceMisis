@@ -32,7 +32,7 @@
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="15dp"
             android:inputType="textNoSuggestions"
-            android:background="null"
+            android:background="@color/white"
             android:hint="Message..." />
 
         <ImageButton
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
             android:layout_marginEnd="12dp"
-            android:background=""
+            android:background="@color/white"
             android:src="@drawable/ic_send" />
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>

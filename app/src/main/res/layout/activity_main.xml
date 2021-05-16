@@ -55,7 +55,7 @@
                 android:paddingTop="20dp"
                 android:paddingHorizontal="10dp"
                 android:paddingBottom="20dp"
-                android:background="@drawable/conf_bg">
+                android:background="@drawable/bg_purple">
 
                 <TextView
                     android:layout_width="match_parent"
