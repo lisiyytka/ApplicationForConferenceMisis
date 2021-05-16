@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val scheduleButton = findViewById<Button>(R.id.schedule_btn)
-        scheduleButton.setOnClickListener {
-            startActivity(Intent(this, DifferentActivity::class.java))
+        setContentView(R.layout.activity_login)
+        val buttonForLogin = findViewById<ImageButton>(R.id.buttonForLogin)
+        buttonForLogin.setOnClickListener{
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 }
