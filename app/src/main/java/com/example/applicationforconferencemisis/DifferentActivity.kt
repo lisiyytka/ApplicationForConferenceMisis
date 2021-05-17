@@ -1,8 +1,10 @@
 package com.example.applicationforconferencemisis
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 
 class DifferentActivity : AppCompatActivity() {
 
@@ -15,11 +17,16 @@ class DifferentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_toolbar)
-    }
 
-    fun onClick(view: View) {
+        val backBtn = findViewById<ImageView>(R.id.back)
+        backBtn.setOnClickListener{
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+
+        val buttonId = intent.getIntExtra("buttonId", 0)
+
         val fragmentManager = supportFragmentManager.beginTransaction()
-        when (view.id) {
+        when (buttonId) {
             R.id.schedule_btn -> fragmentManager.add(R.id.containerForFrag, scheduleFragment)
             R.id.my_schedule_btn -> fragmentManager.replace(R.id.containerForFrag, scheduleFragment)
             R.id.group_chat_btn -> fragmentManager.replace(R.id.containerForFrag, groupChatFragment)

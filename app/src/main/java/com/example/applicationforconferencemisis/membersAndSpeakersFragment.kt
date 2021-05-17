@@ -12,6 +12,6 @@ class membersAndSpeakersFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.members_speakers_component, container, false)
+        return inflater.inflate(R.layout.fragment_members_speakers, container, false)
     }
 }

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DifferentActivity">
+    tools:context=".MainActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -105,8 +105,7 @@
                     android:outlineAmbientShadowColor="@color/purple"
                     android:elevation="10dp"
                     android:translationZ="9dp"
-                    android:layout_weight="2"
-                    android:onClick="onClick"/>
+                    android:layout_weight="2"/>
 
                 <Button
                     android:id="@+id/my_schedule_btn"
@@ -119,8 +118,7 @@
                     android:outlineAmbientShadowColor="@color/purple"
                     android:elevation="10dp"
                     android:translationZ="9dp"
-                    android:layout_weight="1"
-                    android:onClick="onClick"/>
+                    android:layout_weight="1"/>
             </LinearLayout>
 
             <LinearLayout
@@ -138,8 +136,7 @@
                     android:outlineAmbientShadowColor="@color/purple"
                     android:elevation="10dp"
                     android:translationZ="9dp"
-                    android:layout_weight="1"
-                    android:onClick="onClick"/>
+                    android:layout_weight="1"/>
 
                 <Button
                     android:id="@+id/messages_btn"
@@ -152,8 +149,7 @@
                     android:outlineAmbientShadowColor="@color/purple"
                     android:elevation="10dp"
                     android:translationZ="9dp"
-                    android:layout_weight="1"
-                    android:onClick="onClick"/>
+                    android:layout_weight="1"/>
             </LinearLayout>
 
             <LinearLayout
@@ -170,8 +166,7 @@
                     android:outlineAmbientShadowColor="@color/purple"
                     android:elevation="10dp"
                     android:translationZ="9dp"
-                    android:layout_weight="1"
-                    android:onClick="onClick"/>
+                    android:layout_weight="1"/>
 
                 <Button
                     android:id="@+id/speakers_btn"
@@ -184,8 +179,7 @@
                     android:outlineAmbientShadowColor="@color/purple"
                     android:elevation="10dp"
                     android:translationZ="9dp"
-                    android:layout_weight="1"
-                    android:onClick="onClick"/>
+                    android:layout_weight="1"/>
 
                 <Button
                     android:id="@+id/account_btn"
@@ -197,8 +191,7 @@
                     android:outlineAmbientShadowColor="@color/purple"
                     android:elevation="10dp"
                     android:translationZ="9dp"
-                    android:layout_weight="1"
-                    android:onClick="onClick"/>
+                    android:layout_weight="1"/>
             </LinearLayout>
 
         </LinearLayout>
