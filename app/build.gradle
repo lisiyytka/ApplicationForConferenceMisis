@@ -54,4 +54,8 @@ dependencies {
     //addFirebase
     implementation platform('com.google.firebase:firebase-bom:28.0.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    //addCoroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:x.x.x"
 }

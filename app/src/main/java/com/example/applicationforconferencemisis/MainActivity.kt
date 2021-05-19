@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import com.example.applicationforconferencemisis.Data.Firebase.addNewUser
+import com.example.applicationforconferencemisis.Data.Firebase.getfucknuser
 import com.example.applicationforconferencemisis.Data.Models.User
 
 class MainActivity : AppCompatActivity() {
