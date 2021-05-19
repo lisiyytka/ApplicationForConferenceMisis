@@ -7,12 +7,15 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import com.example.applicationforconferencemisis.Data.Firebase.addNewUser
+import com.example.applicationforconferencemisis.Data.Models.User
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val user = User("debil", "df", "fd", "fd")
+        addNewUser(user)
         val scheduleButton = findViewById<Button>(R.id.schedule_btn)
         scheduleButton.setOnClickListener {
             startDifActivity(scheduleButton.id)

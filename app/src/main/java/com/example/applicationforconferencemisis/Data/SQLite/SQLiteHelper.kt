@@ -27,7 +27,6 @@ val CONFERENCES_COL_SPEAKERS = "Speakers"
 
 class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null,1) {
 
-
     override fun onCreate(db: SQLiteDatabase?) {
 
         val createTableUsers = "CREATE TABLE " + TABLE_NAME_USERS + " (" +
@@ -63,10 +62,6 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         cv.put(USERS_COL_MAIL, user.mail)
         cv.put(USERS_COL_DESCRIPTION, user.description)
         db.insert(TABLE_NAME_USERS, null, cv)
-//        if (result == -1.toLong())
-//            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show()
-//        else
-//            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
     }
 
     fun getUser(): User {
@@ -75,20 +70,6 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         val db = this.readableDatabase
         val query = "Select * from $TABLE_NAME_USERS"
         val result = db.rawQuery(query, null)
-//        if (result.moveToFirst()) {
-//            do {
-//                var field = Field()
-//                field.id = result.getString(result.getColumnIndex(COL_ID)).toInt()
-//                field.balance = result.getString(result.getColumnIndex(COL_BAL)).toDouble()
-//                field.category = result.getString(result.getColumnIndex(COL_CATEGORY))
-//                field.comment = result.getString(result.getColumnIndex(COL_COMMENT))
-//                field.date = result.getString(result.getColumnIndex(COL_DATE))
-//                field.loss = result.getString(result.getColumnIndex(COL_LOSS)).toDouble()
-//                field.income = result.getString(result.getColumnIndex(COL_INCOME)).toDouble()
-//                field.password = result.getString(result.getColumnIndex(COL_PAS))
-//                list.add(field)
-//            } while (result.moveToNext())
-//        }
         if (result.moveToFirst()){
             do {
                 user.name = result.getString(result.getColumnIndex(USERS_COL_NAME)).toString()

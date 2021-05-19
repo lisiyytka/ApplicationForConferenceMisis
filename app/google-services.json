@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "964868361342",
+    "project_id": "appformisis",
+    "storage_bucket": "appformisis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964868361342:android:0f3f47873119dcecfd1c2f",
+        "android_client_info": {
+          "package_name": "com.example.applicationforconferencemisis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964868361342-bjhqf6kfg9mqspddv0nldghcc1lo9r27.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB5B_kCpZpfX1X-mRp3S3rx-re86TnB-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964868361342-bjhqf6kfg9mqspddv0nldghcc1lo9r27.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
