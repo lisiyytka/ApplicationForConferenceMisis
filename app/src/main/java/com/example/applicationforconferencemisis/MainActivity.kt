@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import com.example.applicationforconferencemisis.Data.Firebase.addNewUser
+import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.google.firebase.auth.FirebaseAuth
@@ -74,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             startDifActivity(accountButton.id)
         }
 //        coroutineGetUser(this)
+
     }
 
 //    private fun coroutineGetUser(context: Context) = runBlocking {
@@ -106,7 +108,7 @@ class MainActivity : AppCompatActivity() {
                 Log.e("TAG", "onChildAdded:" + message.username)
 
                 val latest = messageList[messageList.size - 1]
-                makeToast(context, latest.username)
+//                makeToast(context, latest.username)
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {

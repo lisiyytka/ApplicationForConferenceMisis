@@ -7,7 +7,6 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
-import androidx.room.Room
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.User
 import java.security.AccessControlContext
@@ -64,10 +63,10 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         db.insert(TABLE_NAME_USERS, null, cv)
     }
 
-    fun insertConferenceToSchedule(conference: Conference){
+    fun insertConferenceToSchedule(idConference: String){
         val db = this.writableDatabase
         val cv = ContentValues()
-        cv.put(GROUP_CONFERENCES_COL_CONFERENCES, conference.conferenceId)
+        cv.put(GROUP_CONFERENCES_COL_CONFERENCES, idConference)
         db.insert(TABLE_NAME_GROUP_CONFERENCES, null, cv)
     }
 

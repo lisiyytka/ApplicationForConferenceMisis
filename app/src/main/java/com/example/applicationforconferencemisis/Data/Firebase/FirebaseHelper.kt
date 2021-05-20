@@ -129,66 +129,67 @@ fun helperForGetUserFromFirebase(login: String, firebaseCallback: CallbackForUse
     })
 }
 
-//fun getConferenceFromFirebase(context: Context, log: String){
-//    val localDatabaseHelper = SQLiteHelper(context)
-//    var conference = Conference()
-//    helperForGetConferenceFromFirebase(log, object: CallbackForConferences{
-//        override fun onCallback(list: MutableList<Conference?>) {
-//            super.onCallback(list)
-//            conference.conferenceId = list[0]!!.conferenceId
-//            conference.name = list[0]!!.name
-//            conference.theme = list[0]!!.theme
-//            conference.date = list[0]!!.date
-//            conference.speakers = list[0]!!.speakers
-//            localDatabaseHelper
-//        }
-//    })
-//}
-//
-//fun helperForGetConferenceFromFirebase(login: String, firebaseCallback: CallbackForConferences) {
-//    initFirebase()
-//    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
-//    var listData = ArrayList<Conference?>()
-//    ref.addValueEventListener(object : ValueEventListener{
-//        override fun onDataChange(snapshot: DataSnapshot) {
-//            val new_user = snapshot.getValue(Conference::class.java)
-//            listData.add(new_user)
-//            firebaseCallback.onCallback(listData)
-//        }
-//
-//        override fun onCancelled(error: DatabaseError) {
-//            TODO("Not yet implemented")
-//        }
-//    })
-//}
+fun getConferenceFromFirebase(context: Context, log: String){
+    val localDatabaseHelper = SQLiteHelper(context)
+    var conference = Conference()
+    helperForGetConferenceFromFirebase(log, object: CallbackForConferences{
+        override fun onCallback(list: MutableList<Conference?>) {
+            super.onCallback(list)
+            conference.conferenceId = list[0]!!.conferenceId
+            conference.name = list[0]!!.name
+            conference.theme = list[0]!!.theme
+            conference.date = list[0]!!.date
+            conference.speakers = list[0]!!.speakers
+            localDatabaseHelper.insertConference(conference)
+        }
+    })
+}
 
-//fun getGroupConferenceFromFirebase( context: Context, log: String){
-//    val localDatabaseHelper = SQLiteHelper(context)
-//    var groupConferences = GroupConferences()
-//    helperForGetGroupConferenceFromFirebase(log, object: CallbackForGroupConferences {
-//        override fun onCallback(list: MutableList<GroupConferences?>) {
-//            super.onCallback(list)
-//            groupConferences
-//        }
-//    })
-//}
-//
-//fun helperForGetGroupConferenceFromFirebase(login: String, firebaseCallback: CallbackForGroupConferences) {
-//    initFirebase()
-//    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
-//    var listData = ArrayList<GroupConferences?>()
-//    ref.addValueEventListener(object : ValueEventListener{
-//        override fun onDataChange(snapshot: DataSnapshot) {
-//            val new_user = snapshot.getValue(GroupConferences::class.java)
-//            listData.add(new_user)
-//            firebaseCallback.onCallback(listData)
-//        }
-//
-//        override fun onCancelled(error: DatabaseError) {
-//            TODO("Not yet implemented")
-//        }
-//    })
-//}
+fun helperForGetConferenceFromFirebase(login: String, firebaseCallback: CallbackForConferences) {
+    initFirebase()
+    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
+    var listData = ArrayList<Conference?>()
+    ref.addValueEventListener(object : ValueEventListener{
+        override fun onDataChange(snapshot: DataSnapshot) {
+            val new_user = snapshot.getValue(Conference::class.java)
+            listData.add(new_user)
+            firebaseCallback.onCallback(listData)
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            TODO("Not yet implemented")
+        }
+    })
+}
+
+fun getGroupConferenceFromFirebase( context: Context, log: String){
+    val localDatabaseHelper = SQLiteHelper(context)
+    var groupConferences = GroupConferences()
+    helperForGetGroupConferenceFromFirebase(log, object: CallbackForGroupConferences {
+        override fun onCallback(list: MutableList<GroupConferences?>) {
+            super.onCallback(list)
+            groupConferences.conferencens = list[0]!!.conferencens
+            localDatabaseHelper.insertConferenceToSchedule(groupConferences.conferencens)
+        }
+    })
+}
+
+fun helperForGetGroupConferenceFromFirebase(login: String, firebaseCallback: CallbackForGroupConferences) {
+    initFirebase()
+    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
+    var listData = ArrayList<GroupConferences?>()
+    ref.addValueEventListener(object : ValueEventListener{
+        override fun onDataChange(snapshot: DataSnapshot) {
+            val new_user = snapshot.getValue(GroupConferences::class.java)
+            listData.add(new_user)
+            firebaseCallback.onCallback(listData)
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            TODO("Not yet implemented")
+        }
+    })
+}
 
 
 
