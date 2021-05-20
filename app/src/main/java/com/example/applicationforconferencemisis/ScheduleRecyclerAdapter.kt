@@ -1,6 +1,5 @@
 package com.example.applicationforconferencemisis
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationforconferencemisis.Data.Models.Conference
 
-class RecyclerAdapter(private val events: List<Conference>) :
-    RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
+class ScheduleRecyclerAdapter(private val events: List<Conference>) :
+    RecyclerView.Adapter<ScheduleRecyclerAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var eventTime: TextView? = null

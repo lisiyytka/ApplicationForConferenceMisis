@@ -27,6 +27,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <EditText
+            android:id="@+id/message_for_send"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"

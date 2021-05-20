@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 
 class scheduleAndMyScheduleFragment: Fragment() {
@@ -26,7 +25,7 @@ class scheduleAndMyScheduleFragment: Fragment() {
 
         val scheduleRecyclerView = view?.findViewById<RecyclerView>(R.id.scheduleRecyclerView)
         scheduleRecyclerView!!.layoutManager = LinearLayoutManager(context)
-        scheduleRecyclerView.adapter = RecyclerAdapter(helper.getAllConferences())
+        scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(helper.getAllConferences())
 
     }
 }

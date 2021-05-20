@@ -9,6 +9,7 @@ import com.example.applicationforconferencemisis.Data.Models.GroupConferences
 import com.example.applicationforconferencemisis.Data.Models.Message
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
+import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.ArrayList
@@ -105,7 +106,7 @@ fun getUserFromFirebase( context: Context, log: String){
             super.onCallback(list)
             user.username = list[0]!!.username
             user.name = list[0]!!.name
-            user.mail = list[0]!!.mail
+            user.password = list[0]!!.password
             user.description = list[0]!!.description
             localDatabaseHelper.insertUser(user)
         }
@@ -189,6 +190,28 @@ fun helperForGetGroupConferenceFromFirebase(login: String, firebaseCallback: Cal
             TODO("Not yet implemented")
         }
     })
+}
+
+fun sendMessage(message: String, receivingUserId: String, context: Context, function: () -> Unit) {
+    val localDatabaseHelper = SQLiteHelper(context)
+    val user = localDatabaseHelper.getUser()
+    val message = Message()
+    val redDialogUser = "$NODE_MESSAGES/${user.username}/$receivingUserId"
+    val redDialogReceivingUser = "$NODE_MESSAGES/$receivingUserId/${user.username}"
+    val messageKey = REF_DATABASE_ROOT.child(redDialogUser).push().key
+
+    val mapMessage = hashMapOf<String,Any>()
+    mapMessage[message.fromUser] = user.username
+    mapMessage[message.text] = message
+    mapMessage[message.date] = ServerValue.TIMESTAMP
+
+    val mapDialog = hashMapOf<String,Any>()
+    mapDialog["$redDialogUser/$messageKey"] = mapMessage
+    mapDialog["$redDialogReceivingUser/$messageKey"] = mapMessage
+    REF_DATABASE_ROOT
+        .updateChildren(mapDialog)
+        .addOnSuccessListener { function() }
+        .addOnFailureListener { makeToast(context,"aye") }
 }
 
 

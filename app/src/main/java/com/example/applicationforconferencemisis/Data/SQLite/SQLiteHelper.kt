@@ -16,7 +16,7 @@ val TABLE_NAME_GROUP_CONFERENCES = "GroupConferences"
 val TABLE_NAME_CONFERENCES = "Conferences"
 val USERS_COL_ID = "Id"
 val USERS_COL_NAME = "Name"
-val USERS_COL_MAIL= "Mail"
+val USERS_COL_PASSWORD= "Mail"
 val USERS_COL_DESCRIPTION= "Description"
 val GROUP_CONFERENCES_COL_CONFERENCES = "Conferences"
 val CONFERENCES_COL_CONFERENCE_ID = "ConferenceId"
@@ -32,7 +32,7 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         val createTableUsers = "CREATE TABLE " + TABLE_NAME_USERS + " (" +
                 USERS_COL_ID + " VARCHAR(256) PRIMARY KEY, " +
                 USERS_COL_NAME+ " VARCHAR(256), " +
-                USERS_COL_MAIL + " VARCHAR(256), " +
+                USERS_COL_PASSWORD + " VARCHAR(256), " +
                 USERS_COL_DESCRIPTION + " VARCHAR(256))"
         db?.execSQL(createTableUsers)
 
@@ -58,7 +58,7 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         val cv = ContentValues()
         cv.put(USERS_COL_NAME, user.name)
         cv.put(USERS_COL_ID, user.username)
-        cv.put(USERS_COL_MAIL, user.mail)
+        cv.put(USERS_COL_PASSWORD, user.password)
         cv.put(USERS_COL_DESCRIPTION, user.description)
         db.insert(TABLE_NAME_USERS, null, cv)
     }
@@ -164,7 +164,7 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         if (result.moveToFirst()){
             do {
                 user.name = result.getString(result.getColumnIndex(USERS_COL_NAME)).toString()
-                user.mail = result.getString(result.getColumnIndex(USERS_COL_MAIL)).toString()
+                user.password = result.getString(result.getColumnIndex(USERS_COL_PASSWORD)).toString()
                 user.description = result.getString(result.getColumnIndex(USERS_COL_DESCRIPTION)).toString()
                 user.username = result.getString(result.getColumnIndex(USERS_COL_ID)).toString()
             } while (result.moveToNext())

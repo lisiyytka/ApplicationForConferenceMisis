@@ -12,7 +12,7 @@ import com.example.applicationforconferencemisis.Data.Models.Conference
 class DifferentActivity : AppCompatActivity() {
 
     private val scheduleFragment = scheduleAndMyScheduleFragment()
-    private val groupChatFragment = groupChatFragment()
+    private val groupChatFragment = groupChatFragment("123")
     private val messagesFragment = messagesFragment()
     private val membersAndSpeakersFragment = membersAndSpeakersFragment()
     private val accountFragment = accountFragment()
@@ -25,6 +25,7 @@ class DifferentActivity : AppCompatActivity() {
         backBtn.setOnClickListener{
             startActivity(Intent(this, MainActivity::class.java))
         }
+
 
         val buttonId = intent.getIntExtra("buttonId", 0)
 
