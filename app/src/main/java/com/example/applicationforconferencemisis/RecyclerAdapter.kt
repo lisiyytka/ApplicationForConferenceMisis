@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationforconferencemisis.Data.Models.Conference
 
 class RecyclerAdapter(private val events: List<Conference>) :
-    RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>(){
+    RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var eventTime: TextView? = null
         var eventName: TextView? = null
         var eventDescription: TextView? = null
@@ -32,12 +32,10 @@ class RecyclerAdapter(private val events: List<Conference>) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        for (event in events){
-            holder.eventTime?.text = event.date
-            holder.eventName?.text = event.name
-            holder.eventDescription?.text = event.theme
-            holder.eventSpeaker?.text = event.speakers
-        }
+        holder.eventTime?.text = events[position].date
+        holder.eventName?.text = events[position].name
+        holder.eventDescription?.text = events[position].theme
+        holder.eventSpeaker?.text = events[position].speakers
     }
 
     override fun getItemCount() = events.size
