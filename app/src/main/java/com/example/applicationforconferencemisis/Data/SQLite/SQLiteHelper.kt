@@ -174,7 +174,7 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         return user
     }
 
-    fun deleteData(){
+    fun deleteUser(){
         val db = this.writableDatabase
         db.delete(TABLE_NAME_USERS,null,null)
         db.close()

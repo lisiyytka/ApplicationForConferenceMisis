@@ -131,6 +131,7 @@ fun helperForGetUserFromFirebase(login: String, firebaseCallback: CallbackForUse
 }
 
 fun getConferenceFromFirebase(context: Context, log: String){
+    initFirebase()
     val localDatabaseHelper = SQLiteHelper(context)
     var conference = Conference()
     helperForGetConferenceFromFirebase(log, object: CallbackForConferences{
@@ -164,6 +165,7 @@ fun helperForGetConferenceFromFirebase(login: String, firebaseCallback: Callback
 }
 
 fun getGroupConferenceFromFirebase( context: Context, log: String){
+    initFirebase()
     val localDatabaseHelper = SQLiteHelper(context)
     var groupConferences = GroupConferences()
     helperForGetGroupConferenceFromFirebase(log, object: CallbackForGroupConferences {
@@ -193,6 +195,7 @@ fun helperForGetGroupConferenceFromFirebase(login: String, firebaseCallback: Cal
 }
 
 fun sendMessage(message: String, receivingUserId: String, context: Context, function: () -> Unit) {
+    initFirebase()
     val localDatabaseHelper = SQLiteHelper(context)
     val user = localDatabaseHelper.getUser()
     val message = Message()
@@ -213,6 +216,8 @@ fun sendMessage(message: String, receivingUserId: String, context: Context, func
         .addOnSuccessListener { function() }
         .addOnFailureListener { makeToast(context,"aye") }
 }
+
+
 
 
 

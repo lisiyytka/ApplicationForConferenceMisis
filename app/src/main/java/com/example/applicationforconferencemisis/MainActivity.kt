@@ -81,7 +81,9 @@ class MainActivity : AppCompatActivity() {
             startDifActivity(upcomingConferenceButton.id)
         }
 //        coroutineGetUser(this)
-
+        val helper = SQLiteHelper(this)
+        val user = helper.getUser()
+        makeToast(this,user.username+" "+user.password)
     }
 
 //    private fun coroutineGetUser(context: Context) = runBlocking {
