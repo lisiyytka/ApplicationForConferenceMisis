@@ -15,6 +15,9 @@ import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 
 class scheduleAndMyScheduleFragment: Fragment() {
 
+    lateinit var adapter: RecyclerView.Adapter<MyViewHolder>
+    lateinit var scheduleRecyclerView: RecyclerView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,36 +31,42 @@ class scheduleAndMyScheduleFragment: Fragment() {
 
         val helper = SQLiteHelper(context!!)
 
-        val scheduleRecyclerView = view?.findViewById<RecyclerView>(R.id.scheduleRecyclerView)
-        scheduleRecyclerView!!.layoutManager = LinearLayoutManager(context)
-        scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(helper.getAllConferences())
+        initRecyclerView(helper.getAllConferences())
     }
 
-    class ScheduleRecyclerAdapter(private val events: List<Conference>) :
-        RecyclerView.Adapter<ScheduleRecyclerAdapter.MyViewHolder>() {
 
-        class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private fun initRecyclerView(events: List<Conference>){
+        scheduleRecyclerView = view?.findViewById(R.id.scheduleRecyclerView)!!
+        scheduleRecyclerView.layoutManager = LinearLayoutManager(context)
+        adapter = object : RecyclerView.Adapter<MyViewHolder>() {
 
-            var eventTime: TextView = itemView.findViewById(R.id.eventTime)
-            var eventName: TextView = itemView.findViewById(R.id.eventTitle)
-            var eventDescription: TextView = itemView.findViewById(R.id.eventDescription)
-            var eventSpeaker: TextView = itemView.findViewById(R.id.eventSpeaker)
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+                val itemView = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.schedule_component, parent, false)
+                return MyViewHolder(itemView)
+            }
+
+            override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+                holder.eventTime.text = events[position].date
+                holder.eventName.text = events[position].name
+                holder.eventDescription.text = events[position].theme
+                holder.eventSpeaker.text = events[position].speakers
+                holder.itemView.setOnClickListener {
+                    lastFragment = scheduleAndMyScheduleFragment()
+                    lastBtnId = R.id.schedule_btn
+                    replaceFragment(conferenceFragment())
+                }
+            }
+
+            override fun getItemCount() = events.size
         }
+        scheduleRecyclerView.adapter = adapter
+    }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-            val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.schedule_component, parent, false)
-            return MyViewHolder(itemView)
-        }
-
-        override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-            holder.eventTime.text = events[position].date
-            holder.eventName.text = events[position].name
-            holder.eventDescription.text = events[position].theme
-            holder.eventSpeaker.text = events[position].speakers
-            holder.itemView.setOnClickListener {}
-        }
-
-        override fun getItemCount() = events.size
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var eventTime: TextView = itemView.findViewById(R.id.eventTime)
+        var eventName: TextView = itemView.findViewById(R.id.eventTitle)
+        var eventDescription: TextView = itemView.findViewById(R.id.eventDescription)
+        var eventSpeaker: TextView = itemView.findViewById(R.id.eventSpeaker)
     }
 }
