@@ -19,10 +19,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         val helper = SQLiteHelper(this)
-//        val user = helper.getUser()
-//        if (user.username!= ""){
-//            startActivity(Intent(this, MainActivity::class.java))
-//        }
         val buttonForLogin = findViewById<ImageButton>(R.id.buttonForLogin)
         val editTextEmail = findViewById<EditText>(R.id.edit_text_email)
         val editTextPassword = findViewById<EditText>(R.id.edit_text_password)

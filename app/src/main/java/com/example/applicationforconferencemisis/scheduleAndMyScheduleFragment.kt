@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 
@@ -36,17 +37,11 @@ class scheduleAndMyScheduleFragment: Fragment() {
         RecyclerView.Adapter<ScheduleRecyclerAdapter.MyViewHolder>() {
 
         class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            var eventTime: TextView? = null
-            var eventName: TextView? = null
-            var eventDescription: TextView? = null
-            var eventSpeaker: TextView? = null
 
-            init {
-                eventTime = itemView.findViewById(R.id.eventTime)
-                eventName = itemView.findViewById(R.id.eventTitle)
-                eventDescription = itemView.findViewById(R.id.eventDescription)
-                eventSpeaker = itemView.findViewById(R.id.eventSpeaker)
-            }
+            var eventTime: TextView = itemView.findViewById(R.id.eventTime)
+            var eventName: TextView = itemView.findViewById(R.id.eventTitle)
+            var eventDescription: TextView = itemView.findViewById(R.id.eventDescription)
+            var eventSpeaker: TextView = itemView.findViewById(R.id.eventSpeaker)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -56,10 +51,10 @@ class scheduleAndMyScheduleFragment: Fragment() {
         }
 
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-            holder.eventTime?.text = events[position].date
-            holder.eventName?.text = events[position].name
-            holder.eventDescription?.text = events[position].theme
-            holder.eventSpeaker?.text = events[position].speakers
+            holder.eventTime.text = events[position].date
+            holder.eventName.text = events[position].name
+            holder.eventDescription.text = events[position].theme
+            holder.eventSpeaker.text = events[position].speakers
             holder.itemView.setOnClickListener {}
         }
 
