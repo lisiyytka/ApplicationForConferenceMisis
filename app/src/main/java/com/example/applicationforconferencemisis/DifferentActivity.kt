@@ -28,13 +28,14 @@ class DifferentActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager.beginTransaction()
         when (buttonId) {
             R.id.schedule_btn -> fragmentManager.add(R.id.containerForFrag, scheduleFragment)
-            R.id.my_schedule_btn -> fragmentManager.replace(R.id.containerForFrag, scheduleFragment)
-            R.id.group_chat_btn -> fragmentManager.replace(R.id.containerForFrag, groupChatFragment)
-            R.id.messages_btn -> fragmentManager.replace(R.id.containerForFrag, messagesFragment)
-            R.id.members_btn -> fragmentManager.replace(R.id.containerForFrag, membersAndSpeakersFragment)
-            R.id.speakers_btn -> fragmentManager.replace(R.id.containerForFrag, membersAndSpeakersFragment)
-            R.id.account_btn -> fragmentManager.replace(R.id.containerForFrag, accountFragment)
+            R.id.my_schedule_btn -> fragmentManager.add(R.id.containerForFrag, scheduleFragment)
+            R.id.group_chat_btn -> fragmentManager.add(R.id.containerForFrag, groupChatFragment)
+            R.id.messages_btn -> fragmentManager.add(R.id.containerForFrag, messagesFragment)
+            R.id.members_btn -> fragmentManager.add(R.id.containerForFrag, membersAndSpeakersFragment)
+            R.id.speakers_btn -> fragmentManager.add(R.id.containerForFrag, membersAndSpeakersFragment)
+            R.id.account_btn -> fragmentManager.add(R.id.containerForFrag, accountFragment)
         }
         fragmentManager.commit()
+        makeToast(this,"хуй")
     }
 }
