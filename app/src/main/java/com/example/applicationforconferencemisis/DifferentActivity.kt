@@ -16,6 +16,7 @@ class DifferentActivity : AppCompatActivity() {
     private val messagesFragment = messagesFragment()
     private val membersAndSpeakersFragment = membersAndSpeakersFragment()
     private val accountFragment = accountFragment()
+    private val conferenceFragment = conferenceFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,7 @@ class DifferentActivity : AppCompatActivity() {
             R.id.members_btn -> fragmentManager.add(R.id.containerForFrag, membersAndSpeakersFragment)
             R.id.speakers_btn -> fragmentManager.add(R.id.containerForFrag, membersAndSpeakersFragment)
             R.id.account_btn -> fragmentManager.add(R.id.containerForFrag, accountFragment)
+            R.id.upcoming_conference -> fragmentManager.add(R.id.containerForFrag, conferenceFragment)
         }
         fragmentManager.commit()
     }

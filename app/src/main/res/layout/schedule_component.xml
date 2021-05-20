@@ -20,12 +20,13 @@
             android:text="10:00"/>
 
         <LinearLayout
+            android:id="@+id/conference"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="12dp"
             android:layout_marginHorizontal="36dp"
             android:background="@drawable/bg_white"
-            android:elevation="10dp"
+            android:elevation="5dp"
             android:outlineAmbientShadowColor="@color/purple"
             android:outlineSpotShadowColor="@color/purple"
             android:orientation="vertical">

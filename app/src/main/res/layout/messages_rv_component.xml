@@ -15,28 +15,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="90dp"
+            app:cardCornerRadius="35dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/users_img"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:src="@drawable/img" />
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="210dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginHorizontal="18dp"
+            android:layout_marginHorizontal="15dp"
             android:layout_gravity="center_vertical">
 
             <TextView
+                android:id="@+id/users_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -45,6 +47,7 @@
                 android:text="Arseniy Nikorkin"/>
 
             <TextView
+                android:id="@+id/last_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/font_roboto_regular_gray"
@@ -54,20 +57,22 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_gravity="center_vertical">
 
             <TextView
+                android:id="@+id/time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="15dp"
                 style="@style/font_roboto_regular_gray"
                 android:textSize="14sp"
                 android:text="16:47"/>
 
             <TextView
+                android:id="@+id/number_of_unread_msg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_purple"

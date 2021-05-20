@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import com.example.applicationforconferencemisis.Data.Firebase.addNewUser
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.User
@@ -73,6 +74,11 @@ class MainActivity : AppCompatActivity() {
         val accountButton = findViewById<Button>(R.id.account_btn)
         accountButton.setOnClickListener {
             startDifActivity(accountButton.id)
+        }
+
+        val upcomingConferenceButton = findViewById<LinearLayout>(R.id.upcoming_conference)
+        upcomingConferenceButton.setOnClickListener {
+            startDifActivity(upcomingConferenceButton.id)
         }
 //        coroutineGetUser(this)
 
