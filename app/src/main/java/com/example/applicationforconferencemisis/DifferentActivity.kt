@@ -39,16 +39,5 @@ class DifferentActivity : AppCompatActivity() {
             R.id.account_btn -> fragmentManager.add(R.id.containerForFrag, accountFragment)
         }
         fragmentManager.commit()
-
-        val scheduleRecyclerView = findViewById<RecyclerView>(R.id.scheduleRecyclerView)
-        scheduleRecyclerView.layoutManager = LinearLayoutManager(this)
-        scheduleRecyclerView.adapter = RecyclerAdapter(events())
-    }
-
-    private fun events(): List<Conference> {
-        val a = Conference("1","Name1","Theme1","10.10","Speaker1")
-        val e = mutableListOf<Conference>()
-        e.add(a)
-        return e
     }
 }

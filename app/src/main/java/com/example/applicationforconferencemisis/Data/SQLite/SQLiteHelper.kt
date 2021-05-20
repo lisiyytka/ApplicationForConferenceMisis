@@ -134,6 +134,27 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         return conference
     }
 
+    fun getAllConferences():List<Conference>{
+        val listOfConferences: MutableList<Conference> = ArrayList()
+        val db = this.readableDatabase
+        val query = "Select * from $TABLE_NAME_CONFERENCES"
+        val result = db.rawQuery(query, null)
+        if (result.moveToFirst()){
+            do {
+                val conference = Conference()
+                conference.conferenceId = result.getString(result.getColumnIndex(CONFERENCES_COL_CONFERENCE_ID)).toString()
+                conference.name = result.getString(result.getColumnIndex(CONFERENCES_COL_NAME)).toString()
+                conference.theme = result.getString(result.getColumnIndex(CONFERENCES_COL_THEME)).toString()
+                conference.date = result.getString(result.getColumnIndex(CONFERENCES_COL_DATE)).toString()
+                conference.speakers = result.getString(result.getColumnIndex(CONFERENCES_COL_SPEAKERS)).toString()
+                listOfConferences.add(conference)
+            } while (result.moveToNext())
+        }
+        result.close()
+        db.close()
+        return listOfConferences
+    }
+
     fun getUser(): User {
         val list: MutableList<User> = ArrayList()
         val user = User()
