@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                 Log.e("TAG", "onChildAdded:" + message.username)
 
                 val latest = messageList[messageList.size - 1]
-//                makeToast(context, latest.username)
+                makeToast(context, latest.username)
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {

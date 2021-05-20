@@ -1,16 +1,17 @@
 package com.example.applicationforconferencemisis.Data.Firebase
 
 import android.content.Context
+import com.example.applicationforconferencemisis.Data.Firebase.Callbacks.CallbackForConferences
+import com.example.applicationforconferencemisis.Data.Firebase.Callbacks.CallbackForGroupConferences
+import com.example.applicationforconferencemisis.Data.Firebase.Callbacks.CallbackForUser
 import com.example.applicationforconferencemisis.Data.Models.Conference
+import com.example.applicationforconferencemisis.Data.Models.GroupConferences
 import com.example.applicationforconferencemisis.Data.Models.Message
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
-import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.ArrayList
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 lateinit var AUTH: FirebaseAuth
 lateinit var REF_DATABASE_ROOT: DatabaseReference
@@ -99,7 +100,7 @@ fun addMessageToDialog(from: String, message: Message, context: Context) {
 fun getUserFromFirebase( context: Context, log: String){
     val localDatabaseHelper = SQLiteHelper(context)
     var user = User()
-    helperForGetUserFromFirebase(log, object: FirebaseCallback{
+    helperForGetUserFromFirebase(log, object: CallbackForUser {
         override fun onCallback(list: MutableList<User?>) {
             super.onCallback(list)
             user.username = list[0]!!.username
@@ -111,7 +112,7 @@ fun getUserFromFirebase( context: Context, log: String){
     })
 }
 
-fun helperForGetUserFromFirebase(login: String, firebaseCallback: FirebaseCallback) {
+fun helperForGetUserFromFirebase(login: String, firebaseCallback: CallbackForUser) {
     initFirebase()
     val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
     var listData = ArrayList<User?>()
@@ -128,32 +129,66 @@ fun helperForGetUserFromFirebase(login: String, firebaseCallback: FirebaseCallba
     })
 }
 
-fun getConferenceFromFirebase(context: Context, log: String){
-    val localDatabaseHelper = SQLiteHelper(context)
-    var user = User()
-    helperForGetConferenceFromFirebase(log, object: FirebaseCallback{
-        override fun onCallback(list: MutableList<User?>) {
-            super.onCallback(list)
-        }
-    })
-}
+//fun getConferenceFromFirebase(context: Context, log: String){
+//    val localDatabaseHelper = SQLiteHelper(context)
+//    var conference = Conference()
+//    helperForGetConferenceFromFirebase(log, object: CallbackForConferences{
+//        override fun onCallback(list: MutableList<Conference?>) {
+//            super.onCallback(list)
+//            conference.conferenceId = list[0]!!.conferenceId
+//            conference.name = list[0]!!.name
+//            conference.theme = list[0]!!.theme
+//            conference.date = list[0]!!.date
+//            conference.speakers = list[0]!!.speakers
+//            localDatabaseHelper
+//        }
+//    })
+//}
+//
+//fun helperForGetConferenceFromFirebase(login: String, firebaseCallback: CallbackForConferences) {
+//    initFirebase()
+//    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
+//    var listData = ArrayList<Conference?>()
+//    ref.addValueEventListener(object : ValueEventListener{
+//        override fun onDataChange(snapshot: DataSnapshot) {
+//            val new_user = snapshot.getValue(Conference::class.java)
+//            listData.add(new_user)
+//            firebaseCallback.onCallback(listData)
+//        }
+//
+//        override fun onCancelled(error: DatabaseError) {
+//            TODO("Not yet implemented")
+//        }
+//    })
+//}
 
-fun helperForGetConferenceFromFirebase(login: String, firebaseCallback: FirebaseCallback) {
-    initFirebase()
-    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
-    var listData = ArrayList<User?>()
-    ref.addValueEventListener(object : ValueEventListener{
-        override fun onDataChange(snapshot: DataSnapshot) {
-            val new_user = snapshot.getValue(User::class.java)
-            listData.add(new_user)
-            firebaseCallback.onCallback(listData)
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
-    })
-}
+//fun getGroupConferenceFromFirebase( context: Context, log: String){
+//    val localDatabaseHelper = SQLiteHelper(context)
+//    var groupConferences = GroupConferences()
+//    helperForGetGroupConferenceFromFirebase(log, object: CallbackForGroupConferences {
+//        override fun onCallback(list: MutableList<GroupConferences?>) {
+//            super.onCallback(list)
+//            groupConferences
+//        }
+//    })
+//}
+//
+//fun helperForGetGroupConferenceFromFirebase(login: String, firebaseCallback: CallbackForGroupConferences) {
+//    initFirebase()
+//    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
+//    var listData = ArrayList<GroupConferences?>()
+//    ref.addValueEventListener(object : ValueEventListener{
+//        override fun onDataChange(snapshot: DataSnapshot) {
+//            val new_user = snapshot.getValue(GroupConferences::class.java)
+//            listData.add(new_user)
+//            firebaseCallback.onCallback(listData)
+//        }
+//
+//        override fun onCancelled(error: DatabaseError) {
+//            TODO("Not yet implemented")
+//        }
+//    })
+//}
 
 
 

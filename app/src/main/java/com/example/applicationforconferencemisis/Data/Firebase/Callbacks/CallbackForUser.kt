@@ -1,8 +1,8 @@
-package com.example.applicationforconferencemisis.Data.Firebase
+package com.example.applicationforconferencemisis.Data.Firebase.Callbacks
 
 import com.example.applicationforconferencemisis.Data.Models.User
 
-interface FirebaseCallback {
+interface CallbackForUser {
     fun onCallback(list: MutableList<User?>){
 
     }
