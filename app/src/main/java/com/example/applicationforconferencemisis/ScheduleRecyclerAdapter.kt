@@ -36,7 +36,7 @@ class ScheduleRecyclerAdapter(private val events: List<Conference>) :
         holder.eventName?.text = events[position].name
         holder.eventDescription?.text = events[position].theme
         holder.eventSpeaker?.text = events[position].speakers
-        holder.itemView.setOnClickListener { }
+        holder.itemView.setOnClickListener {}
     }
 
     override fun getItemCount() = events.size
