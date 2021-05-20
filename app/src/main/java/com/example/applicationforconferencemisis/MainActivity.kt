@@ -11,20 +11,33 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import com.example.applicationforconferencemisis.Data.Firebase.addNewUser
-import com.example.applicationforconferencemisis.Data.Firebase.getUser
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
+
+    private var mDatabase: DatabaseReference? = null
+    private var mMessageReference: DatabaseReference? = null
+    private var mMessageListener: ChildEventListener? = null
+    val messageList = ArrayList<User>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 //        val user = User("debil", "df", "fd", "fd")
 //        addNewUser(user)
+
+        mDatabase = FirebaseDatabase.getInstance().reference
+        mMessageReference = FirebaseDatabase.getInstance().getReference("Users")
+
+        firebaseListenerInit(this)
 
         val scheduleButton = findViewById<Button>(R.id.schedule_btn)
         scheduleButton.setOnClickListener {
@@ -80,4 +93,41 @@ class MainActivity : AppCompatActivity() {
     {
         startActivity(Intent(this, DifferentActivity::class.java).putExtra("buttonId", id))
     }
+
+    private fun firebaseListenerInit(context: Context) {
+
+        val childEventListener = object : ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                // A new message has been added
+                // onChildAdded() will be called for each node at the first time
+                val message = snapshot.getValue(User::class.java)
+                messageList.add(message!!)
+
+                Log.e("TAG", "onChildAdded:" + message.username)
+
+                val latest = messageList[messageList.size - 1]
+//                makeToast(context, latest.username)
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+
+        mMessageReference!!.addChildEventListener(childEventListener)
+        mMessageListener = childEventListener
+    }
+
 }
