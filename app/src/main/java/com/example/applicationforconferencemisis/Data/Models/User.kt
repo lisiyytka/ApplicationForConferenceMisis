@@ -1,7 +1,10 @@
 package com.example.applicationforconferencemisis.Data.Models
 
+
 class User {
+
     var username:String = ""
+
     var name: String = ""
     var mail: String = ""
     var description: String = ""
