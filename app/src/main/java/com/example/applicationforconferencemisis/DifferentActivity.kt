@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.applicationforconferencemisis.Data.Models.Conference
 
 class DifferentActivity : AppCompatActivity() {
 
@@ -36,6 +39,16 @@ class DifferentActivity : AppCompatActivity() {
             R.id.account_btn -> fragmentManager.add(R.id.containerForFrag, accountFragment)
         }
         fragmentManager.commit()
-        makeToast(this,"хуй")
+
+        val scheduleRecyclerView = findViewById<RecyclerView>(R.id.scheduleRecyclerView)
+        scheduleRecyclerView.layoutManager = LinearLayoutManager(this)
+        scheduleRecyclerView.adapter = RecyclerAdapter(events())
+    }
+
+    private fun events(): List<Conference> {
+        val a = Conference("1","Name1","Theme1","10.10","Speaker1")
+        val e = mutableListOf<Conference>()
+        e.add(a)
+        return e
     }
 }
