@@ -4,15 +4,13 @@ class Message {
     var text: String = ""
     var date: Any = ""
     var fromUser: String = ""
-    var toUser: String = ""
 
 
     constructor()
-    constructor(text: String, date: Any, fromUser: String, toUser: String) {
+    constructor(text: String, date: Any, fromUser: String) {
         this.text = text
         this.date = date
         this.fromUser = fromUser
-        this.toUser = toUser
     }
 
 }

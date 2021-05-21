@@ -58,6 +58,7 @@ class singleChatFragment(val userId: String) : Fragment() {
 
     private fun initRecyclerView() {
         val helper = SQLiteHelper(context!!)
+        makeToast(context!!, helper.getUser().username + " "  + userId)
         singleChatRecyclerView = view?.findViewById(R.id.chatRecyclerView)!!
         singleChatRecyclerView.layoutManager = LinearLayoutManager(context)
         mAdapter = SingleChatAdapter(helper)

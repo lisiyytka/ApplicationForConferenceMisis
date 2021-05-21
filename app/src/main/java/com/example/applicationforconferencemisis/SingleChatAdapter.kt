@@ -1,5 +1,6 @@
 package com.example.applicationforconferencemisis
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
@@ -40,7 +41,7 @@ class SingleChatAdapter (private val helper: SQLiteHelper):
         } else {
             holder.blocUserMessage.visibility = View.GONE
             holder.blocReceivedMessage.visibility = View.VISIBLE
-            holder.msg.text = mListMessagesCache[position].text
+            holder.msg.text = mListMessagesCache[position].fromUser
             holder.msgTime.text = mListMessagesCache[position].date.toString().asTime()
         }
     }
