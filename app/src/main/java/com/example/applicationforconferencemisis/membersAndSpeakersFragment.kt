@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_USERS
 import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
+import com.example.applicationforconferencemisis.Data.Firebase.addNewDialog
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -65,6 +66,7 @@ class membersAndSpeakersFragment : Fragment() {
 
                     holder.userName.text = model.username
                     holder.sendMessageButton.setOnClickListener {
+                        addNewDialog(model.username, context!!)
                         localDB.insertContactsToContacts(model.username)
                         replaceFragment(groupChatFragment(model.username))
                     }

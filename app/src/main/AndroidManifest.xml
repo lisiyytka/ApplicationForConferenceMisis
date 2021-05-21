@@ -18,8 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:windowSoftInputMode="stateAlwaysVisible">
+            android:name=".MainActivity">
         </activity>
 
         <meta-data

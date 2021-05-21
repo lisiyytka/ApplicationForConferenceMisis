@@ -4,10 +4,7 @@ import android.content.Context
 import com.example.applicationforconferencemisis.Data.Firebase.Callbacks.CallbackForConferences
 import com.example.applicationforconferencemisis.Data.Firebase.Callbacks.CallbackForGroupConferences
 import com.example.applicationforconferencemisis.Data.Firebase.Callbacks.CallbackForUser
-import com.example.applicationforconferencemisis.Data.Models.Conference
-import com.example.applicationforconferencemisis.Data.Models.GroupConferences
-import com.example.applicationforconferencemisis.Data.Models.Message
-import com.example.applicationforconferencemisis.Data.Models.User
+import com.example.applicationforconferencemisis.Data.Models.*
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.auth.FirebaseAuth
@@ -69,35 +66,6 @@ fun addMessageToDialog(from: String, message: Message, context: Context) {
         .setValue(message)
 }
 
-//suspend fun helperForGetUser(context: Context, login: String): User {
-//    return suspendCoroutine { continuation ->
-//        getUser(login, object : FirebaseCallback {
-//            override fun onCallback(list: MutableList<User?>) {
-//                super.onCallback(list)
-//                continuation.resume(list[0]!!)
-//            }
-//        })
-//    }
-//}
-//
-//fun getUser(login: String, firebaseCallback: FirebaseCallback) {
-//    initFirebase()
-//    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
-//    var listData = ArrayList<User?>()
-//    val listener = object : ValueEventListener {
-//        override fun onCancelled(databaseError: DatabaseError) {
-//        }
-//
-//        override fun onDataChange(dataSnapshot: DataSnapshot) {
-//            val new_user = dataSnapshot.getValue(User::class.java)
-//            listData.add(new_user)
-//            firebaseCallback.onCallback(listData)
-//        }
-//    }
-//    ref.addValueEventListener(listener)
-//}
-
-
 fun getUserFromFirebase( context: Context, log: String){
     val localDatabaseHelper = SQLiteHelper(context)
     var user = User()
@@ -113,7 +81,7 @@ fun getUserFromFirebase( context: Context, log: String){
     })
 }
 
-fun helperForGetUserFromFirebase(login: String, firebaseCallback: CallbackForUser) {
+private fun helperForGetUserFromFirebase(login: String, firebaseCallback: CallbackForUser) {
     initFirebase()
     val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
     var listData = ArrayList<User?>()
@@ -147,7 +115,7 @@ fun getConferenceFromFirebase(context: Context, log: String){
     })
 }
 
-fun helperForGetConferenceFromFirebase(login: String, firebaseCallback: CallbackForConferences) {
+private fun helperForGetConferenceFromFirebase(login: String, firebaseCallback: CallbackForConferences) {
     initFirebase()
     val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
     var listData = ArrayList<Conference?>()
@@ -169,22 +137,25 @@ fun getGroupConferenceFromFirebase( context: Context, log: String){
     val localDatabaseHelper = SQLiteHelper(context)
     var groupConferences = GroupConferences()
     helperForGetGroupConferenceFromFirebase(log, object: CallbackForGroupConferences {
-        override fun onCallback(list: MutableList<GroupConferences?>) {
+        override fun onCallback(list: MutableList<String?>) {
             super.onCallback(list)
-            groupConferences.conferencens = list[0]!!.conferencens
-            localDatabaseHelper.insertConferenceToSchedule(groupConferences.conferencens)
+            for (id in list)
+                if (!id.isNullOrEmpty())
+                    localDatabaseHelper.insertConferenceToSchedule(id)
         }
     })
 }
 
-fun helperForGetGroupConferenceFromFirebase(login: String, firebaseCallback: CallbackForGroupConferences) {
+private fun helperForGetGroupConferenceFromFirebase(login: String, firebaseCallback: CallbackForGroupConferences) {
     initFirebase()
-    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
-    var listData = ArrayList<GroupConferences?>()
+    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login).child(NODE_GROUP_CONFERENCES)
+    var listData = ArrayList<String?>()
     ref.addValueEventListener(object : ValueEventListener{
         override fun onDataChange(snapshot: DataSnapshot) {
-            val new_user = snapshot.getValue(GroupConferences::class.java)
-            listData.add(new_user)
+            for (conference in snapshot.children){
+                val idConference = conference.getValue(String::class.java)
+                listData.add(idConference)
+            }
             firebaseCallback.onCallback(listData)
         }
 
@@ -198,15 +169,15 @@ fun sendMessage(message: String, receivingUserId: String, context: Context, func
     initFirebase()
     val localDatabaseHelper = SQLiteHelper(context)
     val user = localDatabaseHelper.getUser()
-    val message = Message()
+    val mess = Message(message, "01.01.0000", user.username, receivingUserId)
     val redDialogUser = "$NODE_MESSAGES/${user.username}/$receivingUserId"
     val redDialogReceivingUser = "$NODE_MESSAGES/$receivingUserId/${user.username}"
     val messageKey = REF_DATABASE_ROOT.child(redDialogUser).push().key
 
     val mapMessage = hashMapOf<String,Any>()
-    mapMessage[message.fromUser] = user.username
-    mapMessage[message.text] = message
-    mapMessage[message.date] = ServerValue.TIMESTAMP
+    mapMessage[mess.fromUser] = user.username
+    mapMessage[mess.text] = message
+    mapMessage[mess.date] = ServerValue.TIMESTAMP
 
     val mapDialog = hashMapOf<String,Any>()
     mapDialog["$redDialogUser/$messageKey"] = mapMessage
@@ -216,6 +187,14 @@ fun sendMessage(message: String, receivingUserId: String, context: Context, func
         .addOnSuccessListener { function() }
         .addOnFailureListener { makeToast(context,"aye") }
 }
+
+fun addNewDialog(withUserLogin:String, context: Context){
+    val helper = SQLiteHelper(context)
+    initFirebase()
+    REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().username).child(NODE_PERSONAL_CHATS).child(withUserLogin).setValue(withUserLogin)
+}
+
+
 
 
 

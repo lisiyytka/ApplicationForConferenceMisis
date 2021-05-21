@@ -6,6 +6,7 @@ class Message {
     var fromUser: String = ""
     var toUser: String = ""
 
+
     constructor()
     constructor(text: String, date: String, fromUser: String, toUser: String) {
         this.text = text

@@ -34,8 +34,9 @@ class LoginActivity : AppCompatActivity() {
                         if (it.hasChild(email)) {
                             val user = it.child(email).getValue(User::class.java)
                             if (user!!.password == pswrd) {
-                                helper.deleteUser()
+                                helper.deleteAllPersonalData()
                                 helper.insertUser(user)
+                                getGroupConferenceFromFirebase(this,user.username)
                                 startActivity(Intent(this, MainActivity::class.java))
                             } else {
                                 makeToast(this, "WrongPswrd")
@@ -44,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
                             makeToast(this, "NotFindMakeNew")
                             val user = User(email, "", "", pswrd)
                             addNewUser(user)
-                            helper.deleteUser()
+                            helper.deleteAllPersonalData()
                             helper.insertUser(user)
                             startActivity(Intent(this, MainActivity::class.java))
                         }

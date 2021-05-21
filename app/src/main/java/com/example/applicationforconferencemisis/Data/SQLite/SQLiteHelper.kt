@@ -7,11 +7,14 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.widget.AdapterView
 import android.widget.Toast
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.Contacts
 import com.example.applicationforconferencemisis.Data.Models.User
 import java.security.AccessControlContext
+import javax.security.auth.callback.Callback
+
 val DATABASE_NAME = "MyDB"
 val TABLE_NAME_USERS = "Users"
 val TABLE_NAME_GROUP_CONFERENCES = "GroupConferences"
@@ -31,6 +34,7 @@ val TABLE_NAME_GROUP_CONTACTS = "GroupContacts"
 
 class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null,1) {
 
+    lateinit var a:String
     override fun onCreate(db: SQLiteDatabase?) {
 
         val createTableUsers = "CREATE TABLE " + TABLE_NAME_USERS + " (" +
@@ -61,6 +65,7 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+
     fun insertUser(user: User) {
         val db = this.writableDatabase
         val cv = ContentValues()
@@ -83,6 +88,24 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         val cv = ContentValues()
         cv.put(GROUP_CONTACTS_COL_CONTACTS, idContacts)
         db.insert(TABLE_NAME_GROUP_CONTACTS, null, cv)
+    }
+
+    fun getContacts():List<Contacts>{
+
+        val listContactsNames: MutableList<Contacts> = ArrayList()
+        var db = this.readableDatabase
+        var query = "Select * from $TABLE_NAME_GROUP_CONTACTS"
+        var result = db.rawQuery(query, null)
+        if (result.moveToFirst()){
+            do {
+                val contact = Contacts()
+                contact.usersName = result.getString(result.getColumnIndex(GROUP_CONTACTS_COL_CONTACTS)).toString()
+                listContactsNames.add(contact)
+            } while (result.moveToNext())
+        }
+        result.close()
+        db.close()
+        return listContactsNames
     }
 
     fun insertConference(conference: Conference){
@@ -193,5 +216,23 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         val db = this.writableDatabase
         db.delete(TABLE_NAME_USERS,null,null)
         db.close()
+    }
+
+    fun deleteGroupContacts(){
+        val db = this.writableDatabase
+        db.delete(TABLE_NAME_GROUP_CONTACTS,null,null)
+        db.close()
+    }
+
+    fun deleteGroupConference(){
+        val db = this.writableDatabase
+        db.delete(TABLE_NAME_GROUP_CONFERENCES,null,null)
+        db.close()
+    }
+
+    fun deleteAllPersonalData(){
+        deleteUser()
+        deleteGroupConference()
+        deleteGroupContacts()
     }
 }
