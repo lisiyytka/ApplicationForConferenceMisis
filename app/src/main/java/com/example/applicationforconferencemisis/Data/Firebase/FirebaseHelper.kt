@@ -169,7 +169,7 @@ fun sendMessage(message: String, receivingUserId: String, context: Context, func
     initFirebase()
     val localDatabaseHelper = SQLiteHelper(context)
     val user = localDatabaseHelper.getUser()
-    val mess = Message(message, "01.01.0000", user.username, receivingUserId)
+    val mess = Message("text", "date", "from", "to")
     val redDialogUser = "$NODE_MESSAGES/${user.username}/$receivingUserId"
     val redDialogReceivingUser = "$NODE_MESSAGES/$receivingUserId/${user.username}"
     val messageKey = REF_DATABASE_ROOT.child(redDialogUser).push().key
