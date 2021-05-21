@@ -74,4 +74,8 @@ class messagesFragment: Fragment() {
         c.add(b)
         return c
     }
+
+    private fun getUserFromContacts(){
+
+    }
 }

@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -15,6 +17,7 @@ import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventList
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_USERS
 import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
 import com.example.applicationforconferencemisis.Data.Models.User
+import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseReference
@@ -57,10 +60,14 @@ class membersAndSpeakersFragment : Fragment() {
             }
 
             override fun onBindViewHolder(holder: MembersHolder, position: Int, model: User) {
-
+                val localDB = SQLiteHelper(context!!)
                 mRefUsersListener = AppValueEventListener {
 
                     holder.userName.text = model.username
+                    holder.sendMessageButton.setOnClickListener {
+                        localDB.insertContactsToContacts(model.username)
+                        replaceFragment(groupChatFragment(model.username))
+                    }
                 }
                 mRefMembers.addListenerForSingleValueEvent(mRefUsersListener)
                 mapListeners[mRefMembers] = mRefUsersListener
@@ -72,6 +79,7 @@ class membersAndSpeakersFragment : Fragment() {
 
     class MembersHolder (view: View): RecyclerView.ViewHolder(view){
         var userName: TextView = itemView.findViewById(R.id.users_name)
+        var sendMessageButton: ImageView = itemView.findViewById(R.id.send_msg_btn)
 //        var status: TextView = itemView.findViewById(R.id.users_status)
     }
 }
