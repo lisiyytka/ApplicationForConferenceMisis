@@ -22,8 +22,9 @@ class GroupChatAdapter (private val helper: SQLiteHelper):
         val myMsgTime: TextView = view.findViewById(R.id.my_time)
 
         val blocReceivedMessage: ConstraintLayout = view.findViewById(R.id.bloc_received_message)
-        val msg: TextView = view.findViewById(R.id.message)
+        val msg: TextView = view.findViewById(R.id.users_message)
         val msgTime: TextView = view.findViewById(R.id.time)
+        val userName: TextView = view.findViewById(R.id.users_name)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupChatHolder {
@@ -43,6 +44,7 @@ class GroupChatAdapter (private val helper: SQLiteHelper):
             holder.blocReceivedMessage.visibility = View.VISIBLE
             holder.msg.text = mListMessagesCache[position].text
             holder.msgTime.text = mListMessagesCache[position].date.toString().asTime()
+            holder.userName.text = mListMessagesCache[position].fromUser
         }
     }
 
