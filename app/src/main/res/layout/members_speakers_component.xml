@@ -41,6 +41,7 @@
                 android:layout_gravity="center_vertical">
 
                 <TextView
+                    android:id="@+id/users_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -49,6 +50,7 @@
                     android:text="Arseniy Nikorkin"/>
 
                 <TextView
+                    android:id="@+id/users_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/font_roboto_regular_white"
@@ -64,6 +66,7 @@
                 android:layout_gravity="center_vertical|end">
 
                 <ImageView
+                    android:id="@+id/send_msg_btn"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginHorizontal="23dp"

@@ -2,12 +2,14 @@ package com.example.applicationforconferencemisis.Data.SQLite
 
 
 
+import android.accessibilityservice.AccessibilityService
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 import com.example.applicationforconferencemisis.Data.Models.Conference
+import com.example.applicationforconferencemisis.Data.Models.Contacts
 import com.example.applicationforconferencemisis.Data.Models.User
 import java.security.AccessControlContext
 val DATABASE_NAME = "MyDB"
@@ -24,6 +26,8 @@ val CONFERENCES_COL_NAME = "Name"
 val CONFERENCES_COL_THEME = "Theme"
 val CONFERENCES_COL_DATE = "Date"
 val CONFERENCES_COL_SPEAKERS = "Speakers"
+val GROUP_CONTACTS_COL_CONTACTS = "Contacts"
+val TABLE_NAME_GROUP_CONTACTS = "GroupContacts"
 
 class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null,1) {
 
@@ -47,6 +51,10 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
                 CONFERENCES_COL_DATE + " VARCHAR(256), " +
                 CONFERENCES_COL_SPEAKERS + " VARCHAR(256))"
         db?.execSQL(createTableConferences)
+
+        val createTableGroupContacts = "CREATE TABLE " + TABLE_NAME_GROUP_CONTACTS + " (" +
+                GROUP_CONTACTS_COL_CONTACTS + " VARCHAR(256))"
+        db?.execSQL(createTableGroupContacts)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -68,6 +76,13 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         val cv = ContentValues()
         cv.put(GROUP_CONFERENCES_COL_CONFERENCES, idConference)
         db.insert(TABLE_NAME_GROUP_CONFERENCES, null, cv)
+    }
+
+    fun insertContactsToContacts(idContacts: String){
+        val db = this.writableDatabase
+        val cv = ContentValues()
+        cv.put(GROUP_CONTACTS_COL_CONTACTS, idContacts)
+        db.insert(TABLE_NAME_GROUP_CONTACTS, null, cv)
     }
 
     fun insertConference(conference: Conference){

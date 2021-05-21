@@ -5,6 +5,7 @@ import android.os.MemoryFile
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
@@ -16,9 +17,12 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseReference
 
 class membersAndSpeakersFragment : Fragment() {
+
     lateinit var membersRecyclerView: RecyclerView
     lateinit var mRefMembers: DatabaseReference
     private lateinit var mAdapter: FirebaseRecyclerAdapter<User, MembersHolder>
+    private lateinit var mRefUsersListener:AppValueEventListener
+    private  var mapListeners = hashMapOf<DatabaseReference,AppValueEventListener>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,25 +54,31 @@ class membersAndSpeakersFragment : Fragment() {
 
             override fun onBindViewHolder(holder: MembersHolder, position: Int, model: User) {
 
-                mRefUsers = REF_DATABASE_ROOT.child(NODE_USERS).child(model.id)
-
                 mRefUsersListener = AppValueEventListener {
-                    val contact = it.getCommonModel()
-                    holder.name.text = contact.fullname
-                    holder.status.text = contact.state
-                    holder.photo.downloadAndSetImage(contact.photoUrl)
-                    holder.itemView.setOnClickListener { replaceFragment(SingleChatFragment(contact)) }
+                    for(child in it.children){
+                        val member = child.getValue(User::class.java)
+                        if (member != null) {
+                            holder.userName.text = member.name
+                        }
+                        holder.itemView.setOnClickListener {
+
+
+
+                            if (member != null) {
+                                replaceFragment(groupChatFragment(member.username))
+                            }
+                        }
+                    }
                 }
 
-                mRefUsers.addValueEventListener(mRefUsersListener)
-                mapListeners[mRefUsers] = mRefUsersListener
+                mRefMembers.addValueEventListener(mRefUsersListener)
+                mapListeners[mRefMembers] = mRefUsersListener
             }
-
-            class MembersHolder(view: View): RecyclerView.ViewHolder(view){
-
-            }
-
         }
+    }
 
+    class MembersHolder (view: View): RecyclerView.ViewHolder(view){
+        var userName: TextView = itemView.findViewById(R.id.users_name)
+//        var status: TextView = itemView.findViewById(R.id.users_status)
     }
 }
