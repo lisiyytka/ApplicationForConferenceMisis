@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
+import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,9 +23,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        val user = User("debil", "df", "fd", "fd")
-//        addNewUser(user)
 
         mDatabase = FirebaseDatabase.getInstance().reference
         mMessageReference = FirebaseDatabase.getInstance().getReference("Users")
@@ -70,35 +68,10 @@ class MainActivity : AppCompatActivity() {
         upcomingConferenceButton.setOnClickListener {
             startDifActivity(upcomingConferenceButton.id)
         }
-//        coroutineGetUser(this)
         val helper = SQLiteHelper(this)
         val user = helper.getUser()
-//        makeToast(this,user.username+" "+user.password)
-
-
-//        val mRefUsersListener = AppValueEventListener {
-//            for(child in it.children){
-//                val member = child.getValue(User::class.java)
-//                if (member != null) {
-//                    makeToast(this, member.username)
-//                }
-//            }
-//        }
-//        REF_DATABASE_ROOT.child(NODE_USERS).addListenerForSingleValueEvent(mRefUsersListener)
     }
 
-//    private fun coroutineGetUser(context: Context) = runBlocking {
-//        getUser(context,"debil")
-//        val user = async {getUserFromLocalDatabase(context)}
-//        makeToast(context, user.await().username)
-//    }
-//
-//    suspend fun getUserFromLocalDatabase(context: Context): User{
-//        delay(2000)
-//        val localDatabaseHelper = SQLiteHelper(context)
-//        val user = localDatabaseHelper.getUser()
-//        return user
-//    }
 
     fun startDifActivity (id: Int)
     {

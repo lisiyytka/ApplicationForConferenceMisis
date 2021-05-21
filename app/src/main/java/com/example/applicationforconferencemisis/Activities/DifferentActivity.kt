@@ -15,6 +15,7 @@ import com.example.applicationforconferencemisis.Fragments.messagesFragment
 import com.example.applicationforconferencemisis.Fragments.membersAndSpeakersFragment
 import com.example.applicationforconferencemisis.Fragments.accountFragment
 import com.example.applicationforconferencemisis.Fragments.conferenceFragment
+import com.example.applicationforconferencemisis.makeToast
 
 
 var lastFragment: Fragment? = null
@@ -25,8 +26,7 @@ class DifferentActivity : AppCompatActivity() {
 
     private val scheduleFragment = scheduleAndMyScheduleFragment()
     private val helper = SQLiteHelper(this)
-    private val groupChatFragment = groupChatFragment(helper.getUser().username)
-    private val singleChatFragment = singleChatFragment("123")
+    private val groupChatFragment = groupChatFragment()
     private val messagesFragment = messagesFragment()
     private val membersAndSpeakersFragment = membersAndSpeakersFragment()
     private val accountFragment = accountFragment()
@@ -35,7 +35,7 @@ class DifferentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_toolbar)
-
+        makeToast(this,helper.getUser().username)
         val backBtn = findViewById<ImageView>(R.id.back)
         backBtn.setOnClickListener{
             if (lastFragment == null){

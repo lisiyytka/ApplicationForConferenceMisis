@@ -189,13 +189,12 @@ fun sendMessage(message: String, receivingUserId: String, context: Context, func
         .addOnFailureListener { makeToast(context,"aye") }
 }
 
-fun sendGroupMessage(message: String, receivingUserId: String, context: Context, function: () -> Unit) {
+fun sendGroupMessage(message: String, context: Context, function: () -> Unit) {
     initFirebase()
     val localDatabaseHelper = SQLiteHelper(context)
     val user = localDatabaseHelper.getUser()
     val mess = Message("text", "date", "fromUser")
-    val redDialogUser = "$NODE_GROUP_MESSAGE/${user.username}/$receivingUserId"
-    val redDialogReceivingUser = "$NODE_GROUP_MESSAGE/$receivingUserId/${user.username}"
+    val redDialogUser = "$NODE_GROUP_MESSAGE/"
     val messageKey = REF_DATABASE_ROOT.child(redDialogUser).push().key
 
     val mapMessage = hashMapOf<String,Any>()
@@ -205,7 +204,6 @@ fun sendGroupMessage(message: String, receivingUserId: String, context: Context,
 
     val mapDialog = hashMapOf<String,Any>()
     mapDialog["$redDialogUser/$messageKey"] = mapMessage
-    mapDialog["$redDialogReceivingUser/$messageKey"] = mapMessage
     REF_DATABASE_ROOT
         .updateChildren(mapDialog)
         .addOnSuccessListener { function() }
