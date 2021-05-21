@@ -11,6 +11,9 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
+import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
+import com.example.applicationforconferencemisis.Data.Firebase.NODE_USERS
+import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
 import com.example.applicationforconferencemisis.Data.Firebase.addNewUser
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.User
@@ -83,7 +86,18 @@ class MainActivity : AppCompatActivity() {
 //        coroutineGetUser(this)
         val helper = SQLiteHelper(this)
         val user = helper.getUser()
-        makeToast(this,user.username+" "+user.password)
+//        makeToast(this,user.username+" "+user.password)
+
+
+//        val mRefUsersListener = AppValueEventListener {
+//            for(child in it.children){
+//                val member = child.getValue(User::class.java)
+//                if (member != null) {
+//                    makeToast(this, member.username)
+//                }
+//            }
+//        }
+//        REF_DATABASE_ROOT.child(NODE_USERS).addListenerForSingleValueEvent(mRefUsersListener)
     }
 
 //    private fun coroutineGetUser(context: Context) = runBlocking {
@@ -136,8 +150,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        mMessageReference!!.addChildEventListener(childEventListener)
-        mMessageListener = childEventListener
     }
+
+
 
 }

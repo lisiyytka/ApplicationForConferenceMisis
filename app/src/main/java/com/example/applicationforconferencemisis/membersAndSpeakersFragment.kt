@@ -2,11 +2,14 @@ package com.example.applicationforconferencemisis
 
 import android.os.Bundle
 import android.os.MemoryFile
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_USERS
@@ -39,6 +42,7 @@ class membersAndSpeakersFragment : Fragment() {
 
     private fun initRecyclerView() {
         membersRecyclerView = view!!.findViewById(R.id.members_recycler_view)
+        membersRecyclerView.layoutManager = LinearLayoutManager(context)
         mRefMembers = REF_DATABASE_ROOT.child(NODE_USERS)
 
         val option = FirebaseRecyclerOptions.Builder<User>()
@@ -55,26 +59,26 @@ class membersAndSpeakersFragment : Fragment() {
             override fun onBindViewHolder(holder: MembersHolder, position: Int, model: User) {
 
                 mRefUsersListener = AppValueEventListener {
-                    for(child in it.children){
-                        val member = child.getValue(User::class.java)
-                        if (member != null) {
-                            holder.userName.text = member.name
-                        }
-                        holder.itemView.setOnClickListener {
-
-
-
-                            if (member != null) {
-                                replaceFragment(groupChatFragment(member.username))
-                            }
-                        }
-                    }
+//                    for(child in it.children){
+//                        val member = child.getValue(User::class.java)
+//                        listUser.add(member!!)
+//                        if (member != null) {
+//                            holder.userName.text =
+//                        }
+//                        holder.itemView.setOnClickListener {
+//                            if (member != null) {
+//                                replaceFragment(groupChatFragment(member.username))
+//                            }
+//                        }
+//                    }
+                    val list = it.getValue(List<String>())
                 }
-
-                mRefMembers.addValueEventListener(mRefUsersListener)
+                mRefMembers.addListenerForSingleValueEvent(mRefUsersListener)
                 mapListeners[mRefMembers] = mRefUsersListener
             }
         }
+        membersRecyclerView.adapter = mAdapter
+        mAdapter.startListening()
     }
 
     class MembersHolder (view: View): RecyclerView.ViewHolder(view){
