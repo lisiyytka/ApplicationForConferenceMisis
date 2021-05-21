@@ -59,19 +59,8 @@ class membersAndSpeakersFragment : Fragment() {
             override fun onBindViewHolder(holder: MembersHolder, position: Int, model: User) {
 
                 mRefUsersListener = AppValueEventListener {
-//                    for(child in it.children){
-//                        val member = child.getValue(User::class.java)
-//                        listUser.add(member!!)
-//                        if (member != null) {
-//                            holder.userName.text =
-//                        }
-//                        holder.itemView.setOnClickListener {
-//                            if (member != null) {
-//                                replaceFragment(groupChatFragment(member.username))
-//                            }
-//                        }
-//                    }
-                    val list = it.getValue(List<String>())
+
+                    holder.userName.text = model.username
                 }
                 mRefMembers.addListenerForSingleValueEvent(mRefUsersListener)
                 mapListeners[mRefMembers] = mRefUsersListener
