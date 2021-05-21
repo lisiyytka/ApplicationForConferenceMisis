@@ -55,14 +55,14 @@ fun addMessageToDialog(from: String, message: Message, context: Context) {
         .child(user.username)
         .child(NODE_PERSONAL_CHATS)
         .child(from)
-        .child(message.date)
+        .child(message.date.toString())
         .setValue(message)
 
     REF_DATABASE_ROOT.child(NODE_USERS)
         .child(from)
         .child(NODE_PERSONAL_CHATS)
         .child(user.username)
-        .child(message.date)
+        .child(message.date.toString())
         .setValue(message)
 }
 
@@ -177,7 +177,7 @@ fun sendMessage(message: String, receivingUserId: String, context: Context, func
     val mapMessage = hashMapOf<String,Any>()
     mapMessage[mess.fromUser] = user.username
     mapMessage[mess.text] = message
-    mapMessage[mess.date] = ServerValue.TIMESTAMP
+    mapMessage[mess.date.toString()] = ServerValue.TIMESTAMP
 
     val mapDialog = hashMapOf<String,Any>()
     mapDialog["$redDialogUser/$messageKey"] = mapMessage

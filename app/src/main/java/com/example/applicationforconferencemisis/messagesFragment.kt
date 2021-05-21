@@ -61,7 +61,7 @@ class messagesFragment: Fragment() {
                             holder.itemView.setOnClickListener {
                                 lastFragment = messagesFragment()
                                 lastBtnId = R.id.messages_btn
-                                replaceFragment(groupChatFragment(user.username))
+                                replaceFragment(singleChatFragment(user.username))
                             }
                         }
                     }

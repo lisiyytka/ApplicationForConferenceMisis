@@ -18,6 +18,7 @@ class DifferentActivity : AppCompatActivity() {
 
     private val scheduleFragment = scheduleAndMyScheduleFragment()
     private val groupChatFragment = groupChatFragment("123")
+    private val singleChatFragment = singleChatFragment("123")
     private val messagesFragment = messagesFragment()
     private val membersAndSpeakersFragment = membersAndSpeakersFragment()
     private val accountFragment = accountFragment()

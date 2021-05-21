@@ -68,7 +68,7 @@ class membersAndSpeakersFragment : Fragment() {
                     holder.sendMessageButton.setOnClickListener {
                         addNewDialog(model.username, context!!)
                         localDB.insertContactsToContacts(model.username)
-                        replaceFragment(groupChatFragment(model.username))
+                        replaceFragment(singleChatFragment(model.username))
                     }
                 }
                 mRefMembers.addListenerForSingleValueEvent(mRefUsersListener)
