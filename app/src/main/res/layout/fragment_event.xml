@@ -2,54 +2,70 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/name"
-            style="@style/font_roboto_medium_black"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@id/date_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="202dp"
+        android:scrollbars="vertical">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginVertical="23dp"
-            android:text="The Main things of Design"
-            android:textSize="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/name"
+                style="@style/font_roboto_medium_black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginVertical="23dp"
+                android:text="The Main things of Design"
+                android:textSize="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="36dp"
-            android:layout_marginVertical="23dp"
-            style="@style/font_roboto_regular_black"
-            android:textSize="18dp"
-            android:text="Short abrakadabre because I need some text for this block. Please don’t hate me for my low English level. I’m just A2. "
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name" />
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="36dp"
+                android:layout_marginVertical="23dp"
+                style="@style/font_roboto_regular_black"
+                android:textSize="18dp"
+                android:text="Short abrakadabre because I need some text for this block. Please don’t hate me for my low English level. I’m just A2. "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name" />
+            <EditText
+                android:id="@+id/make_note"
+                style="@style/font_roboto_light_black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="36dp"
+                android:layout_marginVertical="20dp"
+                android:background="@drawable/bg_white"
+                android:elevation="10dp"
+                android:hint="Note..."
+                android:outlineAmbientShadowColor="@color/purple"
+                android:outlineSpotShadowColor="@color/purple"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="15dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/make_note"
-            style="@style/font_roboto_light_black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="36dp"
-            android:layout_marginVertical="20dp"
-            android:background="@drawable/bg_white"
-            android:elevation="10dp"
-            android:hint="Note..."
-            android:outlineAmbientShadowColor="@color/purple"
-            android:outlineSpotShadowColor="@color/purple"
-            android:paddingHorizontal="18dp"
-            android:paddingVertical="15dp"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text" />
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/date_add"
@@ -69,7 +85,7 @@
             style="@style/font_roboto_light_purple"
             android:textSize="36sp"
             android:text="14:00 23 jun"/>
-        
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

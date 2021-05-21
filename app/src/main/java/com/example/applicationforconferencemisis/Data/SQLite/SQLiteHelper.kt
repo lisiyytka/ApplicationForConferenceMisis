@@ -92,7 +92,7 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
     fun getContacts():List<Contacts>{
 
-        val listContactsNames: MutableList<Contacts> = ArrayList()
+        val listContacts: MutableList<Contacts> = ArrayList()
         var db = this.readableDatabase
         var query = "Select * from $TABLE_NAME_GROUP_CONTACTS"
         var result = db.rawQuery(query, null)
@@ -100,12 +100,12 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
             do {
                 val contact = Contacts()
                 contact.usersName = result.getString(result.getColumnIndex(GROUP_CONTACTS_COL_CONTACTS)).toString()
-                listContactsNames.add(contact)
+                listContacts.add(contact)
             } while (result.moveToNext())
         }
         result.close()
         db.close()
-        return listContactsNames
+        return listContacts
     }
 
     fun insertConference(conference: Conference){

@@ -1,17 +1,19 @@
-package com.example.applicationforconferencemisis
+package com.example.applicationforconferencemisis.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
+import com.example.applicationforconferencemisis.Activities.lastBtnId
+import com.example.applicationforconferencemisis.Activities.lastFragment
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
+import com.example.applicationforconferencemisis.R
+import com.example.applicationforconferencemisis.replaceFragment
 
 class scheduleAndMyScheduleFragment: Fragment() {
 

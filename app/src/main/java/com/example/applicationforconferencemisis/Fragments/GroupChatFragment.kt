@@ -1,4 +1,4 @@
-package com.example.applicationforconferencemisis
+package com.example.applicationforconferencemisis.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.example.applicationforconferencemisis.Data.Firebase.sendMessage
+import com.example.applicationforconferencemisis.R
+import com.example.applicationforconferencemisis.makeToast
 
 class groupChatFragment(val userId: String) : Fragment() {
 

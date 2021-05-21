@@ -1,15 +1,11 @@
-package com.example.applicationforconferencemisis
+package com.example.applicationforconferencemisis.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,10 +13,12 @@ import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventList
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_MESSAGES
 import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
 import com.example.applicationforconferencemisis.Data.Firebase.sendMessage
-import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.Message
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
+import com.example.applicationforconferencemisis.R
+import com.example.applicationforconferencemisis.Adapters.SingleChatAdapter
+import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.database.DatabaseReference
 
 class singleChatFragment(val userId: String) : Fragment() {

@@ -1,24 +1,25 @@
-package com.example.applicationforconferencemisis
+package com.example.applicationforconferencemisis.Fragments
 
 import android.os.Bundle
-import android.os.MemoryFile
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.applicationforconferencemisis.Activities.fragmentName
+import com.example.applicationforconferencemisis.Activities.lastBtnId
+import com.example.applicationforconferencemisis.Activities.lastFragment
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_USERS
 import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
 import com.example.applicationforconferencemisis.Data.Firebase.addNewDialog
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
+import com.example.applicationforconferencemisis.R
+import com.example.applicationforconferencemisis.replaceFragment
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseReference
@@ -68,6 +69,9 @@ class membersAndSpeakersFragment : Fragment() {
                     holder.sendMessageButton.setOnClickListener {
                         addNewDialog(model.username, context!!)
                         localDB.insertContactsToContacts(model.username)
+                        lastFragment = membersAndSpeakersFragment()
+                        lastBtnId = R.id.members_btn
+                        fragmentName!!.text = model.username
                         replaceFragment(singleChatFragment(model.username))
                     }
                 }

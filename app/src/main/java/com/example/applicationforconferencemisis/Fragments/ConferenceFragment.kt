@@ -1,10 +1,11 @@
-package com.example.applicationforconferencemisis
+package com.example.applicationforconferencemisis.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.applicationforconferencemisis.R
 
 class conferenceFragment: Fragment() {
     override fun onCreateView(

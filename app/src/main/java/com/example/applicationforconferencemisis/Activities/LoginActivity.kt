@@ -1,17 +1,15 @@
-package com.example.applicationforconferencemisis
+package com.example.applicationforconferencemisis.Activities
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import com.example.applicationforconferencemisis.Data.Firebase.*
-import com.example.applicationforconferencemisis.Data.Models.StatusLogin
-import com.example.applicationforconferencemisis.Data.Models.StatusLogin.*
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
+import com.example.applicationforconferencemisis.R
+import com.example.applicationforconferencemisis.makeToast
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +32,10 @@ class LoginActivity : AppCompatActivity() {
                         if (it.hasChild(email)) {
                             val user = it.child(email).getValue(User::class.java)
                             if (user!!.password == pswrd) {
-                                helper.deleteAllPersonalData()
-                                helper.insertUser(user)
+                                if (helper.getUser().username != user.username){
+                                    helper.deleteAllPersonalData()
+                                    helper.insertUser(user)
+                                }
                                 getGroupConferenceFromFirebase(this,user.username)
                                 startActivity(Intent(this, MainActivity::class.java))
                             } else {
@@ -55,4 +55,3 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 }
-

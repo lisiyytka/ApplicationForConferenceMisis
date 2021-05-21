@@ -1,4 +1,4 @@
-package com.example.applicationforconferencemisis
+package com.example.applicationforconferencemisis.Fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,15 +8,17 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.applicationforconferencemisis.Activities.fragmentName
+import com.example.applicationforconferencemisis.Activities.lastBtnId
+import com.example.applicationforconferencemisis.Activities.lastFragment
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
-import com.example.applicationforconferencemisis.Data.Firebase.NODE_PERSONAL_CHATS
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_USERS
 import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
-import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.Contacts
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
-import com.google.firebase.database.ServerValue
+import com.example.applicationforconferencemisis.R
+import com.example.applicationforconferencemisis.replaceFragment
 
 class messagesFragment: Fragment() {
 
@@ -61,6 +63,7 @@ class messagesFragment: Fragment() {
                             holder.itemView.setOnClickListener {
                                 lastFragment = messagesFragment()
                                 lastBtnId = R.id.messages_btn
+                                fragmentName!!.text = user.username
                                 replaceFragment(singleChatFragment(user.username))
                             }
                         }
