@@ -19,15 +19,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="9dp"
-            app:layout_constraintEnd_toStartOf="@id/my_message"
-            app:layout_constraintBottom_toBottomOf="@id/my_message"
+            app:layout_constraintEnd_toStartOf="@id/block_for_right_message"
+            app:layout_constraintBottom_toBottomOf="@id/block_for_right_message"
             style="@style/font_roboto_regular_gray"
             android:textSize="14dp"
             android:text="16:10"
             />
 
         <LinearLayout
-            android:id="@+id/my_message"
+            android:id="@+id/block_for_right_message"
             android:layout_width="wrap_content"
             android:maxWidth="250dp"
             android:layout_height="wrap_content"
@@ -38,6 +38,7 @@
             android:layout_marginEnd="9dp">
 
             <TextView
+                android:id="@+id/my_message"
                 style="@style/font_roboto_regular_white"
                 android:layout_width="match_parent"
                 android:maxWidth="250dp"
@@ -58,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:id="@+id/message"
+           android:id="@+id/block_for_left_message"
             android:layout_width="wrap_content"
             android:maxWidth="250dp"
             android:layout_height="wrap_content"
@@ -69,6 +70,7 @@
             android:layout_marginStart="9dp">
 
             <TextView
+                android:id="@+id/message"
                 style="@style/font_roboto_regular_black"
                 android:layout_width="match_parent"
                 android:maxWidth="250dp"
@@ -83,8 +85,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
-            app:layout_constraintStart_toEndOf="@id/message"
-            app:layout_constraintBottom_toBottomOf="@id/message"
+            app:layout_constraintStart_toEndOf="@id/block_for_left_message"
+            app:layout_constraintBottom_toBottomOf="@id/block_for_left_message"
             style="@style/font_roboto_regular_gray"
             android:textSize="14dp"
             android:text="16:10"

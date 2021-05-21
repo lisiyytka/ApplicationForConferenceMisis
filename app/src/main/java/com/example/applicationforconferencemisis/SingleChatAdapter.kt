@@ -36,12 +36,12 @@ class SingleChatAdapter (private val helper: SQLiteHelper):
             holder.blocUserMessage.visibility = View.VISIBLE
             holder.blocReceivedMessage.visibility = View.GONE
             holder.myMsg.text = mListMessagesCache[position].text
-            holder.myMsgTime.text = mListMessagesCache[position].toString().asTime()
+            holder.myMsgTime.text = mListMessagesCache[position].date.toString().asTime()
         } else {
             holder.blocUserMessage.visibility = View.GONE
             holder.blocReceivedMessage.visibility = View.VISIBLE
             holder.msg.text = mListMessagesCache[position].text
-            holder.msgTime.text = mListMessagesCache[position].toString().asTime()
+            holder.msgTime.text = mListMessagesCache[position].date.toString().asTime()
         }
     }
 
