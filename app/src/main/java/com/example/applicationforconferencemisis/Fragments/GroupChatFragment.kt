@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import com.example.applicationforconferencemisis.Data.Firebase.sendGroupMessage
 import com.example.applicationforconferencemisis.Data.Firebase.sendMessage
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.makeToast
@@ -29,11 +30,9 @@ class groupChatFragment(val userId: String) : Fragment() {
             val message = messageForSend!!.text.toString()
             if (message.isEmpty()){
                 makeToast(context!!,"Pysto")
-            } else sendMessage(message, userId,context!!){
+            } else sendGroupMessage(message, userId,context!!){
                   messageForSend.setText("")
             }
         }
     }
-
-
 }

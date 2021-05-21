@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.Fragments.scheduleAndMyScheduleFragment
 import com.example.applicationforconferencemisis.Fragments.groupChatFragment
@@ -23,7 +24,8 @@ var fragmentName: TextView? = null
 class DifferentActivity : AppCompatActivity() {
 
     private val scheduleFragment = scheduleAndMyScheduleFragment()
-    private val groupChatFragment = groupChatFragment("123")
+    private val helper = SQLiteHelper(this)
+    private val groupChatFragment = groupChatFragment(helper.getUser().username)
     private val singleChatFragment = singleChatFragment("123")
     private val messagesFragment = messagesFragment()
     private val membersAndSpeakersFragment = membersAndSpeakersFragment()

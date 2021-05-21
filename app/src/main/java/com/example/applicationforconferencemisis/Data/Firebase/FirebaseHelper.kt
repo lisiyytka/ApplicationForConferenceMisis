@@ -19,6 +19,7 @@ const val NODE_CONFERENCES = "Conferences"
 const val NODE_PERSONAL_CHATS = "PersonalChats"
 const val NODE_MESSAGES = "Messages"
 const val NODE_GROUP_CONFERENCES = "GroupConferences"
+const val NODE_GROUP_MESSAGE = "GroupMessage"
 
 
 fun initFirebase() {
@@ -172,6 +173,29 @@ fun sendMessage(message: String, receivingUserId: String, context: Context, func
     val mess = Message("text", "date", "fromUser")
     val redDialogUser = "$NODE_MESSAGES/${user.username}/$receivingUserId"
     val redDialogReceivingUser = "$NODE_MESSAGES/$receivingUserId/${user.username}"
+    val messageKey = REF_DATABASE_ROOT.child(redDialogUser).push().key
+
+    val mapMessage = hashMapOf<String,Any>()
+    mapMessage[mess.fromUser] = user.username
+    mapMessage[mess.text] = message
+    mapMessage[mess.date.toString()] = ServerValue.TIMESTAMP
+
+    val mapDialog = hashMapOf<String,Any>()
+    mapDialog["$redDialogUser/$messageKey"] = mapMessage
+    mapDialog["$redDialogReceivingUser/$messageKey"] = mapMessage
+    REF_DATABASE_ROOT
+        .updateChildren(mapDialog)
+        .addOnSuccessListener { function() }
+        .addOnFailureListener { makeToast(context,"aye") }
+}
+
+fun sendGroupMessage(message: String, receivingUserId: String, context: Context, function: () -> Unit) {
+    initFirebase()
+    val localDatabaseHelper = SQLiteHelper(context)
+    val user = localDatabaseHelper.getUser()
+    val mess = Message("text", "date", "fromUser")
+    val redDialogUser = "$NODE_GROUP_MESSAGE/${user.username}/$receivingUserId"
+    val redDialogReceivingUser = "$NODE_GROUP_MESSAGE/$receivingUserId/${user.username}"
     val messageKey = REF_DATABASE_ROOT.child(redDialogUser).push().key
 
     val mapMessage = hashMapOf<String,Any>()

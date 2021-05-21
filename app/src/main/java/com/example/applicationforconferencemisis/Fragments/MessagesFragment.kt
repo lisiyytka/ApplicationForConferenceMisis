@@ -12,12 +12,15 @@ import com.example.applicationforconferencemisis.Activities.fragmentName
 import com.example.applicationforconferencemisis.Activities.lastBtnId
 import com.example.applicationforconferencemisis.Activities.lastFragment
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
+import com.example.applicationforconferencemisis.Data.Firebase.NODE_MESSAGES
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_USERS
 import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
 import com.example.applicationforconferencemisis.Data.Models.Contacts
+import com.example.applicationforconferencemisis.Data.Models.Message
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
+import com.example.applicationforconferencemisis.asTime
 import com.example.applicationforconferencemisis.replaceFragment
 
 class messagesFragment: Fragment() {
@@ -54,11 +57,18 @@ class messagesFragment: Fragment() {
                 val helper = SQLiteHelper(context!!)
                 REF_DATABASE_ROOT.child(NODE_USERS).child(contacts[position].usersName).addListenerForSingleValueEvent(
                     AppValueEventListener{
+
                         val user = it.getValue(User::class.java)
                         if (user != null){
                             holder.usersName.text = user.username
-                            holder.lastMessage.text = user.password
-                            holder.time.text = "sometext"
+//                            holder.lastMessage.text = "asd"
+                            REF_DATABASE_ROOT.child(NODE_MESSAGES).child(helper.getUser().username).child(contacts[position].usersName).addListenerForSingleValueEvent(
+                                AppValueEventListener{
+                                    val a = it.children.last().getValue(Message::class.java)
+                                    holder.lastMessage.text=a!!.text
+                                    holder.time.text = a.date.toString().asTime()
+                                }
+                            )
                             holder.numberOfUnreadMsg.text = position.toString()
                             holder.itemView.setOnClickListener {
                                 lastFragment = messagesFragment()
@@ -83,15 +93,6 @@ class messagesFragment: Fragment() {
         var lastMessage: TextView = itemView.findViewById(R.id.last_message)
         var time: TextView = itemView.findViewById(R.id.time)
         var numberOfUnreadMsg: TextView = itemView.findViewById(R.id.number_of_unread_msg)
-    }
-
-    private fun contacts(): List<Contacts> {
-        val c = mutableListOf<Contacts>()
-        val a = Contacts("Arseniy Nikorkin", "If you have any question", "10:10", "2")
-        val b = Contacts("Roman Gritchenko", "Hi! I have question about", "20:15", "1")
-        c.add(a)
-        c.add(b)
-        return c
     }
 
     private fun getUserFromContacts(){
