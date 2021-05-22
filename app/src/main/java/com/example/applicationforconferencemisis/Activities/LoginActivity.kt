@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
                                     helper.insertUser(user)
                                     getUserContactsFromFirebase(this, user.username)
                                 }
-                                getUserContactsFromFirebase(this, user.username)
+//                                getUserContactsFromFirebase(this, user.username)
                                 getGroupConferenceFromFirebase(this, user.username)
                                 startActivity(Intent(this, MainActivity::class.java))
                             } else {

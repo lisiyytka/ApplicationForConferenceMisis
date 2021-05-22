@@ -212,17 +212,18 @@ fun addNewDialog(withUserLogin:String, context: Context){
     val helper = SQLiteHelper(context)
     initFirebase()
     REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().username).child(NODE_PERSONAL_CHATS).child(withUserLogin).setValue(withUserLogin)
+    REF_DATABASE_ROOT.child(NODE_USERS).child(withUserLogin).child(NODE_PERSONAL_CHATS).child(helper.getUser().username).setValue(helper.getUser().username)
 }
 
 fun getUserContactsFromFirebase(context: Context, log: String){
     initFirebase()
     val localDatabaseHelper = SQLiteHelper(context)
-    var forAll = Contacts()
     helperForGetUserContactsFromFirebase(log, object: CallbackForGetContacts{
         override fun onCallback(list: MutableList<Contacts?>) {
             super.onCallback(list)
-            forAll.usersName = list[0]!!.usersName
-            localDatabaseHelper.insertContactsToContacts(forAll.usersName)
+            for(contact in list){
+                localDatabaseHelper.insertContactsToContacts(contact!!.usersName)
+            }
         }
     })
 }
@@ -233,8 +234,10 @@ private fun helperForGetUserContactsFromFirebase(login: String, firebaseCallback
     var listData = ArrayList<Contacts?>()
     ref.addValueEventListener(object : ValueEventListener{
         override fun onDataChange(snapshot: DataSnapshot) {
-            val cont = snapshot.getValue(Contacts::class.java)
-            listData.add(cont)
+            for (contact in snapshot.children){
+                val IDcontact = Contacts(contact.getValue(String::class.java)!!,"","","")
+                listData.add(IDcontact)
+            }
             firebaseCallback.onCallback(listData)
         }
 

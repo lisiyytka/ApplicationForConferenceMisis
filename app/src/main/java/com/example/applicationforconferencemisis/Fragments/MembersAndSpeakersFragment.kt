@@ -67,8 +67,6 @@ class MembersAndSpeakersFragment : Fragment() {
 
                     holder.userName.text = model.username
                     holder.sendMessageButton.setOnClickListener {
-                        addNewDialog(model.username, context!!)
-                        localDB.insertContactsToContacts(model.username)
                         lastFragment = MembersAndSpeakersFragment()
                         lastBtnId = R.id.members_btn
                         fragmentName!!.text = model.username

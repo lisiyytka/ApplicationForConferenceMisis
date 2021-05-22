@@ -10,15 +10,12 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
-import com.example.applicationforconferencemisis.Data.Firebase.NODE_MESSAGES
-import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
-import com.example.applicationforconferencemisis.Data.Firebase.sendMessage
 import com.example.applicationforconferencemisis.Data.Models.Message
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.Adapters.SingleChatAdapter
+import com.example.applicationforconferencemisis.Data.Firebase.*
 import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.database.DatabaseReference
 
@@ -43,6 +40,7 @@ class SingleChatFragment(val userId: String) : Fragment() {
     override fun onResume() {
         super.onResume()
         initRecyclerView()
+        val helper = SQLiteHelper(context!!)
         val sendMessageButton = view?.findViewById<ImageButton>(R.id.send)
         val messageForSend = view?.findViewById<EditText>(R.id.message_for_send)
         sendMessageButton!!.setOnClickListener {
@@ -51,6 +49,8 @@ class SingleChatFragment(val userId: String) : Fragment() {
                 makeToast(context!!, "Pysto")
             } else sendMessage(message, userId, context!!) {
                 messageForSend.setText("")
+                addNewDialog(userId, context!!)
+                helper.insertContactsToContacts(userId)
             }
         }
     }
