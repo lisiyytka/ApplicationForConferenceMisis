@@ -32,12 +32,13 @@ class LoginActivity : AppCompatActivity() {
                         if (it.hasChild(email)) {
                             val user = it.child(email).getValue(User::class.java)
                             if (user!!.password == pswrd) {
-                                if (helper.getUser().username != user.username){
+                                if (helper.getUser().username != user.username) {
                                     helper.deleteAllPersonalData()
                                     helper.insertUser(user)
-                                    getUserContactsFromFirebase(this,user.username)
+                                    getUserContactsFromFirebase(this, user.username)
                                 }
-                                getGroupConferenceFromFirebase(this,user.username)
+                                getUserContactsFromFirebase(this, user.username)
+                                getGroupConferenceFromFirebase(this, user.username)
                                 startActivity(Intent(this, MainActivity::class.java))
                             } else {
                                 makeToast(this, "WrongPswrd")
