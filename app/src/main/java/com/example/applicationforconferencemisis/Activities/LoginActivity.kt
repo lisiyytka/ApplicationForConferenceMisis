@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
                                 if (helper.getUser().username != user.username){
                                     helper.deleteAllPersonalData()
                                     helper.insertUser(user)
+                                    getUserContactsFromFirebase(this,user.username)
                                 }
                                 getGroupConferenceFromFirebase(this,user.username)
                                 startActivity(Intent(this, MainActivity::class.java))

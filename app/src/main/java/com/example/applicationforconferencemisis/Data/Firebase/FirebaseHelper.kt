@@ -1,9 +1,7 @@
 package com.example.applicationforconferencemisis.Data.Firebase
 
 import android.content.Context
-import com.example.applicationforconferencemisis.Data.Firebase.Callbacks.CallbackForConferences
-import com.example.applicationforconferencemisis.Data.Firebase.Callbacks.CallbackForGroupConferences
-import com.example.applicationforconferencemisis.Data.Firebase.Callbacks.CallbackForUser
+import com.example.applicationforconferencemisis.Data.Firebase.Callbacks.*
 import com.example.applicationforconferencemisis.Data.Models.*
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.makeToast
@@ -214,6 +212,36 @@ fun addNewDialog(withUserLogin:String, context: Context){
     val helper = SQLiteHelper(context)
     initFirebase()
     REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().username).child(NODE_PERSONAL_CHATS).child(withUserLogin).setValue(withUserLogin)
+}
+
+fun getUserContactsFromFirebase(context: Context, log: String){
+    initFirebase()
+    val localDatabaseHelper = SQLiteHelper(context)
+    var forAll = Contacts()
+    helperForGetUserContactsFromFirebase(log, object: CallbackForGetContacts{
+        override fun onCallback(list: MutableList<Contacts?>) {
+            super.onCallback(list)
+            forAll.usersName = list[0]!!.usersName
+            localDatabaseHelper.insertContactsToContacts(forAll.usersName)
+        }
+    })
+}
+
+private fun helperForGetUserContactsFromFirebase(login: String, firebaseCallback: CallbackForGetContacts) {
+    initFirebase()
+    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login).child(NODE_PERSONAL_CHATS)
+    var listData = ArrayList<Contacts?>()
+    ref.addValueEventListener(object : ValueEventListener{
+        override fun onDataChange(snapshot: DataSnapshot) {
+            val cont = snapshot.getValue(Contacts::class.java)
+            listData.add(cont)
+            firebaseCallback.onCallback(listData)
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            TODO("Not yet implemented")
+        }
+    })
 }
 
 

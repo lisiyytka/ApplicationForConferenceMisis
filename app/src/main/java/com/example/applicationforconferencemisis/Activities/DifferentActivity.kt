@@ -15,6 +15,7 @@ import com.example.applicationforconferencemisis.Fragments.MembersAndSpeakersFra
 import com.example.applicationforconferencemisis.Fragments.AccountFragment
 import com.example.applicationforconferencemisis.Fragments.ConferenceFragment
 import com.example.applicationforconferencemisis.makeToast
+import kotlinx.coroutines.delay
 
 
 var lastFragment: Fragment? = null
@@ -92,4 +93,8 @@ class DifferentActivity : AppCompatActivity() {
         }
         fragmentManager.commit()
     }
+
+//    suspend fun delay(){
+//        delay(2000)
+//    }
 }

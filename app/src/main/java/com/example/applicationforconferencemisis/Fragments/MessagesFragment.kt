@@ -64,9 +64,9 @@ class MessagesFragment: Fragment() {
 //                            holder.lastMessage.text = "asd"
                             REF_DATABASE_ROOT.child(NODE_MESSAGES).child(helper.getUser().username).child(contacts[position].usersName).addListenerForSingleValueEvent(
                                 AppValueEventListener{
-                                    val a = it.children.last().getValue(Message::class.java)
-                                    holder.lastMessage.text=a!!.text
-                                    holder.time.text = a.date.toString().asTime()
+                                    val lastMessage = it.children.last().getValue(Message::class.java)
+                                    holder.lastMessage.text=lastMessage!!.text
+                                    holder.time.text = lastMessage.date.toString().asTime()
                                 }
                             )
                             holder.numberOfUnreadMsg.text = position.toString()

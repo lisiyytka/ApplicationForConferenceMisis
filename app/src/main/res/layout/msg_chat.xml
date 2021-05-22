@@ -90,7 +90,7 @@
             <TextView
                 android:id="@+id/users_name"
                 style="@style/font_roboto_regular_purple"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:maxWidth="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
@@ -101,7 +101,7 @@
             <TextView
                 android:id="@+id/users_message"
                 style="@style/font_roboto_regular_black"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:maxWidth="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="19dp"

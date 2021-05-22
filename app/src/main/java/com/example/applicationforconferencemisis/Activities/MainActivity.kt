@@ -70,6 +70,9 @@ class MainActivity : AppCompatActivity() {
         }
         val helper = SQLiteHelper(this)
         val user = helper.getUser()
+//        helper.insertContactsToContacts("123")
+        val contacts = helper.getContacts()
+        makeToast(this, contacts[0].usersName)
     }
 
 
