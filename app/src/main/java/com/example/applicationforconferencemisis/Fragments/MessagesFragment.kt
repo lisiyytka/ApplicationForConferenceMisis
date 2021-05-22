@@ -23,7 +23,7 @@ import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.asTime
 import com.example.applicationforconferencemisis.replaceFragment
 
-class messagesFragment: Fragment() {
+class MessagesFragment: Fragment() {
 
     lateinit var adapter: RecyclerView.Adapter<MyViewHolder>
     lateinit var messagesRecyclerView: RecyclerView
@@ -71,10 +71,10 @@ class messagesFragment: Fragment() {
                             )
                             holder.numberOfUnreadMsg.text = position.toString()
                             holder.itemView.setOnClickListener {
-                                lastFragment = messagesFragment()
+                                lastFragment = MessagesFragment()
                                 lastBtnId = R.id.messages_btn
                                 fragmentName!!.text = user.username
-                                replaceFragment(singleChatFragment(user.username))
+                                replaceFragment(SingleChatFragment(user.username))
                             }
                         }
                     }

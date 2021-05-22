@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
@@ -21,7 +22,7 @@ import com.example.applicationforconferencemisis.Adapters.SingleChatAdapter
 import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.database.DatabaseReference
 
-class singleChatFragment(val userId: String) : Fragment() {
+class SingleChatFragment(val userId: String) : Fragment() {
 
     lateinit var mAdapter: SingleChatAdapter
     lateinit var singleChatRecyclerView: RecyclerView

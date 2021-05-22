@@ -15,7 +15,7 @@ import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.replaceFragment
 
-class scheduleAndMyScheduleFragment: Fragment() {
+class ScheduleAndMyScheduleFragment: Fragment() {
 
     lateinit var adapter: RecyclerView.Adapter<MyViewHolder>
     lateinit var scheduleRecyclerView: RecyclerView
@@ -54,9 +54,9 @@ class scheduleAndMyScheduleFragment: Fragment() {
                 holder.eventDescription.text = events[position].theme
                 holder.eventSpeaker.text = events[position].speakers
                 holder.itemView.setOnClickListener {
-                    lastFragment = scheduleAndMyScheduleFragment()
+                    lastFragment = ScheduleAndMyScheduleFragment()
                     lastBtnId = R.id.schedule_btn
-                    replaceFragment(conferenceFragment())
+                    replaceFragment(ConferenceFragment())
                 }
             }
 

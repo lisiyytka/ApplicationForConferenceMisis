@@ -24,7 +24,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseReference
 
-class membersAndSpeakersFragment : Fragment() {
+class MembersAndSpeakersFragment : Fragment() {
 
     lateinit var membersRecyclerView: RecyclerView
     lateinit var mRefMembers: DatabaseReference
@@ -69,10 +69,10 @@ class membersAndSpeakersFragment : Fragment() {
                     holder.sendMessageButton.setOnClickListener {
                         addNewDialog(model.username, context!!)
                         localDB.insertContactsToContacts(model.username)
-                        lastFragment = membersAndSpeakersFragment()
+                        lastFragment = MembersAndSpeakersFragment()
                         lastBtnId = R.id.members_btn
                         fragmentName!!.text = model.username
-                        replaceFragment(singleChatFragment(model.username))
+                        replaceFragment(SingleChatFragment(model.username))
                     }
                 }
                 mRefMembers.addListenerForSingleValueEvent(mRefUsersListener)

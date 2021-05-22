@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
@@ -32,7 +33,7 @@ class GroupChatAdapter(private val helper: SQLiteHelper) :
         val msg: TextView = view.findViewById(R.id.users_message)
         val msgTime: TextView = view.findViewById(R.id.time)
         val userName: TextView = view.findViewById(R.id.users_name)
-        val userImg: ImageView = view.findViewById(R.id.img)
+        val userImg: CardView = view.findViewById(R.id.img_card)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupChatHolder {
@@ -53,13 +54,23 @@ class GroupChatAdapter(private val helper: SQLiteHelper) :
             holder.msg.text = mListMessagesCache[position].text
             holder.msgTime.text = mListMessagesCache[position].date.toString().asTime()
             holder.userName.text = mListMessagesCache[position].fromUser
+            holder.userImg.visibility = View.VISIBLE
             REF_DATABASE_ROOT.child(NODE_GROUP_MESSAGE).addListenerForSingleValueEvent(
                 AppValueEventListener {
                     var list = arrayListOf<Message>()
                     for (i in it.children) {
                         list.add(i.getValue(Message::class.java)!!)
                     }
-                    if (list[list.size - 2].fromUser == list[list.size - 1].fromUser && list[list.size - 1].fromUser == helper.getUser().username) {
+
+                    if (list[position] == list[list.size-1]){
+                        holder.blocUserMessage.visibility = View.GONE
+                        holder.blocReceivedMessage.visibility = View.VISIBLE
+                        holder.msg.text = mListMessagesCache[position].text
+                        holder.msgTime.text = mListMessagesCache[position].date.toString().asTime()
+                        holder.userName.text = mListMessagesCache[position].fromUser
+                        holder.userImg.visibility = View.VISIBLE
+                    }else if (list[position].fromUser == list[position+1].fromUser &&
+                        list[position+1].fromUser != helper.getUser().username) {
                         holder.blocUserMessage.visibility = View.GONE
                         holder.blocReceivedMessage.visibility = View.VISIBLE
                         holder.msg.text = mListMessagesCache[position].text

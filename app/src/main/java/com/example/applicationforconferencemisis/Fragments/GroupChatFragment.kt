@@ -19,7 +19,7 @@ import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.database.DatabaseReference
 
-class groupChatFragment() : Fragment() {
+class GroupChatFragment() : Fragment() {
 
     lateinit var mAdapter: GroupChatAdapter
     lateinit var groupChatRecyclerView: RecyclerView
@@ -66,5 +66,6 @@ class groupChatFragment() : Fragment() {
             groupChatRecyclerView.smoothScrollToPosition(mAdapter.itemCount)
         }
         mRefMessages.addValueEventListener(mMessagesListener)
+        groupChatRecyclerView.smoothScrollToPosition(mAdapter.itemCount)
     }
 }

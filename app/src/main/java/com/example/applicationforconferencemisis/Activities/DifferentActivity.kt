@@ -8,13 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
-import com.example.applicationforconferencemisis.Fragments.scheduleAndMyScheduleFragment
-import com.example.applicationforconferencemisis.Fragments.groupChatFragment
-import com.example.applicationforconferencemisis.Fragments.singleChatFragment
-import com.example.applicationforconferencemisis.Fragments.messagesFragment
-import com.example.applicationforconferencemisis.Fragments.membersAndSpeakersFragment
-import com.example.applicationforconferencemisis.Fragments.accountFragment
-import com.example.applicationforconferencemisis.Fragments.conferenceFragment
+import com.example.applicationforconferencemisis.Fragments.ScheduleAndMyScheduleFragment
+import com.example.applicationforconferencemisis.Fragments.GroupChatFragment
+import com.example.applicationforconferencemisis.Fragments.MessagesFragment
+import com.example.applicationforconferencemisis.Fragments.MembersAndSpeakersFragment
+import com.example.applicationforconferencemisis.Fragments.AccountFragment
+import com.example.applicationforconferencemisis.Fragments.ConferenceFragment
 import com.example.applicationforconferencemisis.makeToast
 
 
@@ -24,13 +23,13 @@ var fragmentName: TextView? = null
 
 class DifferentActivity : AppCompatActivity() {
 
-    private val scheduleFragment = scheduleAndMyScheduleFragment()
+    private val scheduleFragment = ScheduleAndMyScheduleFragment()
     private val helper = SQLiteHelper(this)
-    private val groupChatFragment = groupChatFragment()
-    private val messagesFragment = messagesFragment()
-    private val membersAndSpeakersFragment = membersAndSpeakersFragment()
-    private val accountFragment = accountFragment()
-    private val conferenceFragment = conferenceFragment()
+    private val groupChatFragment = GroupChatFragment()
+    private val messagesFragment = MessagesFragment()
+    private val membersAndSpeakersFragment = MembersAndSpeakersFragment()
+    private val accountFragment = AccountFragment()
+    private val conferenceFragment = ConferenceFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +66,7 @@ class DifferentActivity : AppCompatActivity() {
             }
             R.id.messages_btn -> {
                 lastFragment = null
-                fragmentName!!.text = "Contacts"
+                fragmentName!!.text = "Messages"
                 fragmentManager.add(R.id.containerForFrag, messagesFragment)
             }
             R.id.members_btn -> {
