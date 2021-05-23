@@ -39,7 +39,9 @@ class RegisterActivity : AppCompatActivity() {
             val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
                 .child(helper.getUser().username)
             path.putFile(uri).addOnCompleteListener{
-                makeToast(this,"data_update")
+                if (it.isSuccessful){
+                    makeToast(this,"data_update")
+                }
             }
         }
     }
