@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.example.applicationforconferencemisis.Activities.MainActivity
 import com.example.applicationforconferencemisis.Activities.RegisterActivity
 import com.example.applicationforconferencemisis.Data.Firebase.FOLDER_PROFILE_IMAGE
 import com.example.applicationforconferencemisis.Data.Firebase.REF_STORAGE_ROOT
@@ -40,18 +41,5 @@ class RegisterFragment: Fragment() {
             .setRequestedSize(600,600)
             .setCropShape(CropImageView.CropShape.OVAL)
             .start(activity as RegisterActivity)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val helper = SQLiteHelper(context!!)
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
-            && resultCode == RESULT_OK && data != null){
-            val uri = CropImage.getActivityResult(data).uri
-            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
-                .child(helper.getUser().username)
-            path.putFile(uri).addOnCompleteListener{
-                makeToast(context!!,"data_update")
-            }
-        }
     }
 }

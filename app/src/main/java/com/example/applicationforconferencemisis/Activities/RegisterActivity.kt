@@ -27,4 +27,18 @@ class RegisterActivity : AppCompatActivity() {
         fragmentManager.add(R.id.container_for_register,registerFragment)
         fragmentManager.commit()
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val helper = SQLiteHelper(this)
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
+            && resultCode == RESULT_OK && data != null){
+            val uri = CropImage.getActivityResult(data).uri
+            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
+                .child(helper.getUser().username)
+            path.putFile(uri).addOnCompleteListener{
+                makeToast(this,"data_update")
+            }
+        }
+    }
 }
