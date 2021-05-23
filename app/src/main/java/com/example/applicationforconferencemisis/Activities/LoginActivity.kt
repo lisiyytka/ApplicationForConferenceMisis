@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
                                 }
 //                                getUserContactsFromFirebase(this, user.username)
                                 getGroupConferenceFromFirebase(this, user.username)
-                                startActivity(Intent(this, MainActivity::class.java))
+                                startActivity(Intent(this, RegisterActivity::class.java))
                             } else {
                                 makeToast(this, "WrongPswrd")
                             }
@@ -49,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
                             addNewUser(user)
                             helper.deleteAllPersonalData()
                             helper.insertUser(user)
-                            startActivity(Intent(this, MainActivity::class.java))
+                            startActivity(Intent(this, RegisterActivity::class.java))
                         }
                     }
                 )

@@ -1,16 +1,21 @@
 package com.example.applicationforconferencemisis.Data.Firebase
 
 import android.content.Context
+import android.os.storage.StorageManager
 import com.example.applicationforconferencemisis.Data.Firebase.Callbacks.*
 import com.example.applicationforconferencemisis.Data.Models.*
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.util.ArrayList
 
 lateinit var AUTH: FirebaseAuth
 lateinit var REF_DATABASE_ROOT: DatabaseReference
+lateinit var REF_STORAGE_ROOT: StorageReference
+//lateinit var helper: SQLiteHelper
 
 const val NODE_USERS = "Users"
 const val NODE_CONFERENCES = "Conferences"
@@ -18,11 +23,15 @@ const val NODE_PERSONAL_CHATS = "PersonalChats"
 const val NODE_MESSAGES = "Messages"
 const val NODE_GROUP_CONFERENCES = "GroupConferences"
 const val NODE_GROUP_MESSAGE = "GroupMessage"
+//val CURRENT_UID = helper.getUser().username
+
+const val FOLDER_PROFILE_IMAGE = "profile_image"
 
 
 fun initFirebase() {
     AUTH = FirebaseAuth.getInstance()
     REF_DATABASE_ROOT = FirebaseDatabase.getInstance().reference
+    REF_STORAGE_ROOT = FirebaseStorage.getInstance().reference
 }
 
 fun addNewUser(user: User) {
