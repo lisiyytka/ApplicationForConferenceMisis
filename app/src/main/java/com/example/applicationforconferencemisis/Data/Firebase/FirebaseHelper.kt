@@ -23,8 +23,6 @@ const val NODE_PERSONAL_CHATS = "PersonalChats"
 const val NODE_MESSAGES = "Messages"
 const val NODE_GROUP_CONFERENCES = "GroupConferences"
 const val NODE_GROUP_MESSAGE = "GroupMessage"
-//val CURRENT_UID = helper.getUser().username
-
 const val FOLDER_PROFILE_IMAGE = "profile_image"
 
 

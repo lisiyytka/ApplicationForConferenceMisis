@@ -9,6 +9,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.applicationforconferencemisis.Data.Firebase.FOLDER_PROFILE_IMAGE
 import com.example.applicationforconferencemisis.Data.Firebase.REF_STORAGE_ROOT
+import com.example.applicationforconferencemisis.Data.Firebase.initFirebase
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.Fragments.RegisterFragment
 import com.example.applicationforconferencemisis.R
@@ -31,6 +32,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val helper = SQLiteHelper(this)
+        initFirebase()
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
             && resultCode == RESULT_OK && data != null){
             val uri = CropImage.getActivityResult(data).uri
