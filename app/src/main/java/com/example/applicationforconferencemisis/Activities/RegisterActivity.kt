@@ -24,9 +24,9 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_me)
 
-        makeToast(this,"asdasdasd")
+        makeToast(this, "asdasdasd")
         val fragmentManager = supportFragmentManager.beginTransaction()
-        fragmentManager.add(R.id.container_for_register,registerFragment)
+        fragmentManager.add(R.id.container_for_register, registerFragment)
         fragmentManager.commit()
     }
 
@@ -52,19 +52,21 @@ class RegisterActivity : AppCompatActivity() {
         }
         initFirebase()
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
-            && resultCode == RESULT_OK && data != null){
+            && resultCode == RESULT_OK && data != null
+        ) {
             val uri = CropImage.getActivityResult(data).uri
             val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
                 .child(helper.getUser().username)
-            path.putFile(uri).addOnCompleteListener{
-                if (it.isSuccessful){
+            path.putFile(uri).addOnCompleteListener {
+                if (it.isSuccessful) {
                     path.downloadUrl.addOnCompleteListener {
-                        if(it.isSuccessful){
+                        if (it.isSuccessful) {
                             val photoUrl = it.result.toString()
                             REF_DATABASE_ROOT.child(NODE_USERS)
-                                .child(helper.getUser().username).child(PHOTO_URL).setValue(photoUrl)
+                                .child(helper.getUser().username).child(PHOTO_URL)
+                                .setValue(photoUrl)
                                 .addOnCompleteListener {
-                                    if (it.isSuccessful){
+                                    if (it.isSuccessful) {
                                         changeUserPhotoImage.downloadAndSetImage(photoUrl)
                                         makeToast(this, "data_update")
                                         user.photoUrl = photoUrl
