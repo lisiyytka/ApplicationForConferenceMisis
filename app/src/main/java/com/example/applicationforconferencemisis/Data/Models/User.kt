@@ -19,6 +19,4 @@ class User {
         this.description = description
         this.photoUrl = photoUrl
     }
-
-
 }

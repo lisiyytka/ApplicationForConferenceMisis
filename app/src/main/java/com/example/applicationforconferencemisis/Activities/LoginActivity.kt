@@ -3,6 +3,7 @@ package com.example.applicationforconferencemisis.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.widget.EditText
 import android.widget.ImageButton
 import com.example.applicationforconferencemisis.Data.Firebase.*
@@ -10,6 +11,7 @@ import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.makeToast
+import com.example.applicationforconferencemisis.parser.Parserrr
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +19,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         val helper = SQLiteHelper(this)
+//        val parser = Parserrr()
+//        val path = "${Environment.getExternalStorageDirectory().absolutePath}/users.xlsx"
+//        makeToast(this,path)
+//        parser.parse(path, "Лист1")
         val buttonForLogin = findViewById<ImageButton>(R.id.buttonForLogin)
         val editTextEmail = findViewById<EditText>(R.id.edit_text_email)
         val editTextPassword = findViewById<EditText>(R.id.edit_text_password)
