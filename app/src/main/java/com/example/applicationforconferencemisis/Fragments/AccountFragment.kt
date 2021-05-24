@@ -7,16 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationforconferencemisis.Activities.LoginActivity
 import com.example.applicationforconferencemisis.Activities.MainActivity
+import com.example.applicationforconferencemisis.Activities.lastBtnId
+import com.example.applicationforconferencemisis.Activities.lastFragment
+import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
+import com.example.applicationforconferencemisis.Data.Firebase.NODE_USERS
+import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
+import com.example.applicationforconferencemisis.Data.Firebase.initFirebase
+import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
+import com.example.applicationforconferencemisis.downloadAndSetImage
+import com.example.applicationforconferencemisis.replaceFragment
 
 class AccountFragment: Fragment() {
-
-    private val registerFragment = RegisterFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +38,17 @@ class AccountFragment: Fragment() {
         super.onResume()
         val logout = view!!.findViewById<ImageView>(R.id.logout)
         val edit = view!!.findViewById<ImageView>(R.id.edit)
+        val imgProfile = view!!.findViewById<ImageView>(R.id.img_profile)
+        val aboutUser = view!!.findViewById<TextView>(R.id.about_user)
         val helper = SQLiteHelper(context!!)
+        initFirebase()
+        REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().username).addListenerForSingleValueEvent(
+            AppValueEventListener{
+                val user = it.getValue(User::class.java)
+                imgProfile.downloadAndSetImage(user!!.photoUrl)
+            }
+        )
+        aboutUser.text = helper.getUser().description
 
         logout.setOnClickListener {
             helper.deleteAllPersonalData()
@@ -38,9 +56,9 @@ class AccountFragment: Fragment() {
         }
 
         edit.setOnClickListener {
-            val fragmentManager = childFragmentManager.beginTransaction()
-            fragmentManager.replace(R.id.containerForFrag, registerFragment)
-            fragmentManager.commit()
+            lastFragment = AccountFragment()
+            lastBtnId = R.id.account_btn
+            replaceFragment(RegisterFragment())
         }
     }
 }

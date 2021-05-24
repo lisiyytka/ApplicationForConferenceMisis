@@ -13,17 +13,17 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.example.applicationforconferencemisis.Activities.MainActivity
 import com.example.applicationforconferencemisis.Activities.RegisterActivity
-import com.example.applicationforconferencemisis.Data.Firebase.FOLDER_PROFILE_IMAGE
-import com.example.applicationforconferencemisis.Data.Firebase.REF_STORAGE_ROOT
-import com.example.applicationforconferencemisis.Data.Firebase.addInfoForUser
+import com.example.applicationforconferencemisis.Activities.lastFragment
+import com.example.applicationforconferencemisis.Data.Firebase.*
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
+import com.example.applicationforconferencemisis.downloadAndSetImage
 import com.example.applicationforconferencemisis.makeToast
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 
-class RegisterFragment: Fragment() {
+class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +35,7 @@ class RegisterFragment: Fragment() {
     override fun onResume() {
         super.onResume()
         val changeUserPhoto = view!!.findViewById<ImageView>(R.id.change_user_photo_pencil)
+        val userPhoto = view!!.findViewById<ImageView>(R.id.change_user_photo)
         val resume = view!!.findViewById<ImageButton>(R.id.next_btn)
         val username = view!!.findViewById<EditText>(R.id.user_name_surname)
         val description = view!!.findViewById<EditText>(R.id.inf_about_user)
@@ -42,26 +43,25 @@ class RegisterFragment: Fragment() {
         changeUserPhoto.setOnClickListener {
             changePhoto()
         }
-//        resume.setOnClickListener {
-//            if (username.text.toString().isEmpty())
-//                makeToast(context!!, "Fill the field")
-//            else
-//            {
-//                val user = helper.getUser()
-//                user.description = description.text.toString()
-//                user.name = username.text.toString()
-//                helper.deleteUser()
-//                helper.insertUser(user)
-//                addInfoForUser(user)
-//                startActivity(Intent(context!!, MainActivity::class.java))
-//            }
-//        }
+
+        if (lastFragment != null) {
+            initFirebase()
+            REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().username)
+                .addListenerForSingleValueEvent(
+                    AppValueEventListener {
+                        val user = it.getValue(User::class.java)
+                        userPhoto.downloadAndSetImage(user!!.photoUrl)
+                    }
+                )
+            username.setText(helper.getUser().name)
+            description.setText(helper.getUser().description)
+        }
     }
 
     private fun changePhoto() {
         CropImage.activity()
-            .setAspectRatio(1,1)
-            .setRequestedSize(600,600)
+            .setAspectRatio(1, 1)
+            .setRequestedSize(600, 600)
             .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(activity as RegisterActivity)
     }
