@@ -20,6 +20,21 @@ class LoginActivity : AppCompatActivity() {
         val buttonForLogin = findViewById<ImageButton>(R.id.buttonForLogin)
         val editTextEmail = findViewById<EditText>(R.id.edit_text_email)
         val editTextPassword = findViewById<EditText>(R.id.edit_text_password)
+        val localUser = helper.getUser()
+        if (localUser.username!="")
+            if (localUser.name=="")
+                startActivity(Intent(this, RegisterActivity::class.java))
+            else{
+                helper.deleteGroupConference()
+                helper.deleteGroupContacts()
+                getGroupConferenceFromFirebase(this, localUser.username)
+                getUserContactsFromFirebase(this, localUser.username)
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+
+
+        //ПОДУМОЙ, КАК ЧАСТО ОБНОВЛЯТЬ ДАННЫЕ(КАКАТЬ)?
+
         buttonForLogin.setOnClickListener {
             val email = editTextEmail.text.toString()
             val pswrd = editTextPassword.text.toString()
@@ -32,20 +47,17 @@ class LoginActivity : AppCompatActivity() {
                         if (it.hasChild(email)) {
                             val user = it.child(email).getValue(User::class.java)
                             if (user!!.password == pswrd) {
-                                if (helper.getUser().username != user.username) {
-                                    helper.deleteAllPersonalData()
-                                    helper.insertUser(user)
-                                    getUserContactsFromFirebase(this, user.username)
-                                }
-//                                getUserContactsFromFirebase(this, user.username)
+                                helper.deleteAllPersonalData()
+                                helper.insertUser(user)
                                 getGroupConferenceFromFirebase(this, user.username)
+                                getUserContactsFromFirebase(this, user.username)
                                 startActivity(Intent(this, RegisterActivity::class.java))
                             } else {
-                                makeToast(this, "WrongPswrd")
+                                makeToast(this, "Wrong Password")
                             }
                         } else {
                             makeToast(this, "NotFindMakeNew")
-                            val user = User(email, "", "", pswrd,"")
+                            val user = User(email, "", "", pswrd, "")
                             addNewUser(user)
                             helper.deleteAllPersonalData()
                             helper.insertUser(user)

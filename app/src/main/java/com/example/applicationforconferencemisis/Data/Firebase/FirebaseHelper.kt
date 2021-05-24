@@ -255,6 +255,13 @@ private fun helperForGetUserContactsFromFirebase(login: String, firebaseCallback
     })
 }
 
+fun addInfoForUser(user:User){
+    initFirebase()
+    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(user.username).setValue(user)
+}
+
+
+
 
 
 

@@ -235,4 +235,5 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         deleteGroupConference()
         deleteGroupContacts()
     }
+
 }

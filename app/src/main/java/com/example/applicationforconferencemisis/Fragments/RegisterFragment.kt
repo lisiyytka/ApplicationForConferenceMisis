@@ -6,12 +6,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.example.applicationforconferencemisis.Activities.MainActivity
 import com.example.applicationforconferencemisis.Activities.RegisterActivity
 import com.example.applicationforconferencemisis.Data.Firebase.FOLDER_PROFILE_IMAGE
 import com.example.applicationforconferencemisis.Data.Firebase.REF_STORAGE_ROOT
+import com.example.applicationforconferencemisis.Data.Firebase.addInfoForUser
+import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.makeToast
@@ -30,8 +35,26 @@ class RegisterFragment: Fragment() {
     override fun onResume() {
         super.onResume()
         val changeUserPhoto = view!!.findViewById<ImageView>(R.id.change_user_photo_pencil)
+        val resume = view!!.findViewById<ImageButton>(R.id.next_btn)
+        val username = view!!.findViewById<EditText>(R.id.user_name_surname)
+        val description = view!!.findViewById<EditText>(R.id.inf_about_user)
+        val helper = SQLiteHelper(context!!)
         changeUserPhoto.setOnClickListener {
             changePhoto()
+        }
+        resume.setOnClickListener {
+            if (username.text.toString().isEmpty())
+                makeToast(context!!, "Fill the field")
+            else
+            {
+                val user = helper.getUser()
+                user.description = description.text.toString()
+                user.name = username.text.toString()
+                helper.deleteUser()
+                helper.insertUser(user)
+                addInfoForUser(user)
+                startActivity(Intent(context!!, MainActivity::class.java))
+            }
         }
     }
 
