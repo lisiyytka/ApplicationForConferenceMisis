@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,7 @@ import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.asTime
+import com.example.applicationforconferencemisis.downloadAndSetImage
 import com.example.applicationforconferencemisis.replaceFragment
 
 class MessagesFragment: Fragment() {
@@ -60,20 +62,20 @@ class MessagesFragment: Fragment() {
 
                         val user = it.getValue(User::class.java)
                         if (user != null){
-                            holder.usersName.text = user.username
+                            holder.usersName.text = user.name
 //                            holder.lastMessage.text = "asd"
                             REF_DATABASE_ROOT.child(NODE_MESSAGES).child(helper.getUser().username).child(contacts[position].usersName).addListenerForSingleValueEvent(
                                 AppValueEventListener{
                                     val lastMessage = it.children.last().getValue(Message::class.java)
                                     holder.lastMessage.text=lastMessage!!.text
                                     holder.time.text = lastMessage.date.toString().asTime()
+                                    holder.imgProgile.downloadAndSetImage(user.photoUrl)
                                 }
                             )
-                            holder.numberOfUnreadMsg.text = position.toString()
                             holder.itemView.setOnClickListener {
                                 lastFragment = MessagesFragment()
                                 lastBtnId = R.id.messages_btn
-                                fragmentName!!.text = user.username
+                                fragmentName!!.text = user.name
                                 replaceFragment(SingleChatFragment(user.username))
                             }
                         }
@@ -92,7 +94,7 @@ class MessagesFragment: Fragment() {
         var usersName: TextView = itemView.findViewById(R.id.users_name)
         var lastMessage: TextView = itemView.findViewById(R.id.last_message)
         var time: TextView = itemView.findViewById(R.id.time)
-        var numberOfUnreadMsg: TextView = itemView.findViewById(R.id.number_of_unread_msg)
+        var imgProgile: ImageView = itemView.findViewById(R.id.users_img)
     }
 
     private fun getUserFromContacts(){

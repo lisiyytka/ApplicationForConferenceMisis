@@ -27,10 +27,11 @@
                 app:cardCornerRadius="90dp">
 
                 <ImageView
+                    android:id="@+id/img_profile"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img" />
+                    android:src="@drawable/ic_profile" />
             </androidx.cardview.widget.CardView>
 
             <LinearLayout

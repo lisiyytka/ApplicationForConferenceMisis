@@ -19,6 +19,7 @@ import com.example.applicationforconferencemisis.Data.Firebase.addNewDialog
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
+import com.example.applicationforconferencemisis.downloadAndSetImage
 import com.example.applicationforconferencemisis.replaceFragment
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -65,11 +66,12 @@ class MembersAndSpeakersFragment : Fragment() {
                 val localDB = SQLiteHelper(context!!)
                 mRefUsersListener = AppValueEventListener {
 
-                    holder.userName.text = model.username
+                    holder.userName.text = model.name
+                    holder.imgProfile.downloadAndSetImage(model.photoUrl)
                     holder.sendMessageButton.setOnClickListener {
                         lastFragment = MembersAndSpeakersFragment()
                         lastBtnId = R.id.members_btn
-                        fragmentName!!.text = model.username
+                        fragmentName!!.text = model.name
                         replaceFragment(SingleChatFragment(model.username))
                     }
                 }
@@ -84,6 +86,7 @@ class MembersAndSpeakersFragment : Fragment() {
     class MembersHolder (view: View): RecyclerView.ViewHolder(view){
         var userName: TextView = itemView.findViewById(R.id.users_name)
         var sendMessageButton: ImageView = itemView.findViewById(R.id.send_msg_btn)
+        var imgProfile: ImageView = itemView.findViewById(R.id.img_profile)
 //        var status: TextView = itemView.findViewById(R.id.users_status)
     }
 }

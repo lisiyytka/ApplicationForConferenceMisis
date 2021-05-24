@@ -42,20 +42,20 @@ class RegisterFragment: Fragment() {
         changeUserPhoto.setOnClickListener {
             changePhoto()
         }
-        resume.setOnClickListener {
-            if (username.text.toString().isEmpty())
-                makeToast(context!!, "Fill the field")
-            else
-            {
-                val user = helper.getUser()
-                user.description = description.text.toString()
-                user.name = username.text.toString()
-                helper.deleteUser()
-                helper.insertUser(user)
-                addInfoForUser(user)
-                startActivity(Intent(context!!, MainActivity::class.java))
-            }
-        }
+//        resume.setOnClickListener {
+//            if (username.text.toString().isEmpty())
+//                makeToast(context!!, "Fill the field")
+//            else
+//            {
+//                val user = helper.getUser()
+//                user.description = description.text.toString()
+//                user.name = username.text.toString()
+//                helper.deleteUser()
+//                helper.insertUser(user)
+//                addInfoForUser(user)
+//                startActivity(Intent(context!!, MainActivity::class.java))
+//            }
+//        }
     }
 
     private fun changePhoto() {
