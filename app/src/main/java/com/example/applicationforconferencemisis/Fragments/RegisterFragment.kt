@@ -29,7 +29,7 @@ class RegisterFragment: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        val changeUserPhoto = view!!.findViewById<ImageView>(R.id.change_user_photo)
+        val changeUserPhoto = view!!.findViewById<ImageView>(R.id.change_user_photo_pencil)
         changeUserPhoto.setOnClickListener {
             changePhoto()
         }
@@ -39,7 +39,7 @@ class RegisterFragment: Fragment() {
         CropImage.activity()
             .setAspectRatio(1,1)
             .setRequestedSize(600,600)
-            .setCropShape(CropImageView.CropShape.OVAL)
+            .setCropShape(CropImageView.CropShape.RECTANGLE)
             .start(activity as RegisterActivity)
     }
 }

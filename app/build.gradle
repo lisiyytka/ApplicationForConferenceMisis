@@ -73,5 +73,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0"
     //croper
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
-
+    //piccassso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

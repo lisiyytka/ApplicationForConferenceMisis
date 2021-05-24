@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
                             }
                         } else {
                             makeToast(this, "NotFindMakeNew")
-                            val user = User(email, "", "", pswrd)
+                            val user = User(email, "", "", pswrd,"")
                             addNewUser(user)
                             helper.deleteAllPersonalData()
                             helper.insertUser(user)
