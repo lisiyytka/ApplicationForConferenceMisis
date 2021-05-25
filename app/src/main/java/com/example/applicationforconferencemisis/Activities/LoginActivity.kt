@@ -11,7 +11,6 @@ import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.makeToast
-import com.example.applicationforconferencemisis.parser.Parserrr
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
                                 helper.insertUser(user)
                                 getGroupConferenceFromFirebase(this, user.username)
                                 getUserContactsFromFirebase(this, user.username)
-                                startActivity(Intent(this, RegisterActivity::class.java))
+                                startActivity(Intent(this, MainActivity::class.java))
                             } else {
                                 makeToast(this, "Wrong Password")
                             }

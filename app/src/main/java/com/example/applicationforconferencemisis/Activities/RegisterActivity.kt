@@ -24,12 +24,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_me)
 
-//        val helper = SQLiteHelper(this)
-////        val nextBtn = findViewById<ImageButton>(R.id.next_btn)
-////        val username = findViewById<EditText>(R.id.user_name_surname)
-////        val description = findViewById<EditText>(R.id.inf_about_user)
-////        val user = helper.getUser()
-
         makeToast(this, "asdasdasd")
         val fragmentManager = supportFragmentManager.beginTransaction()
         fragmentManager.add(R.id.container_for_register, registerFragment)

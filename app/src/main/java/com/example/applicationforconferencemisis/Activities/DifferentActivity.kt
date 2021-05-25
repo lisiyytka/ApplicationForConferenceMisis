@@ -3,18 +3,19 @@ package com.example.applicationforconferencemisis.Activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.applicationforconferencemisis.Data.Firebase.*
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
+import com.example.applicationforconferencemisis.Fragments.*
 import com.example.applicationforconferencemisis.R
-import com.example.applicationforconferencemisis.Fragments.ScheduleAndMyScheduleFragment
-import com.example.applicationforconferencemisis.Fragments.GroupChatFragment
-import com.example.applicationforconferencemisis.Fragments.MessagesFragment
-import com.example.applicationforconferencemisis.Fragments.MembersAndSpeakersFragment
-import com.example.applicationforconferencemisis.Fragments.AccountFragment
-import com.example.applicationforconferencemisis.Fragments.ConferenceFragment
+import com.example.applicationforconferencemisis.downloadAndSetImage
 import com.example.applicationforconferencemisis.makeToast
+import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.coroutines.delay
 
 
@@ -94,7 +95,41 @@ class DifferentActivity : AppCompatActivity() {
         fragmentManager.commit()
     }
 
-//    suspend fun delay(){
-//        delay(2000)
-//    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val helper = SQLiteHelper(this)
+        val changeUserPhotoImage = findViewById<ImageView>(R.id.change_user_photo)
+        val nextBtn = findViewById<ImageButton>(R.id.next_btn)
+        val username = findViewById<EditText>(R.id.user_name_surname)
+        val description = findViewById<EditText>(R.id.inf_about_user)
+        val fragmentManager = supportFragmentManager.beginTransaction()
+        val user = helper.getUser()
+        initFirebase()
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
+            && resultCode == RESULT_OK && data != null
+        ) {
+            val uri = CropImage.getActivityResult(data).uri
+            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
+                .child(helper.getUser().username)
+            path.putFile(uri).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    path.downloadUrl.addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            val photoUrl = it.result.toString()
+                            REF_DATABASE_ROOT.child(NODE_USERS)
+                                .child(helper.getUser().username).child(PHOTO_URL)
+                                .setValue(photoUrl)
+                                .addOnCompleteListener {
+                                    if (it.isSuccessful) {
+                                        changeUserPhotoImage.downloadAndSetImage(photoUrl)
+                                        makeToast(this, "data_update")
+                                        user.photoUrl = photoUrl
+                                    }
+                                }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

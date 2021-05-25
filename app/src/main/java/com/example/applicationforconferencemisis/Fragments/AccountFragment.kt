@@ -58,7 +58,7 @@ class AccountFragment: Fragment() {
         edit.setOnClickListener {
             lastFragment = AccountFragment()
             lastBtnId = R.id.account_btn
-            replaceFragment(RegisterFragment())
+            replaceFragment(EditFragment())
         }
     }
 }

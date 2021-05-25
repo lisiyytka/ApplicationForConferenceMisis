@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
+import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
@@ -72,6 +73,9 @@ class MainActivity : AppCompatActivity() {
         val user = helper.getUser()
 //        helper.insertContactsToContacts("123")
         val contacts = helper.getContacts()
+        val arrayConference3 = arrayListOf<Conference>(
+//            Conference("123","")
+        )
     }
 
 

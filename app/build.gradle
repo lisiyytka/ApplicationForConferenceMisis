@@ -55,8 +55,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-storage:20.0.x'
-    implementation files('C:\\Users\\shums\\StudioProjects\\ApplicationForConferenceMisis\\app\\libs\\poi-ooxml-5.0.0.jar')
-    implementation files('C:\\Users\\shums\\StudioProjects\\ApplicationForConferenceMisis\\app\\libs\\poi-5.0.0.jar')
+//    implementation files('C:\\Users\\shums\\StudioProjects\\ApplicationForConferenceMisis\\app\\libs\\poi-ooxml-5.0.0.jar')
+//    implementation files('C:\\Users\\shums\\StudioProjects\\ApplicationForConferenceMisis\\app\\libs\\poi-5.0.0.jar')
 
 
     testImplementation 'junit:junit:4.13.2'
