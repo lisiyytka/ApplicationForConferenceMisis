@@ -25,7 +25,8 @@ var fragmentName: TextView? = null
 
 class DifferentActivity : AppCompatActivity() {
 
-    private val scheduleFragment = MainScheduleFragment()
+    private val mainScheduleFragment = MainScheduleFragment()
+    private val scheduleFragment = ScheduleAndMyScheduleFragment()
     private val helper = SQLiteHelper(this)
     private val groupChatFragment = GroupChatFragment()
     private val messagesFragment = MessagesFragment()
@@ -54,7 +55,7 @@ class DifferentActivity : AppCompatActivity() {
             R.id.schedule_btn -> {
                 lastFragment = null
                 fragmentName!!.text = "Schedule"
-                fragmentManager.add(R.id.containerForFrag, scheduleFragment)
+                fragmentManager.add(R.id.containerForFrag, mainScheduleFragment)
             }
             R.id.my_schedule_btn -> {
                 lastFragment = null

@@ -10,7 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationforconferencemisis.Activities.lastBtnId
 import com.example.applicationforconferencemisis.Activities.lastFragment
+import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
+import com.example.applicationforconferencemisis.Data.Firebase.NODE_CONFERENCES
+import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
 import com.example.applicationforconferencemisis.Data.Models.Conference
+import com.example.applicationforconferencemisis.Data.Models.MainSchedule
+import com.example.applicationforconferencemisis.Data.Models.Message
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.replaceFragment
 
@@ -18,18 +23,28 @@ class MainScheduleFragment: Fragment() {
 
     lateinit var adapter: RecyclerView.Adapter<MyViewHolder>
     lateinit var mainScheduleRecyclerView: RecyclerView
+    lateinit var mListMainSchedule: List<MainSchedule>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule, container, false)
+        return inflater.inflate(R.layout.fragment_main_schedule, container, false)
     }
 
-    private fun initRecyclerView(events: List<Conference>){
+    override fun onStart() {
+        super.onStart()
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView(){
         mainScheduleRecyclerView = view?.findViewById(R.id.mainScheduleRecyclerView)!!
         mainScheduleRecyclerView.layoutManager = LinearLayoutManager(context)
+        AppValueEventListener { dataSnapshot ->
+            mListMainSchedule = dataSnapshot.children.map { it.getValue(MainSchedule::class.java)!! }
+//            adapter.set(mListMainSchedule)
+        }
         adapter = object : RecyclerView.Adapter<MyViewHolder>() {
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -39,19 +54,27 @@ class MainScheduleFragment: Fragment() {
             }
 
             override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-                holder.time.text = events[position].date
-                holder.event.text = events[position].name
-                if (events[position].name == "Workshops (see detailed schedule)" || events[position].name == "Concurrent Sessions (see detailed schedule)"){
-                    holder.event.setOnClickListener {
-                        lastFragment = MainScheduleFragment()
-                        lastBtnId = R.id.schedule_btn
-                        replaceFragment(ScheduleAndMyScheduleFragment())
-                    }
-                }
 
+                REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 3").child("Schedule").child(position.toString()).addListenerForSingleValueEvent(
+                    AppValueEventListener {
+                        val mainSchedule = it.getValue(MainSchedule::class.java)
+                        holder.time.text = mainSchedule!!.date
+                        holder.event.text = mainSchedule!!.name
+                        if (mainSchedule.name == "Workshops (see detailed schedule)" || mainSchedule.name == "Concurrent Sessions (see detailed schedule)") {
+                            holder.event.setOnClickListener {
+                                lastFragment = MainScheduleFragment()
+                                lastBtnId = R.id.schedule_btn
+                                replaceFragment(ScheduleAndMyScheduleFragment())
+                            }
+                        }
+                    }
+                )
             }
 
-            override fun getItemCount() = events.size
+            override fun getItemCount(): Int {
+                TODO("Not yet implemented")
+            }
+
         }
         mainScheduleRecyclerView.adapter = adapter
     }

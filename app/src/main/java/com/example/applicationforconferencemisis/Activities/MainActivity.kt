@@ -7,11 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
+import com.example.applicationforconferencemisis.*
 import com.example.applicationforconferencemisis.Data.Models.Conference
+import com.example.applicationforconferencemisis.Data.Models.MainSchedule
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
-import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity() {
@@ -76,6 +77,9 @@ class MainActivity : AppCompatActivity() {
         val arrayConference3 = arrayListOf<Conference>(
 //            Conference("123","")
         )
+//        setMainSchedule()
+//        setConferencesWorkshop()
+//        setConferencesSessions()
     }
 
 
@@ -117,7 +121,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-
-
 }
