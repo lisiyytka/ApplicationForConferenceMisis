@@ -25,7 +25,7 @@ var fragmentName: TextView? = null
 
 class DifferentActivity : AppCompatActivity() {
 
-    private val scheduleFragment = ScheduleAndMyScheduleFragment()
+    private val scheduleFragment = MainScheduleFragment()
     private val helper = SQLiteHelper(this)
     private val groupChatFragment = GroupChatFragment()
     private val messagesFragment = MessagesFragment()
