@@ -26,40 +26,25 @@
         tools:layout_editor_absoluteX="36dp">
 
         <TextView
-            style="@style/font_roboto_regular_gray"
+            style="@style/selected_day"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_marginVertical="18dp"
             android:layout_marginStart="30dp"
             android:gravity="center"
-            android:text="03.06.21"
-            android:textSize="18sp"
+            android:text="Workshops"
             android:layout_weight="1"/>
 
         <TextView
-            style="@style/font_roboto_regular_purple"
+            style="@style/unselected_day"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_marginVertical="12dp"
+            android:layout_weight="2"
             android:gravity="center"
-            android:text="04.06.21"
-            android:textSize="24sp"
-            android:layout_weight="2"/>
-
-        <TextView
-            style="@style/font_roboto_regular_gray"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginVertical="18dp"
-            android:layout_marginEnd="30dp"
-            android:gravity="center"
-            android:text="05.06.21"
-            android:textSize="18sp"
-            android:layout_weight="1"/>
-
+            android:text="Sessions" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

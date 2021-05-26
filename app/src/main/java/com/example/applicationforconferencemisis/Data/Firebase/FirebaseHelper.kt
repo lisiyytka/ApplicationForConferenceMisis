@@ -25,6 +25,7 @@ const val NODE_GROUP_CONFERENCES = "GroupConferences"
 const val NODE_GROUP_MESSAGE = "GroupMessage"
 const val FOLDER_PROFILE_IMAGE = "profile_image"
 const val PHOTO_URL = "photoUrl"
+const val NODE_NOTE = "Note"
 
 
 fun initFirebase() {
