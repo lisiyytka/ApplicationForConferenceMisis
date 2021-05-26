@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,171 +8,132 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="195dp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@id/date_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="195dp"
-        android:scrollbars="vertical">
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="7dp">
+            android:layout_marginBottom="7dp"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/name"
                 style="@style/font_roboto_medium_black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginVertical="23dp"
+                android:gravity="center"
                 android:text="The Main things of Design"
                 android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/text"
+                style="@style/font_roboto_regular_black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="36dp"
                 android:layout_marginVertical="23dp"
-                style="@style/font_roboto_regular_black"
-                android:textSize="18dp"
                 android:text="Short abrakadabre because I need some text for this block. Please don’t hate me for my low English level. I’m just A2. "
+                android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/name" />
-            <EditText
-                android:id="@+id/make_note"
-                style="@style/font_roboto_light_black"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="36dp"
-                android:layout_marginVertical="20dp"
-                android:background="@drawable/bg_white"
-                android:elevation="10dp"
-                android:hint="Note..."
-                android:outlineAmbientShadowColor="@color/purple"
-                android:outlineSpotShadowColor="@color/purple"
-                android:paddingHorizontal="18dp"
-                android:paddingVertical="15dp"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text" />
-        </LinearLayout>
+                android:orientation="vertical">
 
+                <EditText
+                    android:id="@+id/make_note"
+                    style="@style/font_roboto_light_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="36dp"
+                    android:layout_marginVertical="20dp"
+                    android:background="@drawable/bg_white"
+                    android:elevation="10dp"
+                    android:hint="Note..."
+                    android:outlineAmbientShadowColor="@color/purple"
+                    android:outlineSpotShadowColor="@color/purple"
+                    android:paddingHorizontal="18dp"
+                    android:paddingVertical="15dp"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text" />
+            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 
     <LinearLayout
         android:id="@+id/date_add"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
         android:layout_marginHorizontal="36dp"
         android:layout_marginVertical="24dp"
-        app:layout_constraintBottom_toTopOf="@id/personal_card"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/text1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
+            android:id="@+id/date"
+            style="@style/font_roboto_light_purple"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
-            style="@style/font_roboto_light_purple"
-            android:textSize="36sp"
-            android:text="14:00 23 jun"/>
+            android:text=""
+            android:textSize="36sp" />
 
         <Button
+            android:id="@+id/add_btn"
+            style="@style/font_roboto_regular_purple"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/bg_white_purple_selected"
-            android:textAllCaps="false"
-            android:paddingHorizontal="40dp"
-            android:paddingVertical="10dp"
             android:outlineAmbientShadowColor="@color/purple"
             android:outlineSpotShadowColor="@color/purple"
-            style="@style/font_roboto_regular_purple"
-            android:textSize="20sp"
+            android:paddingHorizontal="40dp"
+            android:paddingVertical="10dp"
             android:text="Add"
-            android:layout_gravity="center_horizontal"/>
+            android:textAllCaps="false"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/personal_card"
+    <TextView
+        android:id="@+id/text1"
+        style="@style/font_roboto_medium_purple"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="36dp"
-        android:layout_marginBottom="32dp"
-        android:orientation="horizontal"
-        app:cardBackgroundColor="@color/purple"
-        app:cardCornerRadius="35dp"
+        android:layout_marginBottom="5dp"
+        android:text="Speakers:"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/name_speaker" />
+
+    <TextView
+        android:id="@+id/name_speaker"
+        style="@style/font_roboto_medium_purple"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="36dp"
+        android:layout_marginBottom="15dp"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="35dp">
-
-                <ImageView
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/img" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginHorizontal="18dp"
-                android:layout_gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    style="@style/font_roboto_medium_white"
-                    android:textSize="18sp"
-                    android:text="Arseniy Nikorkin"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/font_roboto_regular_white"
-                    android:textSize="14sp"
-                    android:text="Speaker"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center_vertical|end">
-
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginHorizontal="23dp"
-                    android:layout_gravity="end"
-                    android:src="@drawable/ic_messages_white"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

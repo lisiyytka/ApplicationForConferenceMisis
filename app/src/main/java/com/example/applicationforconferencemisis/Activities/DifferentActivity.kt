@@ -33,7 +33,7 @@ class DifferentActivity : AppCompatActivity() {
     private val messagesFragment = MessagesFragment()
     private val membersAndSpeakersFragment = MembersAndSpeakersFragment()
     private val accountFragment = AccountFragment()
-    private val conferenceFragment = ConferenceFragment()
+//    private val conferenceFragment = ConferenceFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,7 +93,7 @@ class DifferentActivity : AppCompatActivity() {
             R.id.upcoming_conference -> {
                 lastFragment = null
                 fragmentName!!.text = ""
-                fragmentManager.add(R.id.containerForFrag, conferenceFragment)
+//                fragmentManager.add(R.id.containerForFrag, conferenceFragment)
             }
         }
         fragmentManager.commit()

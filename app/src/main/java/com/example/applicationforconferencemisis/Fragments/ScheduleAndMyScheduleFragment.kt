@@ -62,7 +62,7 @@ class ScheduleAndMyScheduleFragment(list: List<Conference?>): Fragment() {
                 holder.itemView.setOnClickListener {
                     lastFragment = ScheduleAndMyScheduleFragment(events)
                     lastBtnId = R.id.schedule_btn
-                    replaceFragment(ConferenceFragment())
+                    replaceFragment(ConferenceFragment(events[position]!!))
                 }
             }
 
