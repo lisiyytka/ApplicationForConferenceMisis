@@ -4,21 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationforconferencemisis.Activities.lastBtnId
 import com.example.applicationforconferencemisis.Activities.lastFragment
+import com.example.applicationforconferencemisis.Activities.lastFragmentString
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.replaceFragment
 
-class ScheduleAndMyScheduleFragment: Fragment() {
+class ScheduleAndMyScheduleFragment(list: List<Conference?>): Fragment() {
 
     lateinit var adapter: RecyclerView.Adapter<MyViewHolder>
     lateinit var scheduleRecyclerView: RecyclerView
+    private val listEvents = list
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,14 +33,17 @@ class ScheduleAndMyScheduleFragment: Fragment() {
 
     override fun onStart(){
         super.onStart()
-
-        val helper = SQLiteHelper(context!!)
-
-        initRecyclerView(helper.getAllConferences())
+        val dateBlock = view!!.findViewById<LinearLayout>(R.id.dates)
+        if(lastFragmentString == "MainSchedule"){
+            dateBlock.visibility = View.GONE
+        }else if (lastFragmentString == "MySchedule"){
+            dateBlock.visibility = View.VISIBLE
+        }
+        initRecyclerView(listEvents)
     }
 
 
-    private fun initRecyclerView(events: List<Conference>){
+    private fun initRecyclerView(events: List<Conference?>){
         scheduleRecyclerView = view?.findViewById(R.id.scheduleRecyclerView)!!
         scheduleRecyclerView.layoutManager = LinearLayoutManager(context)
         adapter = object : RecyclerView.Adapter<MyViewHolder>() {
@@ -49,12 +55,12 @@ class ScheduleAndMyScheduleFragment: Fragment() {
             }
 
             override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-                holder.eventTime.text = events[position].date
-                holder.eventName.text = events[position].name
-                holder.eventDescription.text = events[position].theme
-                holder.eventSpeaker.text = events[position].speakers
+                holder.eventTime.text = events[position]!!.date
+                holder.eventName.text = events[position]!!.name
+                holder.eventDescription.text = events[position]!!.theme
+                holder.eventSpeaker.text = events[position]!!.speakers
                 holder.itemView.setOnClickListener {
-                    lastFragment = ScheduleAndMyScheduleFragment()
+                    lastFragment = ScheduleAndMyScheduleFragment(events)
                     lastBtnId = R.id.schedule_btn
                     replaceFragment(ConferenceFragment())
                 }

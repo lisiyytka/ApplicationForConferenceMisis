@@ -22,12 +22,13 @@ import kotlinx.coroutines.delay
 var lastFragment: Fragment? = null
 var lastBtnId: Int = 0
 var fragmentName: TextView? = null
+var lastFragmentString: String = ""
 
 class DifferentActivity : AppCompatActivity() {
 
-    private val mainScheduleFragment = MainScheduleFragment()
-    private val scheduleFragment = ScheduleAndMyScheduleFragment()
     private val helper = SQLiteHelper(this)
+    private val mainScheduleFragment = MainScheduleFragment()
+//    private val scheduleFragment = ScheduleAndMyScheduleFragment(helper.getAllConferences())
     private val groupChatFragment = GroupChatFragment()
     private val messagesFragment = MessagesFragment()
     private val membersAndSpeakersFragment = MembersAndSpeakersFragment()
@@ -55,12 +56,14 @@ class DifferentActivity : AppCompatActivity() {
             R.id.schedule_btn -> {
                 lastFragment = null
                 fragmentName!!.text = "Schedule"
+                lastFragmentString = "MainSchedule"
                 fragmentManager.add(R.id.containerForFrag, mainScheduleFragment)
             }
             R.id.my_schedule_btn -> {
                 lastFragment = null
                 fragmentName!!.text = "My schedule"
-                fragmentManager.add(R.id.containerForFrag, scheduleFragment)
+                lastFragmentString = "MySchedule"
+//                fragmentManager.add(R.id.containerForFrag, scheduleFragment)
             }
             R.id.group_chat_btn -> {
                 lastFragment = null
