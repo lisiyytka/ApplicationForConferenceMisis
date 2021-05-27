@@ -1,11 +1,13 @@
 package com.example.applicationforconferencemisis.Fragments
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +19,7 @@ import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.replaceFragment
 
-class ScheduleAndMyScheduleFragment(list: List<Conference?>): Fragment() {
+class ScheduleAndMyScheduleFragment(list: List<Conference?>) : Fragment() {
 
     lateinit var adapter: RecyclerView.Adapter<MyViewHolder>
     lateinit var scheduleRecyclerView: RecyclerView
@@ -31,19 +33,25 @@ class ScheduleAndMyScheduleFragment(list: List<Conference?>): Fragment() {
         return inflater.inflate(R.layout.fragment_schedule, container, false)
     }
 
-    override fun onStart(){
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun onStart() {
         super.onStart()
         val dateBlock = view!!.findViewById<LinearLayout>(R.id.dates)
-        if(lastFragmentString == "MainSchedule"){
+        val workshopsAndSessionsBlock =
+            view!!.findViewById<LinearLayout>(R.id.workshops_and_session)
+
+        if (lastFragmentString == "MainSchedule") {
             dateBlock.visibility = View.GONE
-        }else if (lastFragmentString == "MySchedule"){
+            workshopsAndSessionsBlock.visibility = View.GONE
+        } else if (lastFragmentString == "MySchedule") {
             dateBlock.visibility = View.VISIBLE
+            workshopsAndSessionsBlock.visibility = View.VISIBLE
         }
         initRecyclerView(listEvents)
     }
 
 
-    private fun initRecyclerView(events: List<Conference?>){
+    private fun initRecyclerView(events: List<Conference?>) {
         scheduleRecyclerView = view?.findViewById(R.id.scheduleRecyclerView)!!
         scheduleRecyclerView.layoutManager = LinearLayoutManager(context)
         adapter = object : RecyclerView.Adapter<MyViewHolder>() {

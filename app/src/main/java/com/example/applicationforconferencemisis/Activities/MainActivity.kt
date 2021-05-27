@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
+import com.example.applicationforconferencemisis.addUsers
 import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity() {
@@ -74,8 +75,7 @@ class MainActivity : AppCompatActivity() {
         upcomingConferenceButton.setOnClickListener {
             startDifActivity(upcomingConferenceButton.id)
         }
-
-
+        addUsers()
     }
 
 

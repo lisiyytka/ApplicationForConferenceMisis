@@ -7,10 +7,7 @@ import android.media.Image
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.applicationforconferencemisis.Data.Firebase.NODE_CONFERENCES
-import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
-import com.example.applicationforconferencemisis.Data.Firebase.addNewUser
-import com.example.applicationforconferencemisis.Data.Firebase.initFirebase
+import com.example.applicationforconferencemisis.Data.Firebase.*
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.MainSchedule
 import com.example.applicationforconferencemisis.Data.Models.User
@@ -39,10 +36,22 @@ fun String.asTime(): String {
 }
 
 fun ImageView.downloadAndSetImage(url: String) {
-    Picasso.get()
-        .load(url)
-        .placeholder(R.drawable.ic_profile)
-        .into(this)
+    if (url == "") {
+        val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
+            .child("kisspng-refilmery-computer-icons-avatar-user-profile-avatar-vector-5ad7bb8f92b678_25771326152408769561009.png")
+        path.downloadUrl.addOnCompleteListener {
+            val photoUrl = it.result.toString()
+            Picasso.get()
+                .load(photoUrl)
+                .placeholder(R.drawable.ic_profile)
+                .into(this)
+        }
+    } else {
+        Picasso.get()
+            .load(url)
+            .placeholder(R.drawable.ic_profile)
+            .into(this)
+    }
 }
 
 fun setMainSchedule() {
@@ -785,7 +794,8 @@ fun setConferencesSessions() {
     }
 }
 
-fun AddUsers() {
+//Yekaterina-Morozova , Yelena-Kovaleva
+fun addUsers() {
     val users = arrayOf(
         User(
             "povarenkinaia@mail.ru",
@@ -1384,7 +1394,7 @@ fun AddUsers() {
         User(
             "Yelena.v.kovaleva@gmail.com",
             "Yelena Kovaleva",
-            "Yelena-Kovaleva",
+            "Yelena-Kovaleva1",
             "nate20Yelena21"
         ),
         User(
@@ -1754,7 +1764,7 @@ fun AddUsers() {
         User(
             "morozovaen@s5gub.ru",
             "Yekaterina Morozova",
-            "Yekaterina-Morozova",
+            "Yekaterina-Morozova1",
             "nate20Yekaterina21"
         ),
         //10
@@ -2127,12 +2137,6 @@ fun AddUsers() {
             "Speaker"
         ),
         //10
-        User(
-            "yi.57@osu.edu",
-            "Youngjoo Yi",
-            "Youngjoo-Yi",
-            "nate20Youngjoo21"
-        ),
         User(
             "marthasidury.christiansen@utsa.edu",
             "Martha Sidury Christiansen",

@@ -10,11 +10,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.applicationforconferencemisis.Data.Firebase.*
+import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.Fragments.*
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.downloadAndSetImage
 import com.example.applicationforconferencemisis.makeToast
+import com.example.applicationforconferencemisis.replaceFragment
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.coroutines.delay
 
@@ -29,11 +31,13 @@ class DifferentActivity : AppCompatActivity() {
 
     private val helper = SQLiteHelper(this)
     private val mainScheduleFragment = MainScheduleFragment()
-//    private val scheduleFragment = ScheduleAndMyScheduleFragment(helper.getAllConferences())
+//    lateinit var scheduleFragment: ScheduleAndMyScheduleFragment
     private val groupChatFragment = GroupChatFragment()
     private val messagesFragment = MessagesFragment()
     private val membersAndSpeakersFragment = MembersAndSpeakersFragment()
+    private val membersFragment = MembersFragment()
     private val accountFragment = AccountFragment()
+    private val myScheduleFragment = MyScheduleFragment()
 //    private val conferenceFragment = ConferenceFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +52,6 @@ class DifferentActivity : AppCompatActivity() {
                 startActivity(Intent(this,DifferentActivity::class.java).putExtra("buttonId", lastBtnId))
             }
         }
-
         fragmentName = findViewById(R.id.fragment_name)
 
         val buttonId = intent.getIntExtra("buttonId", 0)
@@ -64,7 +67,7 @@ class DifferentActivity : AppCompatActivity() {
                 lastFragment = null
                 fragmentName!!.text = "My schedule"
                 lastFragmentString = "MySchedule"
-//                fragmentManager.add(R.id.containerForFrag, scheduleFragment)
+                fragmentManager.add(R.id.containerForFrag, myScheduleFragment)
             }
             R.id.group_chat_btn -> {
                 lastFragment = null
@@ -79,7 +82,7 @@ class DifferentActivity : AppCompatActivity() {
             R.id.members_btn -> {
                 lastFragment = null
                 fragmentName!!.text = "Members"
-                fragmentManager.add(R.id.containerForFrag, membersAndSpeakersFragment)
+                fragmentManager.add(R.id.containerForFrag, membersFragment)
             }
             R.id.speakers_btn -> {
                 lastFragment = null

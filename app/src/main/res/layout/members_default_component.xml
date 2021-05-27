@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="18dp"
         android:orientation="horizontal"
-        app:cardBackgroundColor="@color/purple"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
                 app:cardCornerRadius="90dp">
 
                 <ImageView
-                    android:id="@+id/img_profile"
+                    android:id="@+id/img_default_profile"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:scaleType="centerCrop"
@@ -42,18 +42,18 @@
                 android:layout_gravity="center_vertical">
 
                 <TextView
-                    android:id="@+id/users_name"
+                    android:id="@+id/users_default_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    style="@style/font_roboto_medium_white"
-                    android:textSize="18sp" />
+                    style="@style/font_roboto_medium_black"
+                    android:textSize="18sp"/>
 
                 <TextView
-                    android:id="@+id/users_status"
+                    android:id="@+id/users_default_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/font_roboto_regular_white"
+                    style="@style/font_roboto_regular_gray"
                     android:textSize="14sp"
                     android:text="Event manager"/>
 
@@ -66,12 +66,12 @@
                 android:layout_gravity="center_vertical|end">
 
                 <ImageView
-                    android:id="@+id/send_msg_btn"
+                    android:id="@+id/send_default_msg_btn"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginHorizontal="23dp"
                     android:layout_gravity="end"
-                    android:src="@drawable/ic_messages_white"/>
+                    android:src="@drawable/ic_messages_purple"/>
 
             </LinearLayout>
 
