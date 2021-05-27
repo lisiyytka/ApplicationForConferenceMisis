@@ -12,6 +12,7 @@ import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
 import com.example.applicationforconferencemisis.Data.Firebase.initFirebase
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.MainSchedule
+import com.example.applicationforconferencemisis.Data.Models.User
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
@@ -230,4 +231,614 @@ fun setConferencesSessions(){
     for (i in 0..arrayConferenceSession4.size-1){
         REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 4").child("Session").child(i.toString()).setValue(arrayConferenceSession4[i])
     }
+}
+
+fun AddUsers() {
+    val users = arrayOf(
+        User(
+            "povarenkinaia@mail.ru",
+            "Irina Povarenkina",
+            "Irina-Povarenkina",
+            "nate20Irina21"
+        ),
+        User(
+            "cheprasovatatjana@rambler.ru",
+            "Tatyana Cheprasova",
+            "Tatyana-Cheprasova",
+            "nate20Tatyana21"
+        ),
+        User(
+            "lizareutova@gmail.com",
+            "Elizaveta Reutova",
+            "Elizaveta-Reutova",
+            "nate20Elizaveta21"
+        ),
+        User(
+            "merilu933@mail.ru",
+            "Tatiana Galkina",
+            "Tatiana-Galkina",
+            "nate20Tatiana21"
+        ),
+        User(
+            "kuv@list.ru",
+            "Olga Kuvshinova",
+            "Olga-Kuvshinova",
+            "nate20Olga21"
+        ),
+        User(
+            "olga.m.karpova@gmail.com",
+            "Karpova OLga",
+            "Olga-Karpova",
+            "nate20Olga21"
+        ),
+        User(
+            "antoine@resource-education.com",
+            "Antoine Marcq",
+            "Antoine-Marcq",
+            "nate20Antoine21"
+        ),
+        User(
+            "theasia@yahoo.com",
+            "Anastasia Teplyakova",
+            "Anastasia-Teplyakova",
+            "nate20Anastasia21"
+        ),
+        User(
+            "Korolyeva@mail.ru",
+            "Korolyeva Tatyana Alexandrovna",
+            "Tatyana-Korolyeva",
+            "nate20Tatyana21"
+        ),
+        User(
+            "gala_igonina@mail.ru",
+            "Galina Igonina",
+            "Galina-Igonina",
+            "nate20Galina21"
+        ),
+        User(
+            "westernvologda@gmail.com",
+            "Olga Kosheleva",
+            "Olga-Kosheleva",
+            "nate20Olga21"
+        ),
+        User(
+            "korirfox@gmail.com",
+            "Irina Korovina",
+            "Irina-Korovina",
+            "nate20Irina21"
+        ),
+        User(
+            "okuznetchik@yandex.ru",
+            "Olga Safonkina",
+            "Olga-Safonkina",
+            "nate20Olga21"
+        ),
+        User(
+            "kati30_82@mail.ru",
+            "Ekaterina Andreyevna Danilova",
+            "Ekaterina-Danilova",
+            "nate20Ekaterina21"
+        ),
+        User(
+            "49c942@mail.ru",
+            "Natalya Kravchenko",
+            "Natalya-Kravchenko",
+            "nate20Natalya21"
+        ),
+        User(
+            "andy1512@yandex.ru",
+            "Andrei L. Chernyshev",
+            "Andrei-Chernyshev",
+            "nate20Andrei21"
+        ),
+        User(
+            "lina.gordyshevskaya@gmail.com",
+            "Polina Gordyshevskaya",
+            "Polina-Gordyshevskaya",
+            "nate20Polina21"
+        ),
+        User(
+            "sckachckova.sofi@gmail.com",
+            "Sofia Skachkova",
+            "Sofia-Skachkova",
+            "nate20Sofia21"
+        ),
+        User(
+            "lisi4ka1602@yandex.ru",
+            "Marina Kolesnikova",
+            "Marina-Kolesnikova",
+            "nate20Marina21"
+        ),
+        User(
+            "idiomal@yandex.ru",
+            "Elena Selifonova",
+            "Elena-Selifonova",
+            "nate20Elena21"
+        ),
+        //20
+        User(
+            "olgakravets@list.ru",
+            "Olga Kravets",
+            "Olga-Kravets",
+            "nate20Olga21"
+        ),
+        User(
+            "elena.galichkina@mail.ru",
+            "Elena Galichkina",
+            "Elena-Galichkina",
+            "nate20Elena21"
+        ),
+        User(
+            "ekaterinakolesnikova@rambler.ru",
+            "Yekaterina Morozova",
+            "Yekaterina-Morozova",
+            "nate20Yekaterina21"
+        ),
+        User(
+            "ribeiro.danilo1993@gmail.com",
+            "Danilo Ribeiro",
+            "Danilo-Ribeiro",
+            "nate20Danilo21",
+        ),
+        User(
+            "maria_gallyamova@mail.ru",
+            "Maria Gallyamova",
+            "Maria-Gallyamova",
+            "nate20Maria21"
+        ),
+        User(
+            "Teacherso@macaw.me",
+            "Soraya Ieda Gubich",
+            "Soraya-Ieda Gubich",
+            "nate20Soraya21"
+        ),
+        User(
+            "boltneva@mail.ru",
+            "Olga Yurievna Boltneva",
+            "Olga-Boltneva",
+            "nate20Olga21"
+        ),
+        User(
+            "polsvetlana@yandex.ru",
+            "Svetlana Polyakova",
+            "Svetlana-Polyakova",
+            "nate20Svetlana21"
+        ),
+        User(
+            "gritsenko@inbox.ru",
+            "Elena Gritsenko",
+            "Elena-Gritsenko",
+            "nate20Elena21"
+        ),
+        User(
+            "barabashka84@mail.ru",
+            "Irina Barabushka",
+            "Irina-Barabushka",
+            "nate20Irina21"
+        ),
+        User(
+            "tklikushina@yandex.ru",
+            "Klikushina Tatiana Georgievna",
+            "Tatiana-Klikushina",
+            "nate20Tatiana21"
+        ),
+        User(
+            "anastasia.plotnikova@ub.edu",
+            "Anastasia Pattemore-Plotnikova",
+            "Anastasia-Pattemore-Plotnikova",
+            "nate20Anastasia21"
+        ),
+        User(
+            "osdvor@rambler.ru",
+            "Olga Solomonovna Dvorghets",
+            "Olga-Solomonovna",
+            "nate20Olga21"
+        ),
+        User(
+            "inaviri@gmail.com",
+            "Irina I. Vasilyeva",
+            "Irina-Vasilyeva",
+            "nate20Irina21"
+        ),
+        User(
+            "ats584793@mail.ru",
+            "Arkhipova Tatiana",
+            "Tatiana-Arkhipova",
+            "nate20Tatiana21"
+        ),
+        User(
+            "nataigolkina@mail.ru",
+            "Natalia Igolkina",
+            "Natalia-Igolkina",
+            "nate20Natalia21"
+        ),
+        User(
+            "valenttif@gmail.com",
+            "Valentina Igorevna Fedosova",
+            "Valentina-Fedosova",
+            "nate20Valentina21"
+        ),
+        User(
+            "englishlearners2@gmail.com",
+            "Mariia Kuznetcova",
+            "Mariia-Kuznetcova",
+            "nate20Mariia21"
+        ),
+        User(
+            "zmeykasofi@mail.ru",
+            "Sophia Polyankina",
+            "Sophia-Polyankina",
+            "nate20Sophia21"
+        ),
+        User(
+            "margarita.patkina@gmail.com",
+            "Margarita Patkina",
+            "Margarita-Patkina",
+            "nate20Margarita21"
+        ),
+        //40
+        User(
+            "Larionova.misis@mail.ru",
+            "Elena Leonidovna Larionova",
+            "Elena-Larionova",
+            "nate20Elena21"
+        ),
+        User(
+            "Danasmb@hotmail.com",
+            "Dana Saulembekova",
+            "Dana-Saulembekova",
+            "nate20Dana21"
+        ),
+        User(
+            "a.shchekochikhina@gmail.com",
+            "Shchekochikhina Anastasia Vadimovna",
+            "Anastasia-Shchekochikhina",
+            "nate20Anastasia21"
+        ),
+        User(
+            "evgeniya.kuznetsova90@gmail.com",
+            "Evgeniya Kuznetsova",
+            "Evgeniya-Kuznetsova",
+            "nate20Evgeniya21"
+        ),
+        User(
+            "artameli@mail.ru",
+            "Bagdasarova Ilona",
+            "Ilona-Bagdasarova",
+            "nate20Ilona21"
+        ),
+        User(
+            "anastasiakhodakova@gmail.com",
+            "Anastasia Khodakova",
+            "Anastasia-Khodakova",
+            "nate20Anastasia21"
+        ),
+        User(
+            "tonya.ks@mail.ru",
+            "Kolesnikova Antonina Andreevna",
+            "Antonina-Kolesnikova",
+            "nate20Antonina21"
+        ),
+        User(
+            "e.tikhomirova@skoltech.ru",
+            "Elizaveta Tikhomirova",
+            "Elizaveta-Tikhomirova",
+            "nate20Elizaveta21"
+        ),
+        User(
+            "ujushka@mail.ru",
+            "Uliana Ivanova",
+            "Uliana-Ivanova",
+            "nate20Uliana21"
+        ),
+        User(
+            "olyarai@yandex.ru",
+            "Olga Raylyan",
+            "Olga-Raylyan",
+            "nate20Olga21"
+        ),
+        User(
+            "elkar09@yandex.ru",
+            "Elvira Kartseva",
+            "Elvira-Kartseva",
+            "nate20Elvira21"
+        ),
+        User(
+            "ekaterina-golova@list.ru",
+            "Ekaterina A.Golova",
+            "Ekaterina-Golova",
+            "nate20Ekaterina21"
+        ),
+        User(
+            "konstklochko@gmail.com",
+            "Konstantin A. Klochko",
+            "Konstantin-Klochko",
+            "nate20Konstantin21"
+        ),
+        User(
+            "gorelovachernyh@mail.ru",
+            "Natalie Gorelova",
+            "Natalie-Gorelova",
+            "nate20Natalie21"
+        ),
+        User(
+            "yi.57@osu.edu",
+            "Youngjoo Yi",
+            "Youngjoo-Yi",
+            "nate20Youngjoo21"
+        ),
+        User(
+            "lyudmilaab@mail.ru",
+            "Krivenko Lyudmila Aleksandrovna",
+            "Lyudmila-Krivenko",
+            "nate20Lyudmila21"
+        ),
+        User(
+            "polina.ermakova.misis@gmail.com",
+            "Polina Ermakova",
+            "Polina-Ermakova",
+            "nate20Polina21"
+        ),
+        User(
+            "lkaz11996@mail.ru",
+            "Kazantseva Luidmila",
+            "Luidmila-Kazantseva",
+            "nate20Luidmila21"
+        ),
+        User(
+            "roza_rafagatovna@mail.ru",
+            "Razina Mudarisova",
+            "Razina-Mudarisova",
+            "nate20Razina21"
+        ),
+        User(
+            "andrewwin@yandex.ru",
+            "Natalja Shustina",
+            "Natalja-Shustina",
+            "nate20Natalja21"
+        ),
+        //60
+        User(
+            "marthasidury.christiansen@utsa.edu",
+            "M. Sidury Christiansen",
+            "Sidury-Christiansen",
+            "nate20Sidury21"
+        ),
+        User(
+            "grigoryeva.ekaterina@mail.ru",
+            "Ekaterina Grigoryeva",
+            "Ekaterina-Grigoryeva",
+            "nate20Ekaterina21"
+        ),
+        User(
+            "deva_elizovo@mail.ru",
+            "Olga Ershova",
+            "Olga-Ershova",
+            "nate20Olga21"
+        ),
+        User(
+            "niya@mail.ru",
+            "Tolstykh Olesya",
+            "Olesya-Tolstykh",
+            "nate20Olesya21"
+        ),
+        User(
+            "aquastel@mail.ru",
+            "Ilchenko Elena Vladimirovna",
+            "Elena-Ilchenko",
+            "nate20Elena21"
+        ),
+        User(
+            "5765744@mail.ru",
+            "Anna Krupchenko",
+            "Anna-Krupchenko",
+            "nate20Anna21"
+        ),
+        User(
+            "tomabelyaeva6@yandex.ru",
+            "Tamara Belyaeva",
+            "Tamara-Belyaeva",
+            "nate20Tamara21"
+        ),
+        User(
+            "mariaurahara@mail.ru",
+            "Semenova Maria",
+            "Maria-Semenova",
+            "nate20Maria21"
+        ),
+        User(
+            "ninellru@yandex.ru",
+            "Nina Chrenushkina",
+            "Nina-Chrenushkina",
+            "nate20Nina21"
+        ),
+        User(
+            "annaalex79@mail.ru",
+            "Alekseeva Anna",
+            "Anna-Alekseeva",
+            "nate20Anna21"
+        ),
+        User(
+            "ollie.nency1996@gmail.com",
+            "Olga Knyazeva",
+            "Olga-Knyazeva",
+            "nate20Olga21",
+        ),
+        User(
+            "galina-the-happy@mail.ru",
+            "Galina Grashchenkova",
+            "Galina-Grashchenkova",
+            "nate20Galina21"
+        ),
+        User(
+            "irysya.polukhina@gmail.com",
+            "Irina Polukhina",
+            "Irina-Polukhina",
+            "nate20Irina21"
+        ),
+        User(
+            "Irene16@yandex.ru",
+            "Irina Vladimirovna Ignatova",
+            "Irina-Ignatova",
+            "nate20Irina21"
+        ),
+        User(
+            "ab.galina@gmail.com",
+            "Galina Abramova",
+            "Galina-Abramova",
+            "nate20Galina21"
+        ),
+        User(
+            "olga.connolly@yandex.ru",
+            "Olga Connolly",
+            "Olga-Connolly",
+            "nate20Olga21"
+        ),
+        User(
+            "tatiana-luck@mail.ru",
+            "Tatiana Vasileva",
+            "Tatiana-Vasileva",
+            "nate20Tatiana21"
+        ),
+        User(
+            "natali2670@mail.ru",
+            "Shchitova Natalya Georgievna",
+            "Natalya-Shchitova",
+            "nate20Natalya21"
+        ),
+        User(
+            "sandra77779@mail.ru",
+            "Alexandra Shafeeva",
+            "Alexandra-Shafeeva",
+            "nate20Alexandra21"
+        ),
+        User(
+            "prichesnyaeva@gmail.com",
+            "Evgeniya Prichesnyaeva",
+            "Evgeniya-Prichesnyaeva",
+            "nate20Evgeniya21"
+        ),
+        //80
+        User(
+            "melnikova.ea@misis.ru",
+            "Melnikova Evgeniia Anatolyevna",
+            "Evgeniia-Melnikova",
+            "nate20Evgeniia21"
+        ),
+        User(
+            "luda_konstant@mail.ru",
+            "Lyudmila Nacharova",
+            "Lyudmila-Nacharova",
+            "nate20Lyudmila21"
+        ),
+        User(
+            "m.berezina@mail.ru",
+            "Maria V. Molchanova",
+            "Maria-Molchanova",
+            "nate20Maria21"
+        ),
+        User(
+            "Juliaseaa@gmail.com",
+            "Yulia Duriagina",
+            "Yulia-Duriagina",
+            "nate20Yulia21"
+        ),
+        User(
+            "zulya5596@gmail.com",
+            "Zulfiya Abdullayeva",
+            "Zulfiya-Abdullayeva",
+            "nate20Zulfiya21"
+        ),
+        User(
+            "nbochegova1@yandex.ru",
+            "Natalya Bochegova",
+            "Natalya-Bochegova",
+            "nate20Natalya21"
+        ),
+        User(
+            "basilsbox2@gmail.com",
+            "Makukha Vasiliy",
+            "Vasiliy-Makukha",
+            "nate20Vasiliy21"
+        ),
+        User(
+            "shishknat@mail.ru",
+            "Shishkina Natalia Mikhailovna",
+            "Natalia-Shishkina",
+            "nate20Natalia21"
+        ),
+        User(
+            "anna.gorizontova@peoplecert.org",
+            "Anna Gorizontova",
+            "Anna-Gorizontova",
+            "nate20Anna21"
+        ),
+        User(
+            "olegivchenko11@mail.ru",
+            "Oleg Ivchenko",
+            "Oleg-Ivchenko",
+            "nate20Oleg21"
+        ),
+        User(
+            "potemkinatv@mail.ru",
+            "Potemkina Tatiana",
+            "Tatiana-Potemkina",
+            "nate20Tatiana21"
+        ),
+        User(
+            "teacherstepichev@narod.ru",
+            "Petr A. Stepichev",
+            "Petr-Stepichev",
+            "nate20Petr21"
+        ),
+        User(
+            "lalaith@mail.ru",
+            "Liubov Ponidelko",
+            "Liubov-Ponidelko",
+            "nate20Liubov21"
+        ),
+        User(
+            "natalie_ye@mail.ru",
+            "Petrova Natalya",
+            "Natalya-Petrova",
+            "nate20Natalya21"
+        ),
+        User(
+            "veranovik@mail.ru",
+            "Novikova Vera Pavlovna",
+            "Vera-Novikova",
+            "nate20Vera21"
+        ),
+        User(
+            "annrybakova@gmail.com",
+            "Anna Rybakova",
+            "Anna-Rybakova",
+            "nate20Anna21"
+        ),
+        User(
+            "Hrox@mail.ru",
+            "Oxana Hrushcheva",
+            "Oxana-Hrushcheva",
+            "nate20Oxana21"
+        ),
+        User(
+            "iptverdokhlebova@gmail.com",
+            "Ирина Твердохлебова",
+            "Irina-Tverdokchlebova",
+            "nate20Irina21"
+        ),
+        User(
+            "Yelena.v.kovaleva@gmail.com",
+            "Yelena Kovaleva",
+            "Yelena-Kovaleva",
+            "nate20Yelena21"
+        ),
+        User(
+            "lena_leto_89@mail.ru",
+            "Elena Yurievna Marchenko",
+            "Elena-Marchenko",
+            "nate20Elena21"
+        ),
+        //100
+    )
 }

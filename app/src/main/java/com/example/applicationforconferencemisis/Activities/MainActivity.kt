@@ -7,9 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
-import com.example.applicationforconferencemisis.*
-import com.example.applicationforconferencemisis.Data.Models.Conference
-import com.example.applicationforconferencemisis.Data.Models.MainSchedule
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
@@ -22,13 +19,20 @@ class MainActivity : AppCompatActivity() {
     private var mMessageListener: ChildEventListener? = null
     val messageList = ArrayList<User>()
 
+    override fun onResume() {
+        super.onResume()
+        val helper = SQLiteHelper(this)
+        val user = helper.getUser()
+        if (user.name=="")
+            startActivity(Intent(this, RegisterActivity::class.java))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         mDatabase = FirebaseDatabase.getInstance().reference
         mMessageReference = FirebaseDatabase.getInstance().getReference("Users")
-
         firebaseListenerInit(this)
 
         val scheduleButton = findViewById<Button>(R.id.schedule_btn)
@@ -70,16 +74,8 @@ class MainActivity : AppCompatActivity() {
         upcomingConferenceButton.setOnClickListener {
             startDifActivity(upcomingConferenceButton.id)
         }
-        val helper = SQLiteHelper(this)
-        val user = helper.getUser()
-//        helper.insertContactsToContacts("123")
-        val contacts = helper.getContacts()
-        val arrayConference3 = arrayListOf<Conference>(
-//            Conference("123","")
-        )
-//        setMainSchedule()
-//        setConferencesWorkshop()
-//        setConferencesSessions()
+
+
     }
 
 
@@ -121,4 +117,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
+
 }
