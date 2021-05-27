@@ -111,7 +111,7 @@ class MainScheduleFragment : Fragment() {
                         lastFragment = MainScheduleFragment()
                         lastBtnId = R.id.schedule_btn
                         if(list[position]!!.name == "Workshops (see detailed schedule)"){
-                            if (lastDateBtn == "3"){
+                            if (lastDateBtn == "june 3"){
                                 REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 3").child("Workshop")
                                     .addListenerForSingleValueEvent(
                                         AppValueEventListener {
@@ -120,7 +120,7 @@ class MainScheduleFragment : Fragment() {
                                             fragmentName!!.text = "Workshops"
                                             replaceFragment(ScheduleAndMyScheduleFragment(mListWorkshop))
                                         })
-                            } else if (lastDateBtn == "4"){
+                            } else if (lastDateBtn == "june 4"){
                                 REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 4").child("Workshop")
                                     .addListenerForSingleValueEvent(
                                         AppValueEventListener {
@@ -129,7 +129,7 @@ class MainScheduleFragment : Fragment() {
                                             fragmentName!!.text = "Workshops"
                                             replaceFragment(ScheduleAndMyScheduleFragment(mListWorkshop))
                                         })
-                            } else if (lastDateBtn == "5"){
+                            } else if (lastDateBtn == "june 5"){
                                 REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 5").child("Workshop")
                                     .addListenerForSingleValueEvent(
                                         AppValueEventListener {
@@ -140,7 +140,7 @@ class MainScheduleFragment : Fragment() {
                                         })
                             }
                         } else if(list[position]!!.name == "Concurrent Sessions (see detailed schedule)"){
-                            if (lastDateBtn == "3"){
+                            if (lastDateBtn == "june 3"){
                                 REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 3").child("Session")
                                     .addListenerForSingleValueEvent(
                                         AppValueEventListener {
@@ -149,7 +149,7 @@ class MainScheduleFragment : Fragment() {
                                             fragmentName!!.text = "Sessions"
                                             replaceFragment(ScheduleAndMyScheduleFragment(mListSession))
                                         })
-                            } else if (lastDateBtn == "4"){
+                            } else if (lastDateBtn == "june 4"){
                                 REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 4").child("Session")
                                     .addListenerForSingleValueEvent(
                                         AppValueEventListener {
@@ -158,7 +158,7 @@ class MainScheduleFragment : Fragment() {
                                             fragmentName!!.text = "Sessions"
                                             replaceFragment(ScheduleAndMyScheduleFragment(mListSession))
                                         })
-                            } else if (lastDateBtn == "5"){
+                            } else if (lastDateBtn == "june 5"){
                                 REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 5").child("Session")
                                     .addListenerForSingleValueEvent(
                                         AppValueEventListener {

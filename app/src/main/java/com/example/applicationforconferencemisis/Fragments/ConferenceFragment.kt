@@ -14,10 +14,8 @@ import androidx.fragment.app.Fragment
 import com.example.applicationforconferencemisis.Activities.fragmentName
 import com.example.applicationforconferencemisis.Activities.lastDateBtn
 import com.example.applicationforconferencemisis.Activities.lastFragment
-import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
-import com.example.applicationforconferencemisis.Data.Firebase.NODE_NOTE
-import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
-import com.example.applicationforconferencemisis.Data.Firebase.initFirebase
+import com.example.applicationforconferencemisis.Activities.lastFragmentString
+import com.example.applicationforconferencemisis.Data.Firebase.*
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.Note
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
@@ -52,43 +50,27 @@ class ConferenceFragment(conferenceFromSchedule: Conference) : Fragment() {
         themeConference.text = conference.theme
         dateConference.text = conference.date
         nameSpeakerConference.text = conference.speakers
-//        if (fragmentName!!.text == "Workshops"){
-//            REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name).child("Workshops").child(conference.conferenceId).addListenerForSingleValueEvent(
-//                AppValueEventListener{
-//                    editNote.setText(it.getValue(String::class.java))
-//                }
-//            )
-//        }else if (fragmentName!!.text == "Sessions"){
-//            REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name).child("Sessions").child(conference.conferenceId).addListenerForSingleValueEvent(
-//                AppValueEventListener{
-//                    editNote.setText(it.getValue(String::class.java))
-//                }
-//            )
-//        }
+        lastFragmentString = "ScheduleAndMyScheduleFragment"
+        REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name).child(lastDateBtn)
+            .child(fragmentName!!.text.toString())
+            .child(conference.conferenceId).addListenerForSingleValueEvent(
+                AppValueEventListener {
+                    editNote.setText(it.getValue(String::class.java))
+                })
+
 
         addButton.setOnClickListener {
             helper.insertConferenceToSchedule(conference.conferenceId)
+            REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().username).child(
+                NODE_PERSONAL_SCHEDULE
+            ).child(lastDateBtn).child(fragmentName!!.text.toString()).child(conference.conferenceId).setValue(conference)
         }
 
         acceptNote.setOnClickListener {
             val note = Note()
-//            if (editNote.text.isEmpty()) {
-//                makeToast(context!!, "Fill the field")
-//            } else if (fragmentName!!.text == "Workshops") {
-//                note.conference = conference.name
-//                note.text = editNote.text.toString()
-//                REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name).child("Workshops")
-//                    .child(conference.conferenceId).setValue(note.text)
-//            } else if (fragmentName!!.text == "Sessions") {
-//                note.conference = conference.name
-//                note.text = editNote.text.toString()
-//                REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name).child("Sessions")
-//                    .child(conference.conferenceId).setValue(note.text)
-//            }
-
             if (editNote.text.isEmpty()) {
                 makeToast(context!!, "Fill the field")
-            } else{
+            } else {
                 note.conference = conference.name
                 note.text = editNote.text.toString()
                 REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
@@ -96,39 +78,6 @@ class ConferenceFragment(conferenceFromSchedule: Conference) : Fragment() {
                     .child(fragmentName!!.text.toString())
                     .child(conference.conferenceId).setValue(note.text)
             }
-//            } else if (lastDateBtn == "june 3") {
-//                if (fragmentName!!.text == "Workshops") {
-//                    note.conference = conference.name
-//                    note.text = editNote.text.toString()
-//                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
-//                        .child("june 3")
-//                        .child("Workshops")
-//                        .child(conference.conferenceId).setValue(note.text)
-//                } else if (fragmentName!!.text == "Sessions") {
-//                    note.conference = conference.name
-//                    note.text = editNote.text.toString()
-//                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
-//                        .child("june 3")
-//                        .child("Sessions")
-//                        .child(conference.conferenceId).setValue(note.text)
-//                }
-//            } else if (lastDateBtn == "june 4") {
-//                if (fragmentName!!.text == "Workshops") {
-//                    note.conference = conference.name
-//                    note.text = editNote.text.toString()
-//                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
-//                        .child("june 4")
-//                        .child("Workshops")
-//                        .child(conference.conferenceId).setValue(note.text)
-//                } else if (fragmentName!!.text == "Sessions") {
-//                    note.conference = conference.name
-//                    note.text = editNote.text.toString()
-//                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
-//                        .child("june 4")
-//                        .child("Sessions")
-//                        .child(conference.conferenceId).setValue(note.text)
-//                }
-//            }
         }
     }
 }

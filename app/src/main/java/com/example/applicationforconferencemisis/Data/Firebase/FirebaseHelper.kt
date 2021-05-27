@@ -24,6 +24,7 @@ const val NODE_MESSAGES = "Messages"
 const val NODE_GROUP_CONFERENCES = "GroupConferences"
 const val NODE_GROUP_MESSAGE = "GroupMessage"
 const val FOLDER_PROFILE_IMAGE = "profile_image"
+const val NODE_PERSONAL_SCHEDULE = "PersonalSchedule"
 const val PHOTO_URL = "photoUrl"
 const val NODE_NOTE = "Note"
 
