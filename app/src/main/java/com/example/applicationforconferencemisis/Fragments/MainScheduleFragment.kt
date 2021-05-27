@@ -54,7 +54,7 @@ class MainScheduleFragment : Fragment() {
             third.setTextAppearance(R.style.selected_day)
             fourth.setTextAppearance(R.style.unselected_day)
             fifth.setTextAppearance(R.style.unselected_day)
-            lastDateBtn = "3"
+            lastDateBtn = "june 3"
             REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 3").child("Schedule")
                 .addListenerForSingleValueEvent(
                     AppValueEventListener {
@@ -67,7 +67,7 @@ class MainScheduleFragment : Fragment() {
             third.setTextAppearance(R.style.unselected_day)
             fourth.setTextAppearance(R.style.selected_day)
             fifth.setTextAppearance(R.style.unselected_day)
-            lastDateBtn = "4"
+            lastDateBtn = "june 4"
             REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 4").child("Schedule")
                 .addListenerForSingleValueEvent(
                     AppValueEventListener {
@@ -80,7 +80,7 @@ class MainScheduleFragment : Fragment() {
             third.setTextAppearance(R.style.unselected_day)
             fourth.setTextAppearance(R.style.unselected_day)
             fifth.setTextAppearance(R.style.selected_day)
-            lastDateBtn = "5"
+            lastDateBtn = "june 5"
             REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 5").child("Schedule")
                 .addListenerForSingleValueEvent(
                     AppValueEventListener {

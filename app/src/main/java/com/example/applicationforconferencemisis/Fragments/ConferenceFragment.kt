@@ -88,39 +88,47 @@ class ConferenceFragment(conferenceFromSchedule: Conference) : Fragment() {
 
             if (editNote.text.isEmpty()) {
                 makeToast(context!!, "Fill the field")
-            } else if (lastDateBtn == "3") {
-                if (fragmentName!!.text == "Workshops") {
-                    note.conference = conference.name
-                    note.text = editNote.text.toString()
-                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
-                        .child("june 3")
-                        .child("Workshops")
-                        .child(conference.conferenceId).setValue(note.text)
-                } else if (fragmentName!!.text == "Sessions") {
-                    note.conference = conference.name
-                    note.text = editNote.text.toString()
-                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
-                        .child("june 3")
-                        .child("Sessions")
-                        .child(conference.conferenceId).setValue(note.text)
-                }
-            } else if (lastDateBtn == "4") {
-                if (fragmentName!!.text == "Workshops") {
-                    note.conference = conference.name
-                    note.text = editNote.text.toString()
-                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
-                        .child("june 4")
-                        .child("Workshops")
-                        .child(conference.conferenceId).setValue(note.text)
-                } else if (fragmentName!!.text == "Sessions") {
-                    note.conference = conference.name
-                    note.text = editNote.text.toString()
-                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
-                        .child("june 4")
-                        .child("Sessions")
-                        .child(conference.conferenceId).setValue(note.text)
-                }
+            } else{
+                note.conference = conference.name
+                note.text = editNote.text.toString()
+                REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
+                    .child(lastDateBtn)
+                    .child(fragmentName!!.text.toString())
+                    .child(conference.conferenceId).setValue(note.text)
             }
+//            } else if (lastDateBtn == "june 3") {
+//                if (fragmentName!!.text == "Workshops") {
+//                    note.conference = conference.name
+//                    note.text = editNote.text.toString()
+//                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
+//                        .child("june 3")
+//                        .child("Workshops")
+//                        .child(conference.conferenceId).setValue(note.text)
+//                } else if (fragmentName!!.text == "Sessions") {
+//                    note.conference = conference.name
+//                    note.text = editNote.text.toString()
+//                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
+//                        .child("june 3")
+//                        .child("Sessions")
+//                        .child(conference.conferenceId).setValue(note.text)
+//                }
+//            } else if (lastDateBtn == "june 4") {
+//                if (fragmentName!!.text == "Workshops") {
+//                    note.conference = conference.name
+//                    note.text = editNote.text.toString()
+//                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
+//                        .child("june 4")
+//                        .child("Workshops")
+//                        .child(conference.conferenceId).setValue(note.text)
+//                } else if (fragmentName!!.text == "Sessions") {
+//                    note.conference = conference.name
+//                    note.text = editNote.text.toString()
+//                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
+//                        .child("june 4")
+//                        .child("Sessions")
+//                        .child(conference.conferenceId).setValue(note.text)
+//                }
+//            }
         }
     }
 }
