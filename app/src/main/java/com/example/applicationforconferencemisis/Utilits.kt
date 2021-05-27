@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_CONFERENCES
 import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
+import com.example.applicationforconferencemisis.Data.Firebase.addNewUser
 import com.example.applicationforconferencemisis.Data.Firebase.initFirebase
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.MainSchedule
@@ -1116,7 +1117,8 @@ fun AddUsers() {
             "yi.57@osu.edu",
             "Youngjoo Yi",
             "Youngjoo-Yi",
-            "nate20Youngjoo21"
+            "nate20Youngjoo21",
+            "Speaker"
         ),
         User(
             "lyudmilaab@mail.ru",
@@ -1376,7 +1378,8 @@ fun AddUsers() {
             "iptverdokhlebova@gmail.com",
             "Ирина Твердохлебова",
             "Irina-Tverdokchlebova",
-            "nate20Irina21"
+            "nate20Irina21",
+            "Speaker"
         ),
         User(
             "Yelena.v.kovaleva@gmail.com",
@@ -2106,19 +2109,22 @@ fun AddUsers() {
             "maria.brisk@bc.edu",
             "Maria Brisk",
             "Maria-Brisk",
-            "nate20Maria21"
+            "nate20Maria21",
+            "Speaker"
         ),
         User(
             "robert.klassen@york.ac.uk",
             "Robert Klassen",
             "Robert-Klassen",
-            "nate20Robert21"
+            "nate20Robert21",
+            "Speaker"
         ),
         User(
             "marklen@konurbaev.ru",
             "Marklen Konurbaev",
             "Marklen-Konurbaev",
-            "nate20Marklen21"
+            "nate20Marklen21",
+            "Speaker"
         ),
         //10
         User(
@@ -2131,43 +2137,50 @@ fun AddUsers() {
             "marthasidury.christiansen@utsa.edu",
             "Martha Sidury Christiansen",
             "Martha-Sidury-Christiansen",
-            "nate20Martha21"
+            "nate20Martha21",
+            "Speaker"
         ),
         User(
             "sashakr@hotmail.com",
             "Alexander Kravchenko",
             "Alexander-Kravchenko",
-            "nate20Alexander21"
+            "nate20Alexander21",
+            "Speaker"
         ),
         User(
             "blainesmith@arizona.edu",
             "Blaine Smith",
             "Blaine-Smith",
-            "nate20Blaine21"
+            "nate20Blaine21",
+            "Speaker"
         ),
         User(
             "drcowinj@gmail.com",
             "Jasmin Cowin",
             "Jasmin-Cowin",
-            "nate20Jasmin21"
+            "nate20Jasmin21",
+            "Speaker"
         ),
         User(
             "bauters@tlu.ee",
             "Merja Bauters",
             "Merja-Bauters",
-            "nate20Merja21"
+            "nate20Merja21",
+            "Speaker"
         ),
         User(
             "giedre.vasil@gmail.com",
             "Giedre Vasiliuskaite",
             "Giedre-Vasiliuskaite",
-            "nate20Giedre21"
+            "nate20Giedre21",
+            "Speaker"
         ),
         User(
             "eevans@bkc.ru",
             "Edwards Evans",
             "Edwards-Evans",
-            "nate20Edwards21"
+            "nate20Edwards21",
+            "Speaker"
         ),
         User(
             "erken.e@mes.ru",
@@ -2179,27 +2192,32 @@ fun AddUsers() {
             "sjiang24@ncsu.edu",
             "Shiyan Jiang",
             "Shiyan-Jiang",
-            "nate20Shiyan21"
+            "nate20Shiyan21",
+            "Speaker"
         ),
         //10
         User(
             "edejong@coe.ufl.edu",
             "Ester de Jong",
             "Ester-de-Jong",
-            "nate20Ester21"
+            "nate20Ester21",
+            "Speaker"
         ),
         User(
             "simonbrooks.t21@btinternet.com",
             "Simon Brooks",
             "Simon-Brooks",
-            "nate20Simon21"
+            "nate20Simon21",
+            "Speaker"
         ),
         User(
             "tgolechkova@nes.ru",
             "Tatiana Golechkova",
             "Tatiana-Golechkova",
-            "nate20Tatiana21"
-        )
-        //100
+            "nate20Tatiana21",
+            "Speaker"
+        ) //100
     )
+    for (user in users)
+        addNewUser(user)
 }
