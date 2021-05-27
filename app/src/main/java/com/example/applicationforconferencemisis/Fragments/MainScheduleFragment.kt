@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationforconferencemisis.Activities.fragmentName
 import com.example.applicationforconferencemisis.Activities.lastBtnId
+import com.example.applicationforconferencemisis.Activities.lastDateBtn
 import com.example.applicationforconferencemisis.Activities.lastFragment
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_CONFERENCES
@@ -27,7 +28,6 @@ class MainScheduleFragment : Fragment() {
     lateinit var adapter: RecyclerView.Adapter<MyViewHolder>
     lateinit var mainScheduleRecyclerView: RecyclerView
     lateinit var mListMainSchedule: List<MainSchedule>
-    var lastDateBtn = "3"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

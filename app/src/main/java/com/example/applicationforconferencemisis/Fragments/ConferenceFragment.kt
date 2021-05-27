@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.example.applicationforconferencemisis.Activities.fragmentName
+import com.example.applicationforconferencemisis.Activities.lastDateBtn
 import com.example.applicationforconferencemisis.Activities.lastFragment
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_NOTE
@@ -71,18 +72,54 @@ class ConferenceFragment(conferenceFromSchedule: Conference) : Fragment() {
 
         acceptNote.setOnClickListener {
             val note = Note()
+//            if (editNote.text.isEmpty()) {
+//                makeToast(context!!, "Fill the field")
+//            } else if (fragmentName!!.text == "Workshops") {
+//                note.conference = conference.name
+//                note.text = editNote.text.toString()
+//                REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name).child("Workshops")
+//                    .child(conference.conferenceId).setValue(note.text)
+//            } else if (fragmentName!!.text == "Sessions") {
+//                note.conference = conference.name
+//                note.text = editNote.text.toString()
+//                REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name).child("Sessions")
+//                    .child(conference.conferenceId).setValue(note.text)
+//            }
+
             if (editNote.text.isEmpty()) {
                 makeToast(context!!, "Fill the field")
-            } else if (fragmentName!!.text == "Workshops") {
-                note.conference = conference.name
-                note.text = editNote.text.toString()
-                REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name).child("Workshops")
-                    .child(conference.conferenceId).setValue(note.text)
-            } else if (fragmentName!!.text == "Sessions") {
-                note.conference = conference.name
-                note.text = editNote.text.toString()
-                REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name).child("Sessions")
-                    .child(conference.conferenceId).setValue(note.text)
+            } else if (lastDateBtn == "3") {
+                if (fragmentName!!.text == "Workshops") {
+                    note.conference = conference.name
+                    note.text = editNote.text.toString()
+                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
+                        .child("june 3")
+                        .child("Workshops")
+                        .child(conference.conferenceId).setValue(note.text)
+                } else if (fragmentName!!.text == "Sessions") {
+                    note.conference = conference.name
+                    note.text = editNote.text.toString()
+                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
+                        .child("june 3")
+                        .child("Sessions")
+                        .child(conference.conferenceId).setValue(note.text)
+                }
+            } else if (lastDateBtn == "4") {
+                if (fragmentName!!.text == "Workshops") {
+                    note.conference = conference.name
+                    note.text = editNote.text.toString()
+                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
+                        .child("june 4")
+                        .child("Workshops")
+                        .child(conference.conferenceId).setValue(note.text)
+                } else if (fragmentName!!.text == "Sessions") {
+                    note.conference = conference.name
+                    note.text = editNote.text.toString()
+                    REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
+                        .child("june 4")
+                        .child("Sessions")
+                        .child(conference.conferenceId).setValue(note.text)
+                }
             }
         }
     }

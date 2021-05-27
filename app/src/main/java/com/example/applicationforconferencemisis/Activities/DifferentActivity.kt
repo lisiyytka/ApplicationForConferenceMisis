@@ -23,6 +23,7 @@ var lastFragment: Fragment? = null
 var lastBtnId: Int = 0
 var fragmentName: TextView? = null
 var lastFragmentString: String = ""
+var lastDateBtn = "3"
 
 class DifferentActivity : AppCompatActivity() {
 
