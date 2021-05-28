@@ -68,10 +68,25 @@ class ConferenceFragment(conferenceFromSchedule: Conference, data:String, type:S
 
 
         addButton.setOnClickListener {
-            helper.insertConferenceToSchedule(conference.conferenceId, date, types)
-            REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().username).child(
-                NODE_PERSONAL_SCHEDULE
-            ).child(lastDateBtn).child(fragmentName!!.text.toString()).child(conference.conferenceId).setValue(conference)
+            if(addButton.text.toString()=="Add"){
+                addButton.text = "Delete"
+                helper.insertConferenceToSchedule(conference.conferenceId, date, types)
+                REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().username).child(
+                    NODE_PERSONAL_SCHEDULE
+                ).child(lastDateBtn).child(fragmentName!!.text.toString()).child(conference.conferenceId).setValue(conference)
+            }
+            else{
+                addButton.text = "Add"
+                //MY JUMPSUIT IS UNSTEADY
+                REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().name)
+                    .child(NODE_PERSONAL_SCHEDULE)
+                    .child(date)
+                    .child(types)
+                    .child(conference.conferenceId)
+                    .removeValue()
+                helper.deleteGroupConference()
+                getGroupConferenceFromFirebase(context!!,helper.getUser().name)
+            }
         }
 
         acceptNote.setOnClickListener {
