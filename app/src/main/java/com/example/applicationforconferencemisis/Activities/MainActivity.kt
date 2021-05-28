@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.example.applicationforconferencemisis.*
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_CONFERENCES
 import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
@@ -17,9 +18,6 @@ import com.example.applicationforconferencemisis.Data.Models.Message
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
-import com.example.applicationforconferencemisis.addUsers
-import com.example.applicationforconferencemisis.asDate
-import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -120,14 +118,18 @@ class MainActivity : AppCompatActivity() {
                                     it.children.map { it.getValue(MainSchedule::class.java) }
                                 for (i in juneThirdSchedule) {
                                     val a = i!!.date.split("-")[0].split(":")
-                                    if (currentHours.toInt() > a[0].toInt()) { }
-                                    else {
-                                        if (currentMinutes.toInt()>a[1].toInt()){}
-                                        else {
-                                            mainName.text = i.name
-                                            mainDate.text = i.date
-                                            break
+                                    if (currentHours.toInt() < a[0].toInt()) {
+                                        if (currentHours.toInt() == a[0].toInt()) {
+                                            if (currentMinutes.toInt() <= a[1].toInt()) {
+                                                mainName.text = i.name
+                                                mainDate.text = i.date
+                                                break
+                                            }
                                         }
+                                    } else {
+                                        mainName.text = i.name
+                                        mainDate.text = i.date
+                                        break
                                     }
                                 }
 
@@ -154,6 +156,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+//        setMainSchedule()
+//        setConferencesWorkshop()
+//        setConferencesSessions()
 
     }
 
