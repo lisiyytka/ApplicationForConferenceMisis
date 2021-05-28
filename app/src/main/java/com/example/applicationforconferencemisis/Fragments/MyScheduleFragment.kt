@@ -28,7 +28,7 @@ class MyScheduleFragment : Fragment() {
     lateinit var adapter: RecyclerView.Adapter<MyViewHolder>
     lateinit var myScheduleRecyclerView: RecyclerView
     var date = "june 3"
-    var events = "Workshops"
+    var event = "Workshops"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +54,7 @@ class MyScheduleFragment : Fragment() {
             .child(helper.getUser().username)
             .child(NODE_PERSONAL_SCHEDULE)
             .child(date)
-            .child(events).addListenerForSingleValueEvent(
+            .child(event).addListenerForSingleValueEvent(
                 AppValueEventListener {
                     var mListMySchedule = emptyList<Conference?>()
                     mListMySchedule = it.children.map { it.getValue(Conference::class.java) }
@@ -70,7 +70,7 @@ class MyScheduleFragment : Fragment() {
                 .child(helper.getUser().username)
                 .child(NODE_PERSONAL_SCHEDULE)
                 .child(date)
-                .child(events).addListenerForSingleValueEvent(
+                .child(event).addListenerForSingleValueEvent(
                     AppValueEventListener {
                         var mListMySchedule = emptyList<Conference?>()
                         mListMySchedule = it.children.map { it.getValue(Conference::class.java) }
@@ -87,7 +87,7 @@ class MyScheduleFragment : Fragment() {
                 .child(helper.getUser().username)
                 .child(NODE_PERSONAL_SCHEDULE)
                 .child(date)
-                .child(events).addListenerForSingleValueEvent(
+                .child(event).addListenerForSingleValueEvent(
                     AppValueEventListener {
                         var mListMySchedule = emptyList<Conference?>()
                         mListMySchedule = it.children.map { it.getValue(Conference::class.java) }
@@ -99,12 +99,12 @@ class MyScheduleFragment : Fragment() {
         workshopsFourthForMySchedule.setOnClickListener {
             workshopsFourthForMySchedule.setTextAppearance(R.style.selected_day)
             sessionsFourthForMySchedule.setTextAppearance(R.style.unselected_day)
-            events = "Workshops"
+            event = "Workshops"
             REF_DATABASE_ROOT.child(NODE_USERS)
                 .child(helper.getUser().username)
                 .child(NODE_PERSONAL_SCHEDULE)
                 .child(date)
-                .child(events).addListenerForSingleValueEvent(
+                .child(event).addListenerForSingleValueEvent(
                     AppValueEventListener {
                         var mListMySchedule = emptyList<Conference?>()
                         mListMySchedule = it.children.map { it.getValue(Conference::class.java) }
@@ -116,12 +116,12 @@ class MyScheduleFragment : Fragment() {
         sessionsFourthForMySchedule.setOnClickListener {
             workshopsFourthForMySchedule.setTextAppearance(R.style.unselected_day)
             sessionsFourthForMySchedule.setTextAppearance(R.style.selected_day)
-            events = "Sessions"
+            event = "Sessions"
             REF_DATABASE_ROOT.child(NODE_USERS)
                 .child(helper.getUser().username)
                 .child(NODE_PERSONAL_SCHEDULE)
                 .child(date)
-                .child(events).addListenerForSingleValueEvent(
+                .child(event).addListenerForSingleValueEvent(
                     AppValueEventListener {
                         var mListMySchedule = emptyList<Conference?>()
                         mListMySchedule = it.children.map { it.getValue(Conference::class.java) }
@@ -150,7 +150,7 @@ class MyScheduleFragment : Fragment() {
                 holder.itemView.setOnClickListener {
                     lastFragment = MyScheduleFragment()
                     lastBtnId = R.id.my_schedule_btn
-                    replaceFragment(ConferenceFragment(events[position]!!))
+                    replaceFragment(ConferenceFragment(events[position]!!, date, event))
                 }
             }
 

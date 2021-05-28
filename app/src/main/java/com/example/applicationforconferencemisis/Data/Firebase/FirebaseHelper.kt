@@ -27,6 +27,8 @@ const val FOLDER_PROFILE_IMAGE = "profile_image"
 const val NODE_PERSONAL_SCHEDULE = "PersonalSchedule"
 const val PHOTO_URL = "photoUrl"
 const val NODE_NOTE = "Note"
+const val NODE_SESSIONS = "Sessions"
+const val NODE_WORKSHOPS = "Workshops"
 
 
 fun initFirebase() {
@@ -146,24 +148,31 @@ fun getGroupConferenceFromFirebase( context: Context, log: String){
     val localDatabaseHelper = SQLiteHelper(context)
     var groupConferences = GroupConferences()
     helperForGetGroupConferenceFromFirebase(log, object: CallbackForGroupConferences {
-        override fun onCallback(list: MutableList<String?>) {
+        override fun onCallback(list: MutableList<Triple<String?,String?,String?>>) {
             super.onCallback(list)
-            for (id in list)
-                if (!id.isNullOrEmpty())
-                    localDatabaseHelper.insertConferenceToSchedule(id)
+            for (conf in list)
+                if (!conf.first.isNullOrEmpty())
+                    localDatabaseHelper.insertConferenceToSchedule(conf.first!!,conf.second!!,conf.third!!)
         }
     })
 }
 
 private fun helperForGetGroupConferenceFromFirebase(login: String, firebaseCallback: CallbackForGroupConferences) {
     initFirebase()
-    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login).child(NODE_GROUP_CONFERENCES)
-    var listData = ArrayList<String?>()
+    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login).child(NODE_PERSONAL_SCHEDULE)
+    var listData = ArrayList<Triple<String?,String?,String?>>()
     ref.addValueEventListener(object : ValueEventListener{
         override fun onDataChange(snapshot: DataSnapshot) {
-            for (conference in snapshot.children){
-                val idConference = conference.getValue(String::class.java)
-                listData.add(idConference)
+            for (date in snapshot.children){
+                val a = date.getValue(String::class.java)
+                for (type in date.children){
+                    val b = type.getValue(String::class.java)
+                    for (confer in type.children){
+                        val idConf = confer.getValue(String::class.java)
+                        val conf = Triple(idConf,a,b)
+                        listData.add(conf)
+                    }
+                }
             }
             firebaseCallback.onCallback(listData)
         }

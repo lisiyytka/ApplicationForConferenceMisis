@@ -26,6 +26,8 @@ val USERS_COL_MAIL = "Mail"
 val USERS_COL_PASSWORD= "Password"
 val USERS_COL_DESCRIPTION= "Description"
 val GROUP_CONFERENCES_COL_CONFERENCES = "Conferences"
+val GROUP_CONFERENCES_COL_DATE = "Date"
+val GROUP_CONFERENCES_COL_TYPE = "Type"
 val CONFERENCES_COL_CONFERENCE_ID = "ConferenceId"
 val CONFERENCES_COL_NAME = "Name"
 val CONFERENCES_COL_THEME = "Theme"
@@ -49,7 +51,9 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         db?.execSQL(createTableUsers)
 
         val createTableGroupConferences = "CREATE TABLE " + TABLE_NAME_GROUP_CONFERENCES + " (" +
-                GROUP_CONFERENCES_COL_CONFERENCES + " VARCHAR(256))"
+                GROUP_CONFERENCES_COL_CONFERENCES + " VARCHAR(256), " +
+                GROUP_CONFERENCES_COL_DATE + " VARCHAR(256), " +
+                GROUP_CONFERENCES_COL_TYPE + " VARCHAR(256))"
         db?.execSQL(createTableGroupConferences)
 
         val createTableConferences = "CREATE TABLE " + TABLE_NAME_CONFERENCES + " (" +
@@ -82,10 +86,12 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         db.insert(TABLE_NAME_USERS, null, cv)
     }
 
-    fun insertConferenceToSchedule(idConference: String){
+    fun insertConferenceToSchedule(idConference: String, date:String, type:String){
         val db = this.writableDatabase
         val cv = ContentValues()
         cv.put(GROUP_CONFERENCES_COL_CONFERENCES, idConference)
+        cv.put(GROUP_CONFERENCES_COL_DATE, date)
+        cv.put(GROUP_CONFERENCES_COL_TYPE, type)
         db.insert(TABLE_NAME_GROUP_CONFERENCES, null, cv)
     }
 
@@ -125,38 +131,22 @@ class SQLiteHelper(var context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         db.insert(TABLE_NAME_CONFERENCES, null, cv)
     }
 
-    fun getAllConferencesFromSchedule():ArrayList<Conference>{
-        val listId: MutableList<String> = ArrayList()
+    fun getAllConferencesFromSchedule():MutableList<Triple<String, String, String>>{
+        val listId: MutableList<Triple<String, String, String>> = ArrayList()
         var db = this.readableDatabase
         var query = "Select * from $TABLE_NAME_GROUP_CONFERENCES"
         var result = db.rawQuery(query, null)
         if (result.moveToFirst()){
             do {
-                listId.add(result.getString(result.getColumnIndex(GROUP_CONFERENCES_COL_CONFERENCES)).toString())
+                val conf = Triple(result.getString(result.getColumnIndex(GROUP_CONFERENCES_COL_CONFERENCES)).toString(),
+                    result.getString(result.getColumnIndex(GROUP_CONFERENCES_COL_DATE)).toString(),
+                    result.getString(result.getColumnIndex(GROUP_CONFERENCES_COL_TYPE)).toString())
+                listId.add(conf)
             } while (result.moveToNext())
         }
         result.close()
         db.close()
-        db = this.readableDatabase
-        val listConference:ArrayList<Conference> = arrayListOf()
-        listId.forEach {
-            query = "Select * from $TABLE_NAME_CONFERENCES where $CONFERENCES_COL_CONFERENCE_ID = $it"
-            result = db.rawQuery(query, null)
-            if (result.moveToFirst()){
-                do {
-                    val conference = Conference()
-                    conference.conferenceId=(result.getString(result.getColumnIndex(CONFERENCES_COL_CONFERENCE_ID)).toString())
-                    conference.date=(result.getString(result.getColumnIndex(CONFERENCES_COL_DATE)).toString())
-                    conference.name=(result.getString(result.getColumnIndex(CONFERENCES_COL_NAME)).toString())
-                    conference.theme=(result.getString(result.getColumnIndex(CONFERENCES_COL_THEME)).toString())
-                    conference.speakers=(result.getString(result.getColumnIndex(CONFERENCES_COL_SPEAKERS)).toString())
-                    listConference.add(conference)
-                } while (result.moveToNext())
-            }
-        }
-        result.close()
-        db.close()
-        return listConference
+        return listId
     }
 
     fun getConference(idConference: String): Conference{

@@ -23,9 +23,11 @@ import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.makeToast
 import com.google.android.material.card.MaterialCardView
 
-class ConferenceFragment(conferenceFromSchedule: Conference) : Fragment() {
+class ConferenceFragment(conferenceFromSchedule: Conference, data:String, type:String) : Fragment() {
 
     var conference = conferenceFromSchedule
+    val date = data
+    val types = type
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,10 +44,16 @@ class ConferenceFragment(conferenceFromSchedule: Conference) : Fragment() {
         val themeConference = view!!.findViewById<TextView>(R.id.text)
         val dateConference = view!!.findViewById<TextView>(R.id.date)
         val nameSpeakerConference = view!!.findViewById<TextView>(R.id.name_speaker)
-        val addButton = view!!.findViewById<Button>(R.id.add_btn)
+        var addButton = view!!.findViewById<Button>(R.id.add_btn)
         val editNote = view!!.findViewById<EditText>(R.id.make_note)
         val acceptNote = view!!.findViewById<CardView>(R.id.edit)
         val helper = SQLiteHelper(context!!)
+        val mySchedule = helper.getAllConferencesFromSchedule()
+        for (conf in mySchedule){
+            if (conf.first==conference.conferenceId && conf.second == date && conf.third==types){
+                addButton.text = "Delete"
+            }
+        }
         nameConference.text = conference.name
         themeConference.text = conference.theme
         dateConference.text = conference.date
@@ -60,7 +68,7 @@ class ConferenceFragment(conferenceFromSchedule: Conference) : Fragment() {
 
 
         addButton.setOnClickListener {
-            helper.insertConferenceToSchedule(conference.conferenceId)
+            helper.insertConferenceToSchedule(conference.conferenceId, date, types)
             REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().username).child(
                 NODE_PERSONAL_SCHEDULE
             ).child(lastDateBtn).child(fragmentName!!.text.toString()).child(conference.conferenceId).setValue(conference)
