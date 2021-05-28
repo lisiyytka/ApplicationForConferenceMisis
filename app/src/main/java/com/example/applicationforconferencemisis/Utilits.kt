@@ -68,12 +68,12 @@ fun setMainSchedule() {
         MainSchedule("Workshops (see detailed schedule)", "9:35-10:20"),
         MainSchedule("Break", "10:20-10:30"),
         MainSchedule(
-            "Conference Opening: Svetlana G. Ter-Minasova\n" +
-                    "Opening Plenary Talks\n" +
-                    "Peter Watkins\n" +
-                    "Reading Evolution: Helping Learners to Read Online\n" +
-                    "Kelley Calvert\n" +
-                    "Maintaining Motivation and Preventing Teacher Burnout with Student-сentered Instruction",
+            "Conference Opening: Svetlana G. Ter-Minasova " +
+                    "Opening Plenary Talks " +
+                    "Peter Watkins " +
+                    "Reading Evolution: Helping Learners to Read Online " +
+                    "Kelley Calvert " +
+                    "Maintaining Motivation and Preventing Teacher Burnout with Student-сentered Instruction ",
             "10:30-12:30"
         ),
         MainSchedule("Lunch", "12:30-13:30"),
