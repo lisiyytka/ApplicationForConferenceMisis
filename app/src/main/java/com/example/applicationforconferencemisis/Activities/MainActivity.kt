@@ -137,6 +137,7 @@ class MainActivity : AppCompatActivity() {
                                             if (currentMinutes.toInt() <= a[1].toInt()) {
                                                 mainName.text = i.name
                                                 mainDate.text = i.date
+
                                                 break
                                             }
                                         } else {
