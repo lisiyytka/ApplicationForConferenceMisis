@@ -46,7 +46,7 @@ class GroupChatFragment() : Fragment() {
         sendMessageButton!!.setOnClickListener {
             val message = messageForSend!!.text.toString()
             if (message.isEmpty()){
-                makeToast(context!!,"Pysto")
+
             } else sendGroupMessage(message, context!!){
                   messageForSend.setText("")
             }

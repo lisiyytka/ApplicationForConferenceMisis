@@ -46,7 +46,7 @@ class SingleChatFragment(val userId: String) : Fragment() {
         sendMessageButton!!.setOnClickListener {
             val message = messageForSend!!.text.toString()
             if (message.isEmpty()) {
-                makeToast(context!!, "Empty")
+
             } else sendMessage(message, userId, context!!) {
                 messageForSend.setText("")
                 addNewDialog(userId, context!!)

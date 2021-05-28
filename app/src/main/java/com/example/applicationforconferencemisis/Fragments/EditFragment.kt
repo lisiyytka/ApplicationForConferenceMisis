@@ -39,7 +39,6 @@ class EditFragment : Fragment() {
         val description = view!!.findViewById<EditText>(R.id.inf_about_user)
         val nextBtn = view!!.findViewById<ImageButton>(R.id.next_btn)
         val helper = SQLiteHelper(context!!)
-        val user = helper.getUser()
         changeUserPhoto.setOnClickListener {
             changePhoto()
         }

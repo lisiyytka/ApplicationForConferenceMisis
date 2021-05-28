@@ -46,7 +46,7 @@ class RegisterFragment : Fragment() {
         val user = helper.getUser()
         resume.setOnClickListener {
             if (username.text.toString().isEmpty())
-                makeToast(context!!, "Fill the field")
+                makeToast(context!!, "Fill the fields")
             else {
                 user.description = description.text.toString()
                 user.name = username.text.toString()

@@ -101,11 +101,6 @@ class DifferentActivity : AppCompatActivity() {
                 fragmentName!!.text = "Account"
                 fragmentManager.add(R.id.containerForFrag, accountFragment)
             }
-            R.id.upcoming_conference -> {
-                lastFragment = null
-                fragmentName!!.text = ""
-//                fragmentManager.add(R.id.containerForFrag, conferenceFragment)
-            }
         }
         fragmentManager.commit()
     }
@@ -137,7 +132,6 @@ class DifferentActivity : AppCompatActivity() {
                                 .addOnCompleteListener {
                                     if (it.isSuccessful) {
                                         changeUserPhotoImage.downloadAndSetImage(photoUrl)
-                                        makeToast(this, "data_update")
                                         user.photoUrl = photoUrl
                                     }
                                 }

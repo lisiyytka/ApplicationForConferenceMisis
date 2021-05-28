@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
         val qwe = DateTimeFormatter.ofPattern("hh")
         val currentHours = zdt.format(qwe)
         /////
-        makeToast(this, currentHours)
         val asd = DateTimeFormatter.ofPattern("mm")
         val currentMinutes = zdt.format(asd)
         /////
@@ -62,10 +61,15 @@ class MainActivity : AppCompatActivity() {
         if (currentDate.toString() != "03" && currentDate.toString() != "04" && currentDate.toString() != "05") {
             REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 3")
                 .child("Schedule")
-                .child("5").addListenerForSingleValueEvent(
+                .child("0").addListenerForSingleValueEvent(
                     AppValueEventListener {
                         val result = it.getValue(MainSchedule::class.java)
-                        mainName.text = result!!.name
+                        if (result!!.name.length > 71){
+                            val a = result.name.split(":")
+                            mainName.text = a[0]
+                        }else {
+                            mainName.text = result.name
+                        }
                         mainDate.text = result.date
                     }
                 )
@@ -82,7 +86,12 @@ class MainActivity : AppCompatActivity() {
                                     if (currentHours.toInt() <= a[0].toInt()) {
                                         if (currentHours.toInt() == a[0].toInt()) {
                                             if (currentMinutes.toInt() <= a[1].toInt()) {
-                                                mainName.text = i.name
+                                                if (i.name.length > 71){
+                                                    val a = i.name.split(":")
+                                                    mainName.text = a[0]
+                                                }else {
+                                                    mainName.text = i.name
+                                                }
                                                 mainDate.text = i.date
                                                 break
                                             }
@@ -109,7 +118,12 @@ class MainActivity : AppCompatActivity() {
                                     if (currentHours.toInt() <= a[0].toInt()) {
                                         if (currentHours.toInt() == a[0].toInt()) {
                                             if (currentMinutes.toInt() <= a[1].toInt()) {
-                                                mainName.text = i.name
+                                                if (i.name.length > 71){
+                                                    val a = i.name.split(":")
+                                                    mainName.text = a[0]
+                                                }else {
+                                                    mainName.text = i.name
+                                                }
                                                 mainDate.text = i.date
                                                 break
                                             }
@@ -135,7 +149,12 @@ class MainActivity : AppCompatActivity() {
                                     if (currentHours.toInt() <= a[0].toInt()) {
                                         if (currentHours.toInt() == a[0].toInt()) {
                                             if (currentMinutes.toInt() <= a[1].toInt()) {
-                                                mainName.text = i.name
+                                                if (i.name.length > 71){
+                                                    val a = i.name.split(":")
+                                                    mainName.text = a[0]
+                                                }else {
+                                                    mainName.text = i.name
+                                                }
                                                 mainDate.text = i.date
                                                 break
                                             }
@@ -199,15 +218,10 @@ class MainActivity : AppCompatActivity() {
             startDifActivity(accountButton.id)
         }
 
-        val upcomingConferenceButton = findViewById<LinearLayout>(R.id.upcoming_conference)
-        upcomingConferenceButton.setOnClickListener {
-            startDifActivity(upcomingConferenceButton.id)
-        }
         addUsers()
 //        setMainSchedule()
 //        setConferencesWorkshop()
 //        setConferencesSessions()
-
     }
 
 
@@ -227,7 +241,6 @@ class MainActivity : AppCompatActivity() {
                 Log.e("TAG", "onChildAdded:" + message.username)
 
                 val latest = messageList[messageList.size - 1]
-//                makeToast(context, latest.username)
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {

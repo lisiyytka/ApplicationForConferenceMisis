@@ -18,10 +18,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         val helper = SQLiteHelper(this)
-//        val parser = Parserrr()
-//        val path = "${Environment.getExternalStorageDirectory().absolutePath}/users.xlsx"
-//        makeToast(this,path)
-//        parser.parse(path, "Лист1")
         val buttonForLogin = findViewById<ImageButton>(R.id.buttonForLogin)
         val editTextEmail = findViewById<EditText>(R.id.edit_text_email)
         val editTextPassword = findViewById<EditText>(R.id.edit_text_password)
@@ -36,9 +32,6 @@ class LoginActivity : AppCompatActivity() {
                 getUserContactsFromFirebase(this, localUser.username)
                 startActivity(Intent(this, MainActivity::class.java))
             }
-
-
-        //ПОДУМОЙ, КАК ЧАСТО ОБНОВЛЯТЬ ДАННЫЕ(КАКАТЬ)?
 
         buttonForLogin.setOnClickListener {
             val email = editTextEmail.text.toString()
@@ -61,7 +54,6 @@ class LoginActivity : AppCompatActivity() {
                                 makeToast(this, "Wrong Password")
                             }
                         } else {
-                            makeToast(this, "NotFindMakeNew")
                             val user = User(email, "", "","", pswrd, "")
                             addNewUser(user)
                             helper.deleteAllPersonalData()

@@ -42,107 +42,6 @@ fun addNewUser(user: User) {
     REF_DATABASE_ROOT.child(NODE_USERS).child(user.username).setValue(user)
 }
 
-fun addNewConference(conference: Conference) {
-    initFirebase()
-    REF_DATABASE_ROOT.child(NODE_CONFERENCES).child(conference.conferenceId).setValue(conference)
-}
-
-fun addConferenceToSchedule(conference: Conference, context: Context) {
-    initFirebase()
-    val helper = SQLiteHelper(context)
-    val user = helper.getUser()
-    REF_DATABASE_ROOT.child(NODE_USERS)
-        .child(user.username)
-        .child(NODE_GROUP_CONFERENCES)
-        .child(conference.conferenceId)
-        .setValue(conference)
-}
-
-fun addMessageToDialog(from: String, message: Message, context: Context) {
-    initFirebase()
-    val helper = SQLiteHelper(context)
-    val user = helper.getUser()
-    REF_DATABASE_ROOT.child(NODE_USERS)
-        .child(user.username)
-        .child(NODE_PERSONAL_CHATS)
-        .child(from)
-        .child(message.date.toString())
-        .setValue(message)
-
-    REF_DATABASE_ROOT.child(NODE_USERS)
-        .child(from)
-        .child(NODE_PERSONAL_CHATS)
-        .child(user.username)
-        .child(message.date.toString())
-        .setValue(message)
-}
-
-fun getUserFromFirebase( context: Context, log: String){
-    val localDatabaseHelper = SQLiteHelper(context)
-    var user = User()
-    helperForGetUserFromFirebase(log, object: CallbackForUser {
-        override fun onCallback(list: MutableList<User?>) {
-            super.onCallback(list)
-            user.username = list[0]!!.username
-            user.name = list[0]!!.name
-            user.password = list[0]!!.password
-            user.description = list[0]!!.description
-            localDatabaseHelper.insertUser(user)
-        }
-    })
-}
-
-private fun helperForGetUserFromFirebase(login: String, firebaseCallback: CallbackForUser) {
-    initFirebase()
-    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
-    var listData = ArrayList<User?>()
-    ref.addValueEventListener(object : ValueEventListener{
-        override fun onDataChange(snapshot: DataSnapshot) {
-            val new_user = snapshot.getValue(User::class.java)
-            listData.add(new_user)
-            firebaseCallback.onCallback(listData)
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
-    })
-}
-
-fun getConferenceFromFirebase(context: Context, log: String){
-    initFirebase()
-    val localDatabaseHelper = SQLiteHelper(context)
-    var conference = Conference()
-    helperForGetConferenceFromFirebase(log, object: CallbackForConferences{
-        override fun onCallback(list: MutableList<Conference?>) {
-            super.onCallback(list)
-            conference.conferenceId = list[0]!!.conferenceId
-            conference.name = list[0]!!.name
-            conference.theme = list[0]!!.theme
-            conference.date = list[0]!!.date
-            conference.speakers = list[0]!!.speakers
-            localDatabaseHelper.insertConference(conference)
-        }
-    })
-}
-
-private fun helperForGetConferenceFromFirebase(login: String, firebaseCallback: CallbackForConferences) {
-    initFirebase()
-    val ref = REF_DATABASE_ROOT.child(NODE_USERS).child(login)
-    var listData = ArrayList<Conference?>()
-    ref.addValueEventListener(object : ValueEventListener{
-        override fun onDataChange(snapshot: DataSnapshot) {
-            val new_user = snapshot.getValue(Conference::class.java)
-            listData.add(new_user)
-            firebaseCallback.onCallback(listData)
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
-    })
-}
-
 fun getGroupConferenceFromFirebase( context: Context, log: String){
     initFirebase()
     val localDatabaseHelper = SQLiteHelper(context)
@@ -203,7 +102,7 @@ fun sendMessage(message: String, receivingUserId: String, context: Context, func
     REF_DATABASE_ROOT
         .updateChildren(mapDialog)
         .addOnSuccessListener { function() }
-        .addOnFailureListener { makeToast(context,"aye") }
+        .addOnFailureListener {  }
 }
 
 fun sendGroupMessage(message: String, context: Context, function: () -> Unit) {
@@ -224,7 +123,7 @@ fun sendGroupMessage(message: String, context: Context, function: () -> Unit) {
     REF_DATABASE_ROOT
         .updateChildren(mapDialog)
         .addOnSuccessListener { function() }
-        .addOnFailureListener { makeToast(context,"aye") }
+        .addOnFailureListener {}
 }
 
 fun addNewDialog(withUserLogin:String, context: Context){

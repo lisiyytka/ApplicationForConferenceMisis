@@ -35,7 +35,7 @@ fun String.asTime(): String {
     return timeFormat.format(time)
 }
 
-fun String.asDate(): String{
+fun String.asDate(): String {
     val date = Date(this.toLong())
     val timeFormat = SimpleDateFormat("dd", Locale.getDefault())
     return timeFormat.format(date)
@@ -123,8 +123,7 @@ fun setMainSchedule() {
     val arrayConference5 = arrayListOf<MainSchedule>(
         MainSchedule("Young Voices Section", "09:30-12:30"),
         MainSchedule(
-            "Elena Solovova Honorary Readings (in Russian)\n" +
-                    "\n" +
+            "Elena Solovova Honorary Readings (in Russian):\n" +
                     "Kuzmina L.G.\n" +
                     "E.N. Solovova and the Russian methodology of ELT\n" +
                     "Markova E.S.\n" +
@@ -132,7 +131,7 @@ fun setMainSchedule() {
         ),
         MainSchedule("Break", "12:30-13:00"),
         MainSchedule(
-            "Closing Plenary Talk\n" +
+            "Closing Plenary Talk:\n" +
                     "Maria V. Verbitskaya\n" +
                     "Prospective Model of the Russian National Examination in Foreign Languages (EGE) and the 21st Century Skills (in Russian, interpreting provided)",
             "13:00-14:00"
@@ -813,7 +812,8 @@ fun addUsers() {
             "cheprasovatatjana@rambler.ru",
             "Tatyana Cheprasova",
             "Tatyana-Cheprasova",
-            "nate20Tatyana21"
+            "nate20Tatyana21",
+            "Speaker"
         ),
         User(
             "lizareutova@gmail.com",
@@ -837,7 +837,8 @@ fun addUsers() {
             "olga.m.karpova@gmail.com",
             "Karpova OLga",
             "Olga-Karpova",
-            "nate20Olga21"
+            "nate20Olga21",
+            "Speaker"
         ),
         User(
             "antoine@resource-education.com",
@@ -849,7 +850,8 @@ fun addUsers() {
             "theasia@yahoo.com",
             "Anastasia Teplyakova",
             "Anastasia-Teplyakova",
-            "nate20Anastasia21"
+            "nate20Anastasia21",
+            "Speaker"
         ),
         User(
             "Korolyeva@mail.ru",
@@ -861,7 +863,8 @@ fun addUsers() {
             "gala_igonina@mail.ru",
             "Galina Igonina",
             "Galina-Igonina",
-            "nate20Galina21"
+            "nate20Galina21",
+            "Speaker"
         ),
         User(
             "westernvologda@gmail.com",
@@ -873,13 +876,15 @@ fun addUsers() {
             "korirfox@gmail.com",
             "Irina Korovina",
             "Irina-Korovina",
-            "nate20Irina21"
+            "nate20Irina21",
+            "Speaker"
         ),
         User(
             "okuznetchik@yandex.ru",
             "Olga Safonkina",
             "Olga-Safonkina",
-            "nate20Olga21"
+            "nate20Olga21",
+            "Speaker"
         ),
         User(
             "kati30_82@mail.ru",
@@ -891,7 +896,8 @@ fun addUsers() {
             "49c942@mail.ru",
             "Natalya Kravchenko",
             "Natalya-Kravchenko",
-            "nate20Natalya21"
+            "nate20Natalya21",
+            "Speaker"
         ),
         User(
             "andy1512@yandex.ru",
@@ -903,19 +909,22 @@ fun addUsers() {
             "lina.gordyshevskaya@gmail.com",
             "Polina Gordyshevskaya",
             "Polina-Gordyshevskaya",
-            "nate20Polina21"
+            "nate20Polina21",
+            "Speaker"
         ),
         User(
             "sckachckova.sofi@gmail.com",
             "Sofia Skachkova",
             "Sofia-Skachkova",
-            "nate20Sofia21"
+            "nate20Sofia21",
+            "Speaker"
         ),
         User(
             "lisi4ka1602@yandex.ru",
             "Marina Kolesnikova",
             "Marina-Kolesnikova",
-            "nate20Marina21"
+            "nate20Marina21",
+            "Speaker"
         ),
         User(
             "idiomal@yandex.ru",
@@ -928,13 +937,15 @@ fun addUsers() {
             "olgakravets@list.ru",
             "Olga Kravets",
             "Olga-Kravets",
-            "nate20Olga21"
+            "nate20Olga21",
+            "Speaker"
         ),
         User(
             "elena.galichkina@mail.ru",
             "Elena Galichkina",
             "Elena-Galichkina",
-            "nate20Elena21"
+            "nate20Elena21",
+            "Speaker"
         ),
         User(
             "ekaterinakolesnikova@rambler.ru",
@@ -947,6 +958,7 @@ fun addUsers() {
             "Danilo Ribeiro",
             "Danilo-Ribeiro",
             "nate20Danilo21",
+            "Speaker"
         ),
         User(
             "maria_gallyamova@mail.ru",
@@ -970,19 +982,22 @@ fun addUsers() {
             "polsvetlana@yandex.ru",
             "Svetlana Polyakova",
             "Svetlana-Polyakova",
-            "nate20Svetlana21"
+            "nate20Svetlana21",
+            "Speaker"
         ),
         User(
             "gritsenko@inbox.ru",
             "Elena Gritsenko",
             "Elena-Gritsenko",
-            "nate20Elena21"
+            "nate20Elena21",
+            "Speaker"
         ),
         User(
             "barabashka84@mail.ru",
             "Irina Barabushka",
             "Irina-Barabushka",
-            "nate20Irina21"
+            "nate20Irina21",
+            "Speaker"
         ),
         User(
             "tklikushina@yandex.ru",
@@ -994,37 +1009,43 @@ fun addUsers() {
             "anastasia.plotnikova@ub.edu",
             "Anastasia Pattemore-Plotnikova",
             "Anastasia-Pattemore-Plotnikova",
-            "nate20Anastasia21"
+            "nate20Anastasia21",
+            "Speaker"
         ),
         User(
             "osdvor@rambler.ru",
             "Olga Solomonovna Dvorghets",
             "Olga-Solomonovna",
-            "nate20Olga21"
+            "nate20Olga21",
+            "Speaker"
         ),
         User(
             "inaviri@gmail.com",
             "Irina I. Vasilyeva",
             "Irina-Vasilyeva",
-            "nate20Irina21"
+            "nate20Irina21",
+            "Speaker"
         ),
         User(
             "ats584793@mail.ru",
             "Arkhipova Tatiana",
             "Tatiana-Arkhipova",
-            "nate20Tatiana21"
+            "nate20Tatiana21",
+            "Speaker"
         ),
         User(
             "nataigolkina@mail.ru",
             "Natalia Igolkina",
             "Natalia-Igolkina",
-            "nate20Natalia21"
+            "nate20Natalia21",
+            "Speaker"
         ),
         User(
             "valenttif@gmail.com",
             "Valentina Igorevna Fedosova",
             "Valentina-Fedosova",
-            "nate20Valentina21"
+            "nate20Valentina21",
+            "Speaker"
         ),
         User(
             "englishlearners2@gmail.com",
@@ -1091,7 +1112,8 @@ fun addUsers() {
             "e.tikhomirova@skoltech.ru",
             "Elizaveta Tikhomirova",
             "Elizaveta-Tikhomirova",
-            "nate20Elizaveta21"
+            "nate20Elizaveta21",
+            "Speaker"
         ),
         User(
             "ujushka@mail.ru",
@@ -1115,19 +1137,23 @@ fun addUsers() {
             "ekaterina-golova@list.ru",
             "Ekaterina A.Golova",
             "Ekaterina-Golova",
-            "nate20Ekaterina21"
+            "nate20Ekaterina21",
+            "Speaker"
         ),
         User(
             "konstklochko@gmail.com",
             "Konstantin A. Klochko",
             "Konstantin-Klochko",
-            "nate20Konstantin21"
+            "nate20Konstantin21",
+            "Speaker"
+
         ),
         User(
             "gorelovachernyh@mail.ru",
             "Natalie Gorelova",
             "Natalie-Gorelova",
-            "nate20Natalie21"
+            "nate20Natalie21",
+            "Speaker"
         ),
         User(
             "yi.57@osu.edu",
@@ -1140,13 +1166,15 @@ fun addUsers() {
             "lyudmilaab@mail.ru",
             "Krivenko Lyudmila Aleksandrovna",
             "Lyudmila-Krivenko",
-            "nate20Lyudmila21"
+            "nate20Lyudmila21",
+            "Speaker"
         ),
         User(
             "polina.ermakova.misis@gmail.com",
             "Polina Ermakova",
             "Polina-Ermakova",
-            "nate20Polina21"
+            "nate20Polina21",
+            "Speaker"
         ),
         User(
             "lkaz11996@mail.ru",
@@ -1171,7 +1199,8 @@ fun addUsers() {
             "marthasidury.christiansen@utsa.edu",
             "M. Sidury Christiansen",
             "Sidury-Christiansen",
-            "nate20Sidury21"
+            "nate20Sidury21",
+            "Speaker"
         ),
         User(
             "grigoryeva.ekaterina@mail.ru",
@@ -1232,18 +1261,21 @@ fun addUsers() {
             "Olga Knyazeva",
             "Olga-Knyazeva",
             "nate20Olga21",
+            "Speaker"
         ),
         User(
             "galina-the-happy@mail.ru",
             "Galina Grashchenkova",
             "Galina-Grashchenkova",
-            "nate20Galina21"
+            "nate20Galina21",
+            "Speaker"
         ),
         User(
             "irysya.polukhina@gmail.com",
             "Irina Polukhina",
             "Irina-Polukhina",
-            "nate20Irina21"
+            "nate20Irina21",
+            "Speaker"
         ),
         User(
             "Irene16@yandex.ru",
@@ -1340,7 +1372,8 @@ fun addUsers() {
             "anna.gorizontova@peoplecert.org",
             "Anna Gorizontova",
             "Anna-Gorizontova",
-            "nate20Anna21"
+            "nate20Anna21",
+            "Speaker"
         ),
         User(
             "olegivchenko11@mail.ru",
@@ -1358,25 +1391,29 @@ fun addUsers() {
             "teacherstepichev@narod.ru",
             "Petr A. Stepichev",
             "Petr-Stepichev",
-            "nate20Petr21"
+            "nate20Petr21",
+            "Speaker"
         ),
         User(
             "lalaith@mail.ru",
             "Liubov Ponidelko",
             "Liubov-Ponidelko",
-            "nate20Liubov21"
+            "nate20Liubov21",
+            "Speaker"
         ),
         User(
             "natalie_ye@mail.ru",
             "Petrova Natalya",
             "Natalya-Petrova",
-            "nate20Natalya21"
+            "nate20Natalya21",
+            "Speaker"
         ),
         User(
             "veranovik@mail.ru",
             "Novikova Vera Pavlovna",
             "Vera-Novikova",
-            "nate20Vera21"
+            "nate20Vera21",
+            "Speaker"
         ),
         User(
             "annrybakova@gmail.com",
@@ -1401,7 +1438,8 @@ fun addUsers() {
             "Yelena.v.kovaleva@gmail.com",
             "Yelena Kovaleva",
             "Yelena-Kovaleva1",
-            "nate20Yelena21"
+            "nate20Yelena21",
+            "Speaker"
         ),
         User(
             "lena_leto_89@mail.ru",
@@ -1413,73 +1451,85 @@ fun addUsers() {
             "lookyna@gmail.com",
             "Lyudmila Vladimirovna Lukina",
             "Lyudmila-Lukina",
-            "nate20Lyudmila21"
+            "nate20Lyudmila21",
+            "Speaker"
         ),
         User(
             "oyepova@mail.ru",
             "Olga Yepova",
             "Olga-Yepova",
-            "nate20Olga21"
+            "nate20Olga21",
+            "Speaker"
         ),
         User(
             "ivostrikova@mail.ru",
             "Irina Vostrikova",
             "Irina-Vostrikova",
-            "nate20Irina21"
+            "nate20Irina21",
+            "Speaker"
         ),
         User(
             "dyankova@nbu.bg",
             "Diana Yankova",
             "Diana-Yankova",
-            "nate20Diana21"
+            "nate20Diana21",
+            "Speaker"
         ),
         User(
             "nataliakiryukhina@yandex.ru",
             "NATALIA KIRYUKHINA",
             "NATALIA-KIRYUKHINA",
-            "nate20NATALIA21"
+            "nate20NATALIA21",
+            "Speaker"
         ),
         User(
             "sternina@vmail.ru",
             "Marina Sternina",
             "Marina-Sternina",
-            "nate20Marina21"
+            "nate20Marina21",
+            "Speaker"
         ),
         User(
             "shilova_ivsu@mail.ru",
             "Ekaterina Shilova",
             "Ekaterina-Shilova",
-            "nate20Ekaterina21"
+            "nate20Ekaterina21",
+            "Speaker"
         ),
         User(
             "tatianazaitseva2013@yandex.ru",
             "Tatiana A. Zaitseva",
             "Tatiana-Zaitseva",
-            "nate20Tatiana21"
+            "nate20Tatiana21",
+            "Speaker"
         ),
         User(
             "ikharlamenko@yandex.ru",
             "Kharlamenko Inna Vladimirovna",
             "Inna-Kharlamenko",
-            "nate20Inna21"
+            "nate20Inna21",
+            "Speaker"
         ),
         User(
             "janet.golding@languagecert.org",
             "Janet Golding",
             "Janet-Golding",
-            "nate20Janet21"
+            "nate20Janet21",
+            "Speaker"
         ),
         User(
             "ekuzsocial@gmail.com",
             "Elena Kuznetsova",
             "Elena-Kuznetsova",
-            "nate20Elena21"
+            "nate20Elena21",
+            "Speaker"
         ),
         User(
             "umk_kizt@mail.ru",
             "Panchenkova Mariia",
             "Mariia-Panchenkova",
-            "nate20Mariia21"
+            "nate20Mariia21",
+            "Speaker"
         ),
         User(
             "Overanaesthetic@gmail.com",
@@ -1491,13 +1541,15 @@ fun addUsers() {
             "aleksena87@yandex.ru",
             "Elena Mogunova",
             "Elena-Mogunova",
-            "nate20Elena21"
+            "nate20Elena21",
+            "Speaker"
         ),
         User(
             "anzhelika.vladyko@gmail.com",
             "Anzhelika Vladyko",
             "Anzhelika-Vladyko",
-            "nate20Anzhelika21"
+            "nate20Anzhelika21",
+            "Speaker"
         ),
         User(
             "irenevl@yandex.ru",
@@ -1515,7 +1567,8 @@ fun addUsers() {
             "anais8512@gmail.com",
             "Anna Isaeva",
             "Anna-Isaeva",
-            "nate20Anna21"
+            "nate20Anna21",
+            "Speaker"
         ),
         User(
             "lidia.agafonova@gmail.com",
@@ -1540,7 +1593,8 @@ fun addUsers() {
             "lazorakov@susu.ru",
             "Olga Lazorak",
             "Olga-Lazorak",
-            "nate20Olga21"
+            "nate20Olga21",
+            "Speaker"
         ),
         User(
             "PushkinaIV@mgpu.ru",
@@ -1607,7 +1661,8 @@ fun addUsers() {
             "al.kalintsev@gmail.com",
             "Aleksey Kalintsev",
             "Aleksey-Kalintsev",
-            "nate20Aleksey21"
+            "nate20Aleksey21",
+            "Speaker"
         ),
         User(
             "I.malova579@gmail.com",
@@ -1710,7 +1765,8 @@ fun addUsers() {
             "marialinta0@gmail.com",
             "Komarova Maria Viktorovna",
             "Maria-Komarova",
-            "nate20Maria21"
+            "nate20Maria21",
+            "Speaker"
         ),
         //10
         User(
@@ -1979,7 +2035,8 @@ fun addUsers() {
             "rossog@rambler.ru",
             "Olga G. Rossikhina",
             "Olga-Rossikhina",
-            "nate20Olga21"
+            "nate20Olga21",
+            "Speaker"
         ),
         User(
             "eknatalya@yandex.ru",
@@ -2028,7 +2085,8 @@ fun addUsers() {
             "yavdeeva@mail.ru",
             "Yulia Avdeeva",
             "Yulia-Avdeeva",
-            "nate20Yulia21"
+            "nate20Yulia21",
+            "Speaker"
         ),
         User(
             "lvv187@mail.ru",
@@ -2107,13 +2165,15 @@ fun addUsers() {
             "belkinanastya2000@yandex.ru",
             "Anastasiia Belkina",
             "Anastasiia-Belkina",
-            "nate20Anastasiia21"
+            "nate20Anastasiia21",
+            "Speaker"
         ),
         User(
             "evgeniya-bulina@yandex.ru",
             "Bulina Evgeniya Nikolaevna",
             "Evgeniya-Bulina",
-            "nate20Evgeniya21"
+            "nate20Evgeniya21",
+            "Speaker"
         ),
         User(
             "yazykova-n@mail.ru",
@@ -2226,7 +2286,227 @@ fun addUsers() {
             "Tatiana-Golechkova",
             "nate20Tatiana21",
             "Speaker"
-        ) //100
+        ),
+        User(
+            "sternina@vmail.ru",
+            "Marina Sternina",
+            "Marina-Sternina",
+            "nate20Marina21"
+        ),
+        User(
+            "mshumakova2007@yandex.ru",
+            "Marina Shumakova",
+            "Marina-Shumakova",
+            "nate20Marina21"
+        ),
+        User(
+            "rob-howard@outlook.com",
+            "Rob Howard",
+            "Rob-Howard",
+            "nate20Rob21",
+            "Speaker"
+        ),
+        User(
+            "enzo_scaglietti@mail.ru",
+            "Guliya Shaykhutdinova",
+            "Guliya-Shaykhutdinova",
+            "nate20Guliya21"
+        ),
+        User(
+            "frolovanh@gmail.com",
+            "Natalia Frolova",
+            "Natalia-Frolova",
+            "nate20Natalia21"
+        ),
+        User(
+            "leboldyreva@yandex.ru",
+            "Elena Boldyreva",
+            "Elena-Boldyreva",
+            "nate20Elena21"
+        ),
+        User(
+            "mmamaew87@gmail.com",
+            "Mikhail Mamaev",
+            "Mikhail-Mamaev",
+            "nate20Mikhail21"
+        ),
+        User(
+            "engl.natalya@mail.ru",
+            "Natalya Lavrentyeva",
+            "Natalya-Lavrentyeva",
+            "nate20Natalya21",
+            "Speaker"
+        ),
+        User(
+            "Olga.rotko@gmail.com",
+            "Olga Rotko",
+            "Olga-Rotko",
+            "nate20Olga21",
+            "Speaker"
+        ),
+        User(
+            "i.r.abdulmyanova@gmail.com",
+            "Indira Abdulmianova",
+            "Indira-Abdulmianova",
+            "nate20Indira21"
+        ),
+        User(
+            "sunnymood77@hotmail.com",
+            "Tatiana Margaryan",
+            "Tatiana-Margaryan",
+            "nate20Tatiana21"
+        ),
+        User(
+            "elenasilikova@yandex.ru",
+            "Elena Dmitrieva",
+            "Elena-Dmitrieva",
+            "nate20Elena21"
+        ),
+        User(
+            "violettap1@mail.ru",
+            "Violetta V. Petrova",
+            "Violetta-Petrova",
+            "nate20Violetta21"
+        ),
+        User(
+            "tuchkova_m0903@mail.ru",
+            "Marina Tuchkova",
+            "Marina-Tuchkova",
+            "nate20Marina21"
+        ),
+        User(
+            "barnoavezova@hotmail.com",
+            "Barno Avezova",
+            "Barno-Avezova",
+            "nate20Barno21"
+        ),
+        User(
+            "stepanovany@yandex.ru",
+            "Natalia Stepanova",
+            "Natalia-Stepanova",
+            "nate20Natalia21"
+        ),
+        User(
+            "KateP13@rambler.ru",
+            "Ekaterina Plataeva",
+            "Ekaterina-Plataeva",
+            "nate20Ekaterina21"
+        ),
+        User(
+            "m.kopylovskaya@spbu.ru",
+            "Maria Kopylovskaya",
+            "Maria-Kopylovskaya",
+            "nate20Maria21"
+        ),
+        User(
+            "nataliya.sonina@bk.ru",
+            "Nataliya Sonina",
+            "Nataliya-Sonina",
+            "nate20Nataliya21"
+        ),
+        User(
+            "kuzminahome@mail.ru",
+            "Larisa Kuzmina",
+            "Larisa-Kuzmina",
+            "nate20Larisa21"
+        ),
+        User(
+            "poserg@bk.ru",
+            "Polina Sergienko",
+            "Polina-Sergienko",
+            "nate20Polina21"
+        ),
+        User(
+            "yskugarova@cambridge.org",
+            "Yulia Skugarova",
+            "Yulia-Skugarova",
+            "nate20Yulia21"
+        ),
+        User(
+            "kzhura@cambridge.org",
+            "Ekaterina Zhura",
+            "Ekaterina-Zhura",
+            "nate20Ekaterina21"
+        ),
+        User(
+            "iputro@cambridge.org",
+            "Irina Putro",
+            "Irina-Putro",
+            "nate20Irina21"
+        ),
+        User(
+            "atatosyan@cambridge.org",
+            "Angela Tatosyan",
+            "Angela-Tatosyan",
+            "nate20Angela21"
+        ),
+        User(
+            "lkozhevnikova@cambridge.org",
+            "Ludmila Kozhevnikova",
+            "Ludmila-Kozhevnikova",
+            "nate20Ludmila21"
+        ),
+        User(
+            "hugh@lexicallab.com",
+            "Hugh Dellar",
+            "Hugh-Dellar",
+            "nate20Hugh21",
+            "Speaker"
+        ),
+        User(
+            "m.sverdlov@skyeng.ru",
+            "Mikhail Sverdlov",
+            "Mikhail-Sverdlov",
+            "nate20Mikhail21"
+        ),
+        User(
+            "alexey_konobeiev@mail.ru",
+            "Alexey Konobeev",
+            "Alexey-Konobeev",
+            "nate20Alexey21"
+        ),
+        User(
+            "eduvr@vrnti.ru",
+            "Yuliya Khukalenko",
+            "Yuliya-Khukalenko",
+            "nate20Yuliya21"
+        ),
+        User(
+            "mironovaolga836@gmail.com",
+            "Olga Mironova",
+            "Olga-Mironova",
+            "nate20Olga21"
+        ),
+        User(
+            "engjourn@gmail.com",
+            "Elena Markova",
+            "Elena-Markova",
+            "nate20Elena21"
+        ),
+        User(
+            "natashaless@rambler.ru",
+            "Natalie Les",
+            "Natalie-Les",
+            "nate20Natalie21"
+        ),
+        User(
+            "karpova_elena@mail.ru",
+            "Elena Polyakova",
+            "Elena-Polyakova",
+            "nate20Elena21"
+        ),
+        User(
+            "english_profi@mail.ru",
+            "Iuliia Maksimova",
+            "Iuliia-Maksimova",
+            "nate20Iuliia21"
+        ),
+        User(
+            "natalya.ivanovna.marchenko@gmail.com",
+            "Natalya Ivanovna Marchenko",
+            "Natalya-Marchenko",
+            "nate20Natalya21"
+        )
     )
     for (user in users)
         addNewUser(user)
