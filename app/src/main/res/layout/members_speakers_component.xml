@@ -38,24 +38,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginHorizontal="18dp"
+                android:paddingHorizontal="18dp"
                 android:layout_gravity="center_vertical">
 
                 <TextView
                     android:id="@+id/users_name"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     style="@style/font_roboto_medium_white"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/users_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     style="@style/font_roboto_regular_white"
                     android:textSize="14sp"
-                    android:text="Event manager"/>
+                    android:text="Speaker"/>
 
             </LinearLayout>
 

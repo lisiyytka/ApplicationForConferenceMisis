@@ -10,10 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.applicationforconferencemisis.Activities.fragmentName
-import com.example.applicationforconferencemisis.Activities.lastBtnId
-import com.example.applicationforconferencemisis.Activities.lastDateBtn
-import com.example.applicationforconferencemisis.Activities.lastFragment
+import com.example.applicationforconferencemisis.Activities.*
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_CONFERENCES
 import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
@@ -43,7 +40,8 @@ class MainScheduleFragment : Fragment() {
         val third = view!!.findViewById<TextView>(R.id.third)
         val fourth = view!!.findViewById<TextView>(R.id.fourth)
         val fifth = view!!.findViewById<TextView>(R.id.fifth)
-        REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 3").child("Schedule")
+        lastDateBtn = "june 3"
+        REF_DATABASE_ROOT.child(NODE_CONFERENCES).child(lastDateBtn).child("Schedule")
             .addListenerForSingleValueEvent(
                 AppValueEventListener {
                     var mListMainSchedule = emptyList<MainSchedule?>()
@@ -111,69 +109,27 @@ class MainScheduleFragment : Fragment() {
                         lastFragment = MainScheduleFragment()
                         lastBtnId = R.id.schedule_btn
                         if(list[position]!!.name == "Workshops (see detailed schedule)"){
-                            if (lastDateBtn == "june 3"){
-                                REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 3").child("Workshop")
-                                    .addListenerForSingleValueEvent(
-                                        AppValueEventListener {
-                                            var mListWorkshop = emptyList<Conference?>()
-                                            mListWorkshop = it.children.map { it.getValue(Conference::class.java)}
-                                            fragmentName!!.text = "Workshops"
-                                            replaceFragment(ScheduleAndMyScheduleFragment(mListWorkshop))
-                                        })
-                            } else if (lastDateBtn == "june 4"){
-                                REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 4").child("Workshop")
-                                    .addListenerForSingleValueEvent(
-                                        AppValueEventListener {
-                                            var mListWorkshop = emptyList<Conference?>()
-                                            mListWorkshop = it.children.map { it.getValue(Conference::class.java) }
-                                            fragmentName!!.text = "Workshops"
-                                            replaceFragment(ScheduleAndMyScheduleFragment(mListWorkshop))
-                                        })
-                            } else if (lastDateBtn == "june 5"){
-                                REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 5").child("Workshop")
-                                    .addListenerForSingleValueEvent(
-                                        AppValueEventListener {
-                                            var mListWorkshop = emptyList<Conference?>()
-                                            mListWorkshop = it.children.map { it.getValue(Conference::class.java) }
-                                            fragmentName!!.text = "Workshops"
-                                            replaceFragment(ScheduleAndMyScheduleFragment(mListWorkshop))
-                                        })
-                            }
+                            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child(lastDateBtn).child("Workshop")
+                                .addListenerForSingleValueEvent(
+                                    AppValueEventListener {
+                                        var mListWorkshop = emptyList<Conference?>()
+                                        mListWorkshop = it.children.map { it.getValue(Conference::class.java)}
+                                        fragmentName!!.text = "Workshops"
+                                        replaceFragment(ScheduleAndMyScheduleFragment(mListWorkshop))
+                                    })
                         } else if(list[position]!!.name == "Concurrent Sessions (see detailed schedule)"){
-                            if (lastDateBtn == "june 3"){
-                                REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 3").child("Session")
-                                    .addListenerForSingleValueEvent(
-                                        AppValueEventListener {
-                                            var mListSession = emptyList<Conference?>()
-                                            mListSession = it.children.map { it.getValue(Conference::class.java) }
-                                            fragmentName!!.text = "Sessions"
-                                            replaceFragment(ScheduleAndMyScheduleFragment(mListSession))
-                                        })
-                            } else if (lastDateBtn == "june 4"){
-                                REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 4").child("Session")
-                                    .addListenerForSingleValueEvent(
-                                        AppValueEventListener {
-                                            var mListSession = emptyList<Conference?>()
-                                            mListSession = it.children.map { it.getValue(Conference::class.java) }
-                                            fragmentName!!.text = "Sessions"
-                                            replaceFragment(ScheduleAndMyScheduleFragment(mListSession))
-                                        })
-                            } else if (lastDateBtn == "june 5"){
-                                REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 5").child("Session")
-                                    .addListenerForSingleValueEvent(
-                                        AppValueEventListener {
-                                            var mListSession = emptyList<Conference?>()
-                                            mListSession = it.children.map { it.getValue(Conference::class.java) }
-                                            fragmentName!!.text = "Sessions"
-                                            replaceFragment(ScheduleAndMyScheduleFragment(mListSession))
-                                        })
-                            }
+                            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child(lastDateBtn).child("Session")
+                                .addListenerForSingleValueEvent(
+                                    AppValueEventListener {
+                                        var mListSession = emptyList<Conference?>()
+                                        mListSession = it.children.map { it.getValue(Conference::class.java) }
+                                        fragmentName!!.text = "Sessions"
+                                        replaceFragment(ScheduleAndMyScheduleFragment(mListSession))
+                                    })
                         }
                     }
                 }
-
             }
-
             override fun getItemCount(): Int = list.size
         }
         mainScheduleRecyclerView.adapter = adapter

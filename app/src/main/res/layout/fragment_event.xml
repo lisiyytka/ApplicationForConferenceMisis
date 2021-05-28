@@ -114,7 +114,7 @@
             style="@style/font_roboto_regular_purple"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center_horizontal|end"
             android:background="@drawable/bg_white_purple_selected"
             android:outlineAmbientShadowColor="@color/purple"
             android:outlineSpotShadowColor="@color/purple"
