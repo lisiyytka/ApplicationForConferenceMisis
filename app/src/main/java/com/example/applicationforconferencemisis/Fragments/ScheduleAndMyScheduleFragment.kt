@@ -19,11 +19,13 @@ import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.replaceFragment
 
-class ScheduleAndMyScheduleFragment(list: List<Conference?>) : Fragment() {
+class ScheduleAndMyScheduleFragment(list: List<Conference?>,date:String,type:String) : Fragment() {
 
     lateinit var adapter: RecyclerView.Adapter<MyViewHolder>
     lateinit var scheduleRecyclerView: RecyclerView
     private val listEvents = list
+    private val dates = date
+    private val types = type
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,9 +70,9 @@ class ScheduleAndMyScheduleFragment(list: List<Conference?>) : Fragment() {
                 holder.eventDescription.text = events[position]!!.theme
                 holder.eventSpeaker.text = events[position]!!.speakers
                 holder.itemView.setOnClickListener {
-                    lastFragment = ScheduleAndMyScheduleFragment(events)
+                    lastFragment = ScheduleAndMyScheduleFragment(events,dates,types)
                     lastBtnId = R.id.schedule_btn
-                    replaceFragment(ConferenceFragment(events[position]!!))
+                    replaceFragment(ConferenceFragment(events[position]!!,dates,types))
                 }
             }
 

@@ -164,11 +164,11 @@ private fun helperForGetGroupConferenceFromFirebase(login: String, firebaseCallb
     ref.addValueEventListener(object : ValueEventListener{
         override fun onDataChange(snapshot: DataSnapshot) {
             for (date in snapshot.children){
-                val a = date.getValue(String::class.java)
+                val a = date.key
                 for (type in date.children){
-                    val b = type.getValue(String::class.java)
+                    val b = type.key
                     for (confer in type.children){
-                        val idConf = confer.getValue(String::class.java)
+                        val idConf = confer.key
                         val conf = Triple(idConf,a,b)
                         listData.add(conf)
                     }

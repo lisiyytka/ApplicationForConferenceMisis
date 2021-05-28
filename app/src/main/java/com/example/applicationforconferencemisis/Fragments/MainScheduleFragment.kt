@@ -57,7 +57,8 @@ class MainScheduleFragment : Fragment() {
                 .addListenerForSingleValueEvent(
                     AppValueEventListener {
                         var mListMainSchedule = emptyList<MainSchedule?>()
-                        mListMainSchedule = it.children.map { it.getValue(MainSchedule::class.java) }
+                        mListMainSchedule =
+                            it.children.map { it.getValue(MainSchedule::class.java) }
                         initRecyclerView(mListMainSchedule)
                     })
         }
@@ -70,7 +71,8 @@ class MainScheduleFragment : Fragment() {
                 .addListenerForSingleValueEvent(
                     AppValueEventListener {
                         var mListMainSchedule = emptyList<MainSchedule?>()
-                        mListMainSchedule = it.children.map { it.getValue(MainSchedule::class.java) }
+                        mListMainSchedule =
+                            it.children.map { it.getValue(MainSchedule::class.java) }
                         initRecyclerView(mListMainSchedule)
                     })
         }
@@ -83,11 +85,13 @@ class MainScheduleFragment : Fragment() {
                 .addListenerForSingleValueEvent(
                     AppValueEventListener {
                         var mListMainSchedule = emptyList<MainSchedule?>()
-                        mListMainSchedule = it.children.map { it.getValue(MainSchedule::class.java) }
+                        mListMainSchedule =
+                            it.children.map { it.getValue(MainSchedule::class.java) }
                         initRecyclerView(mListMainSchedule)
                     })
         }
     }
+
     @RequiresApi(Build.VERSION_CODES.M)
     private fun initRecyclerView(list: List<MainSchedule?>) {
         mainScheduleRecyclerView = view?.findViewById(R.id.mainScheduleRecyclerView)!!
@@ -108,28 +112,45 @@ class MainScheduleFragment : Fragment() {
                     holder.event.setOnClickListener {
                         lastFragment = MainScheduleFragment()
                         lastBtnId = R.id.schedule_btn
-                        if(list[position]!!.name == "Workshops (see detailed schedule)"){
-                            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child(lastDateBtn).child("Workshop")
+                        if (list[position]!!.name == "Workshops (see detailed schedule)") {
+                            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child(lastDateBtn)
+                                .child("Workshop")
                                 .addListenerForSingleValueEvent(
                                     AppValueEventListener {
                                         var mListWorkshop = emptyList<Conference?>()
-                                        mListWorkshop = it.children.map { it.getValue(Conference::class.java)}
+                                        mListWorkshop =
+                                            it.children.map { it.getValue(Conference::class.java) }
                                         fragmentName!!.text = "Workshops"
-                                        replaceFragment(ScheduleAndMyScheduleFragment(mListWorkshop))
+                                        replaceFragment(
+                                            ScheduleAndMyScheduleFragment(
+                                                mListWorkshop,
+                                                lastDateBtn,
+                                                "Sessions"
+                                            )
+                                        )
                                     })
-                        } else if(list[position]!!.name == "Concurrent Sessions (see detailed schedule)"){
-                            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child(lastDateBtn).child("Session")
+                        } else if (list[position]!!.name == "Concurrent Sessions (see detailed schedule)") {
+                            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child(lastDateBtn)
+                                .child("Session")
                                 .addListenerForSingleValueEvent(
                                     AppValueEventListener {
                                         var mListSession = emptyList<Conference?>()
-                                        mListSession = it.children.map { it.getValue(Conference::class.java) }
+                                        mListSession =
+                                            it.children.map { it.getValue(Conference::class.java) }
                                         fragmentName!!.text = "Sessions"
-                                        replaceFragment(ScheduleAndMyScheduleFragment(mListSession))
+                                        replaceFragment(
+                                            ScheduleAndMyScheduleFragment(
+                                                mListSession,
+                                                lastDateBtn,
+                                                "Sessions"
+                                            ),
+                                        )
                                     })
                         }
                     }
                 }
             }
+
             override fun getItemCount(): Int = list.size
         }
         mainScheduleRecyclerView.adapter = adapter
