@@ -44,7 +44,7 @@
 
                 <TextView
                     android:id="@+id/users_default_name"
-                    android:layout_width="180dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     style="@style/font_roboto_medium_black"
                     android:textSize="17sp"
