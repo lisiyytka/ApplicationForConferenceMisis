@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_CONFERENCES
 import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
+import com.example.applicationforconferencemisis.Data.Firebase.getUserContactsFromFirebase
 import com.example.applicationforconferencemisis.Data.Models.MainSchedule
 import com.example.applicationforconferencemisis.Data.Models.Message
 import com.example.applicationforconferencemisis.Data.Models.User
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         val user = helper.getUser()
         if (user.name == "")
             startActivity(Intent(this, RegisterActivity::class.java))
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         mDatabase = FirebaseDatabase.getInstance().reference
         mMessageReference = FirebaseDatabase.getInstance().getReference("Users")
         firebaseListenerInit(this)
-
+        val helper = SQLiteHelper(this)
         val scheduleButton = findViewById<Button>(R.id.schedule_btn)
         scheduleButton.setOnClickListener {
             startDifActivity(scheduleButton.id)
@@ -63,6 +66,8 @@ class MainActivity : AppCompatActivity() {
 
         val messagesButton = findViewById<Button>(R.id.messages_btn)
         messagesButton.setOnClickListener {
+            helper.deleteGroupContacts()
+            getUserContactsFromFirebase(this, helper.getUser().username)
             startDifActivity(messagesButton.id)
         }
 
@@ -92,40 +97,64 @@ class MainActivity : AppCompatActivity() {
         val currentHours = qwe.format(Date())
         val asd = SimpleDateFormat("mm", Locale.getDefault())
         val currentMinutes = qwe.format(Date())
-
-
-        if (currentDate == "03") {
-            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 3").child("Schedule")
-                .addListenerForSingleValueEvent(
+        val mainName = findViewById<TextView>(R.id.name_main)
+        val mainDate = findViewById<TextView>(R.id.date_main)
+        if (currentDate.toString() != "03" && currentDate.toString() != "04" && currentDate.toString() != "05") {
+            makeToast(this, currentDate)
+            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 3")
+                .child("Schedule")
+                .child("0").addListenerForSingleValueEvent(
                     AppValueEventListener {
-                        val juneThirdSchedule =
-                            it.children.map { it.getValue(MainSchedule::class.java) }
-                        for (i in juneThirdSchedule) {
-                            val a = i!!.date.split("-")
-                            val b = a[0].split(":")
-                            if (currentHours.toInt() > b[0].toInt()){
+                        val result = it.getValue(MainSchedule::class.java)
+                        mainName.text = result!!.name
+                        mainDate.text = result.date
+                    }
+                )
+        } else {
+            when (currentDate) {
+                "03" -> {
+                    REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 3").child("Schedule")
+                        .addListenerForSingleValueEvent(
+                            AppValueEventListener {
+                                val juneThirdSchedule =
+                                    it.children.map { it.getValue(MainSchedule::class.java) }
+                                for (i in juneThirdSchedule) {
+                                    val a = i!!.date.split("-")[0].split(":")
+                                    if (currentHours.toInt() > a[0].toInt()) { }
+                                    else {
+                                        if (currentMinutes.toInt()>a[1].toInt()){}
+                                        else {
+                                            mainName.text = i.name
+                                            mainDate.text = i.date
+                                            break
+                                        }
+                                    }
+                                }
 
                             }
-                        }
-                    }
-                )
-        } else if (currentDate == "04") {
-            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 4").child("Schedule")
-                .addListenerForSingleValueEvent(
-                    AppValueEventListener {
-                        val juneFourthSchedule =
-                            it.children.map { it.getValue(MainSchedule::class.java) }
-                    }
-                )
-        } else if (currentDate == "05") {
-            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 5").child("Schedule")
-                .addListenerForSingleValueEvent(
-                    AppValueEventListener {
-                        val juneFifthSchedule =
-                            it.children.map { it.getValue(MainSchedule::class.java) }
-                    }
-                )
+                        )
+                }
+                "04" -> {
+                    REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 4").child("Schedule")
+                        .addListenerForSingleValueEvent(
+                            AppValueEventListener {
+                                val juneFourthSchedule =
+                                    it.children.map { it.getValue(MainSchedule::class.java) }
+                            }
+                        )
+                }
+                "05" -> {
+                    REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 5").child("Schedule")
+                        .addListenerForSingleValueEvent(
+                            AppValueEventListener {
+                                val juneFifthSchedule =
+                                    it.children.map { it.getValue(MainSchedule::class.java) }
+                            }
+                        )
+                }
+            }
         }
+
     }
 
 
