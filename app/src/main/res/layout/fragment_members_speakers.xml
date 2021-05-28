@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <EditText
         android:id="@+id/search_members"
         style="@style/font_roboto_regular_gray"

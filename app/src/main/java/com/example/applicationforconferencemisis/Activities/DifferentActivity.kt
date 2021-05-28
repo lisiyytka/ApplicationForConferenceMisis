@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.applicationforconferencemisis.Data.Firebase.*
 import com.example.applicationforconferencemisis.Data.Models.Conference
+import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.Fragments.*
 import com.example.applicationforconferencemisis.R
@@ -31,25 +32,31 @@ class DifferentActivity : AppCompatActivity() {
 
     private val helper = SQLiteHelper(this)
     private val mainScheduleFragment = MainScheduleFragment()
-//    lateinit var scheduleFragment: ScheduleAndMyScheduleFragment
+
+    //    lateinit var scheduleFragment: ScheduleAndMyScheduleFragment
     private val groupChatFragment = GroupChatFragment()
     private val messagesFragment = MessagesFragment()
-    private val membersAndSpeakersFragment = MembersAndSpeakersFragment()
     private val membersFragment = MembersFragment()
     private val accountFragment = AccountFragment()
     private val myScheduleFragment = MyScheduleFragment()
+    private val membersAndSpeakers = MembersAndSpeakersFragment()
 //    private val conferenceFragment = ConferenceFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_toolbar)
-        makeToast(this,helper.getUser().username)
+        makeToast(this, helper.getUser().username)
         val backBtn = findViewById<ImageView>(R.id.back)
-        backBtn.setOnClickListener{
-            if (lastFragment == null){
+        backBtn.setOnClickListener {
+            if (lastFragment == null) {
                 startActivity(Intent(this, MainActivity::class.java))
-            }else{
-                startActivity(Intent(this,DifferentActivity::class.java).putExtra("buttonId", lastBtnId))
+            } else {
+                startActivity(
+                    Intent(this, DifferentActivity::class.java).putExtra(
+                        "buttonId",
+                        lastBtnId
+                    )
+                )
             }
         }
         fragmentName = findViewById(R.id.fragment_name)
@@ -87,7 +94,7 @@ class DifferentActivity : AppCompatActivity() {
             R.id.speakers_btn -> {
                 lastFragment = null
                 fragmentName!!.text = "Speakers"
-                fragmentManager.add(R.id.containerForFrag, membersAndSpeakersFragment)
+                fragmentManager.add(R.id.containerForFrag, membersAndSpeakers)
             }
             R.id.account_btn -> {
                 lastFragment = null

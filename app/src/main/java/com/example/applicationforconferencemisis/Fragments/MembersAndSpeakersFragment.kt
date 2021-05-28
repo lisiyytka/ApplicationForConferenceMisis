@@ -28,16 +28,11 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseReference
 
-class MembersAndSpeakersFragment : Fragment() {
+class MembersAndSpeakersFragment() : Fragment() {
 
     lateinit var membersRecyclerView: RecyclerView
     lateinit var mRefMembers: DatabaseReference
-    private lateinit var mAdapter: FirebaseRecyclerAdapter<User, MembersHolder>
-    private lateinit var mRefUsersListener: AppValueEventListener
-    private var mapListeners = hashMapOf<DatabaseReference, AppValueEventListener>()
-    private var mListUsers = emptyList<User>()
-    private var mListSpeakers = emptyList<User>()
-
+    private lateinit var adapter: RecyclerView.Adapter<MembersHolder>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,57 +44,53 @@ class MembersAndSpeakersFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        initRecyclerView()
+        REF_DATABASE_ROOT.child(NODE_USERS).addListenerForSingleValueEvent(
+            AppValueEventListener {
+                val mListUsers = it.children.map { it.getValue(User::class.java)!! }
+                val a = arrayListOf<User>()
+                for (i in mListUsers) {
+                    if (i.role == "Speaker") {
+                        a.add(i)
+                    }
+                }
+                initRecyclerView(a)
+            }
+        )
+
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerView(a: List<User>) {
         membersRecyclerView = view!!.findViewById(R.id.members_recycler_view)
         membersRecyclerView.layoutManager = LinearLayoutManager(context)
-        mRefMembers = REF_DATABASE_ROOT.child(NODE_USERS)
 
-        val option = FirebaseRecyclerOptions.Builder<User>()
-            .setQuery(mRefMembers, User::class.java)
-            .build()
-
-        mAdapter = object : FirebaseRecyclerAdapter<User, MembersHolder>(option) {
+        adapter = object : RecyclerView.Adapter<MembersHolder>() {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MembersHolder {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.members_speakers_component, parent, false)
                 return MembersHolder(view)
             }
 
-            override fun onBindViewHolder(holder: MembersHolder, position: Int, model: User) {
-                mRefUsersListener = AppValueEventListener {
-                    mListUsers = it.children.map { it.getValue(User::class.java)!! }
-                    for (i in mListUsers){
-                        if (i.role =="Speaker") {
-                            var a = arrayListOf<User>()
-                            a.add(i)
-                        }
-                    }
-                    if (mListUsers[position].role == "Speaker") {
-                        holder.userName.text = mListUsers[position].name
-                        holder.imgProfile.downloadAndSetImage(mListUsers[position].photoUrl)
-                        holder.sendMessageButton.setOnClickListener {
-                            lastFragment = MembersAndSpeakersFragment()
-                            lastBtnId = R.id.members_btn
-                            fragmentName!!.text = mListUsers[position].name
-                            replaceFragment(SingleChatFragment(mListUsers[position].username))
-                        }
-                    }
+            override fun onBindViewHolder(holder: MembersHolder, position: Int) {
+                holder.userName.text = a[position].name
+                holder.imgProfile.downloadAndSetImage(a[position].photoUrl)
+                holder.sendMessageButton.setOnClickListener {
+                    lastFragment = MembersAndSpeakersFragment()
+                    lastBtnId = R.id.members_btn
+                    fragmentName!!.text = a[position].name
+                    replaceFragment(SingleChatFragment(a[position].username))
                 }
-                mRefMembers.addListenerForSingleValueEvent(mRefUsersListener)
-                mapListeners[mRefMembers] = mRefUsersListener
             }
+
+            override fun getItemCount() = a.size
+
         }
-        membersRecyclerView.adapter = mAdapter
-        mAdapter.startListening()
+
+        membersRecyclerView.adapter = adapter
     }
 
     class MembersHolder(view: View) : RecyclerView.ViewHolder(view) {
         var userName: TextView = itemView.findViewById(R.id.users_name)
         var sendMessageButton: ImageView = itemView.findViewById(R.id.send_msg_btn)
         var imgProfile: ImageView = itemView.findViewById(R.id.img_profile)
-//        var status: TextView = itemView.findViewById(R.id.users_status)
     }
 }
