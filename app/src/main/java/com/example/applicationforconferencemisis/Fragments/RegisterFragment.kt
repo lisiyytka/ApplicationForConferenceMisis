@@ -43,6 +43,20 @@ class RegisterFragment : Fragment() {
         changeUserPhoto.setOnClickListener {
             changePhoto()
         }
+        val user = helper.getUser()
+        resume.setOnClickListener {
+            if (username.text.toString().isEmpty())
+                makeToast(context!!, "Fill the field")
+            else {
+                user.description = description.text.toString()
+                user.name = username.text.toString()
+                helper.deleteUser()
+                helper.insertUser(user)
+                addInfoForUser(user)
+                lastFragment = RegisterFragment()
+                startActivity(Intent(context!!, MainActivity::class.java))
+            }
+        }
         if (lastFragment != null) {
             initFirebase()
             REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().username)

@@ -125,7 +125,7 @@ class MainScheduleFragment : Fragment() {
                                             ScheduleAndMyScheduleFragment(
                                                 mListWorkshop,
                                                 lastDateBtn,
-                                                "Sessions"
+                                                "Workshops"
                                             )
                                         )
                                     })

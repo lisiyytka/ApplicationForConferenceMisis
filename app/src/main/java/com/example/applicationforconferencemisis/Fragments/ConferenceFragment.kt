@@ -60,7 +60,7 @@ class ConferenceFragment(conferenceFromSchedule: Conference, data:String, type:S
         nameSpeakerConference.text = conference.speakers
         lastFragmentString = "ScheduleAndMyScheduleFragment"
         REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name).child(lastDateBtn)
-            .child(fragmentName!!.text.toString())
+            .child(types)
             .child(conference.conferenceId).addListenerForSingleValueEvent(
                 AppValueEventListener {
                     editNote.setText(it.getValue(String::class.java))
@@ -73,19 +73,19 @@ class ConferenceFragment(conferenceFromSchedule: Conference, data:String, type:S
                 helper.insertConferenceToSchedule(conference.conferenceId, date, types)
                 REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().username).child(
                     NODE_PERSONAL_SCHEDULE
-                ).child(lastDateBtn).child(fragmentName!!.text.toString()).child(conference.conferenceId).setValue(conference)
+                ).child(lastDateBtn).child(types).child(conference.conferenceId).setValue(conference)
             }
             else{
                 addButton.text = "Add"
                 //MY JUMPSUIT IS UNSTEADY
-                REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().name)
+                REF_DATABASE_ROOT.child(NODE_USERS).child(helper.getUser().username)
                     .child(NODE_PERSONAL_SCHEDULE)
                     .child(date)
                     .child(types)
                     .child(conference.conferenceId)
                     .removeValue()
                 helper.deleteGroupConference()
-                getGroupConferenceFromFirebase(context!!,helper.getUser().name)
+                getGroupConferenceFromFirebase(context!!,helper.getUser().username)
             }
         }
 
