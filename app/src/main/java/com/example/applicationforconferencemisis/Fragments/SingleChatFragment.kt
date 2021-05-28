@@ -44,13 +44,21 @@ class SingleChatFragment(val userId: String) : Fragment() {
         val sendMessageButton = view?.findViewById<ImageButton>(R.id.send)
         val messageForSend = view?.findViewById<EditText>(R.id.message_for_send)
         sendMessageButton!!.setOnClickListener {
+            var isUnic = true
+            val contacts = helper.getContacts()
             val message = messageForSend!!.text.toString()
             if (message.isEmpty()) {
 
             } else sendMessage(message, userId, context!!) {
                 messageForSend.setText("")
                 addNewDialog(userId, context!!)
-                helper.insertContactsToContacts(userId)
+                for(contact in contacts)
+                    if(contact.usersName==userId){
+                        isUnic = false
+                        break
+                    }
+                if(isUnic)
+                    helper.insertContactsToContacts(userId)
             }
         }
     }

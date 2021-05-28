@@ -29,6 +29,7 @@ class MessagesFragment: Fragment() {
 
     lateinit var adapter: RecyclerView.Adapter<MyViewHolder>
     lateinit var messagesRecyclerView: RecyclerView
+    lateinit var unicUsers:MutableList<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -156,6 +156,7 @@ class MainActivity : AppCompatActivity() {
                                                     mainName.text = i.name
                                                 }
                                                 mainDate.text = i.date
+
                                                 break
                                             }
                                         } else {
