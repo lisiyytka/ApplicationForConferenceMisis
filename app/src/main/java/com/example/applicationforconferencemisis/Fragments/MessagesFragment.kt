@@ -97,7 +97,4 @@ class MessagesFragment: Fragment() {
         var imgProgile: ImageView = itemView.findViewById(R.id.users_img)
     }
 
-    private fun getUserFromContacts(){
-
-    }
 }

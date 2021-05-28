@@ -35,6 +35,12 @@ fun String.asTime(): String {
     return timeFormat.format(time)
 }
 
+fun String.asDate(): String{
+    val date = Date(this.toLong())
+    val timeFormat = SimpleDateFormat("dd", Locale.getDefault())
+    return timeFormat.format(date)
+}
+
 fun ImageView.downloadAndSetImage(url: String) {
     if (url == "") {
         val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE)
@@ -71,9 +77,9 @@ fun setMainSchedule() {
             "10:30-12:30"
         ),
         MainSchedule("Lunch", "12:30-13:30"),
-        MainSchedule("Concurrent Sessions (see detailed schedule)", "13.30-15.00"),
-        MainSchedule("Break", "15.00-15.15"),
-        MainSchedule("Concurrent Sessions (see detailed schedule)", "15.15-16.45"),
+        MainSchedule("Concurrent Sessions (see detailed schedule)", "13:30-15:00"),
+        MainSchedule("Break", "15:00-15:15"),
+        MainSchedule("Concurrent Sessions (see detailed schedule)", "15:15-16:45"),
         MainSchedule("Break", "16:45-17:00"),
         MainSchedule(
             "Touchstone@MISIS English Language Program: 10th Anniversary Round-table",
@@ -100,9 +106,9 @@ fun setMainSchedule() {
                     "Maria Anikina (Uchi.ru)", "10:30-12:30"
         ),
         MainSchedule("Lunch", "12:30-13:30"),
-        MainSchedule("Concurrent Sessions (see detailed schedule)", "13.30-15.00"),
-        MainSchedule("Break", "15.00-15.15"),
-        MainSchedule("Concurrent Sessions (see detailed schedule)", "15.15-16.45"),
+        MainSchedule("Concurrent Sessions (see detailed schedule)", "13:30-15:00"),
+        MainSchedule("Break", "15:00-15:15"),
+        MainSchedule("Concurrent Sessions (see detailed schedule)", "15:15-16:45"),
         MainSchedule("Break", "16:45-17:00"),
         MainSchedule(
             "Young Voices:\n" +

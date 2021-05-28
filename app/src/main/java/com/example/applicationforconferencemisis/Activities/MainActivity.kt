@@ -7,11 +7,21 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
+import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
+import com.example.applicationforconferencemisis.Data.Firebase.NODE_CONFERENCES
+import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
+import com.example.applicationforconferencemisis.Data.Models.MainSchedule
+import com.example.applicationforconferencemisis.Data.Models.Message
 import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.addUsers
+import com.example.applicationforconferencemisis.asDate
+import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.database.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         val helper = SQLiteHelper(this)
         val user = helper.getUser()
-        if (user.name=="")
+        if (user.name == "")
             startActivity(Intent(this, RegisterActivity::class.java))
     }
 
@@ -76,11 +86,50 @@ class MainActivity : AppCompatActivity() {
             startDifActivity(upcomingConferenceButton.id)
         }
         addUsers()
+        val sdf = SimpleDateFormat("dd", Locale.getDefault())
+        val currentDate = sdf.format(Date())
+        val qwe = SimpleDateFormat("hh", Locale.getDefault())
+        val currentHours = qwe.format(Date())
+        val asd = SimpleDateFormat("mm", Locale.getDefault())
+        val currentMinutes = qwe.format(Date())
+
+
+        if (currentDate == "03") {
+            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 3").child("Schedule")
+                .addListenerForSingleValueEvent(
+                    AppValueEventListener {
+                        val juneThirdSchedule =
+                            it.children.map { it.getValue(MainSchedule::class.java) }
+                        for (i in juneThirdSchedule) {
+                            val a = i!!.date.split("-")
+                            val b = a[0].split(":")
+                            if (currentHours.toInt() > b[0].toInt()){
+
+                            }
+                        }
+                    }
+                )
+        } else if (currentDate == "04") {
+            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 4").child("Schedule")
+                .addListenerForSingleValueEvent(
+                    AppValueEventListener {
+                        val juneFourthSchedule =
+                            it.children.map { it.getValue(MainSchedule::class.java) }
+                    }
+                )
+        } else if (currentDate == "05") {
+            REF_DATABASE_ROOT.child(NODE_CONFERENCES).child("june 5").child("Schedule")
+                .addListenerForSingleValueEvent(
+                    AppValueEventListener {
+                        val juneFifthSchedule =
+                            it.children.map { it.getValue(MainSchedule::class.java) }
+                    }
+                )
+        }
     }
 
 
-    fun startDifActivity (id: Int)
-    {
+    fun startDifActivity(id: Int) {
         startActivity(Intent(this, DifferentActivity::class.java).putExtra("buttonId", id))
     }
 
@@ -117,7 +166,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
 
 
 }
