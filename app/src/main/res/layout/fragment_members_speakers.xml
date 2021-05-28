@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
-
-    <EditText
-        android:id="@+id/search_members"
-        style="@style/font_roboto_regular_gray"
+    <LinearLayout
+        android:id="@+id/search_and_search_icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin ="18dp"
-        android:paddingHorizontal="31dp"
-        android:paddingVertical="8dp"
-        android:background="@drawable/bg_medium_gray_border"
-        android:hint="Type to search..."
-        android:inputType="text"
-        android:textSize="18dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/search_members"
+            style="@style/font_roboto_regular_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="18dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_medium_gray_border"
+            android:hint="Type to search..."
+            android:inputType="text"
+            android:paddingHorizontal="31dp"
+            android:paddingVertical="8dp"
+            android:textSize="18dp" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/members_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="18dp"
+        android:layout_marginBottom="20dp"
         android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_members"
-        tools:listitem="@layout/members_speakers_component"/>
+        app:layout_constraintTop_toBottomOf="@id/search_and_search_icon"
+        tools:listitem="@layout/members_speakers_component" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
