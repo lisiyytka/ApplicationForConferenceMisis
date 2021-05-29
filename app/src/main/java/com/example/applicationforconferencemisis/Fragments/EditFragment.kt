@@ -66,7 +66,10 @@ class EditFragment : Fragment() {
                     helper.deleteUser()
                     helper.insertUser(user)
                     addInfoForUser(user)
-                    lastFragment = RegisterFragment()
+                    for (i in helper.getContacts()) {
+                        addNewDialog(i.usersName,context!!)
+                    }
+                    lastFragment = AccountFragment()
                     replaceFragment(AccountFragment())
                 }
             )
