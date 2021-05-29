@@ -34,7 +34,7 @@
             android:layout_marginStart="30dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="03.06.21" />
+            android:text="03.06" />
 
         <TextView
             android:id="@+id/fourth_date_for_my_schedule"
@@ -43,9 +43,10 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_marginVertical="12dp"
-            android:layout_weight="2"
+            android:layout_marginEnd="30dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="04.06.21" />
+            android:text="04.06" />
 
     </LinearLayout>
 
