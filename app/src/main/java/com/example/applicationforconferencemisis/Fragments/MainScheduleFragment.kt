@@ -14,6 +14,7 @@ import com.example.applicationforconferencemisis.Activities.*
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_CONFERENCES
 import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
+import com.example.applicationforconferencemisis.Data.Firebase.initFirebase
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.MainSchedule
 import com.example.applicationforconferencemisis.Data.Models.Message
@@ -41,6 +42,7 @@ class MainScheduleFragment : Fragment() {
         val fourth = view!!.findViewById<TextView>(R.id.fourth)
         val fifth = view!!.findViewById<TextView>(R.id.fifth)
         lastDateBtn = "june 3"
+        initFirebase()
         REF_DATABASE_ROOT.child(NODE_CONFERENCES).child(lastDateBtn).child("Schedule")
             .addListenerForSingleValueEvent(
                 AppValueEventListener {

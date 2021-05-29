@@ -12,10 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationforconferencemisis.Activities.lastBtnId
 import com.example.applicationforconferencemisis.Activities.lastFragment
-import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
-import com.example.applicationforconferencemisis.Data.Firebase.NODE_PERSONAL_SCHEDULE
-import com.example.applicationforconferencemisis.Data.Firebase.NODE_USERS
-import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
+import com.example.applicationforconferencemisis.Data.Firebase.*
 import com.example.applicationforconferencemisis.Data.Models.Conference
 import com.example.applicationforconferencemisis.Data.Models.MainSchedule
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
@@ -49,7 +46,7 @@ class MyScheduleFragment : Fragment() {
             view!!.findViewById<TextView>(R.id.workshops_for_my_schedule)
         val sessionsFourthForMySchedule =
             view!!.findViewById<TextView>(R.id.sessions_for_my_schedule)
-
+        initFirebase()
         REF_DATABASE_ROOT.child(NODE_USERS)
             .child(helper.getUser().username)
             .child(NODE_PERSONAL_SCHEDULE)
