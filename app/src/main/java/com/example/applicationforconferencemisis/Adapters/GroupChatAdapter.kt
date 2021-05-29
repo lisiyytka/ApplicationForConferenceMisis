@@ -10,11 +10,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applicationforconferencemisis.Data.Firebase.AppValueEventListener
 import com.example.applicationforconferencemisis.Data.Firebase.NODE_GROUP_MESSAGE
+import com.example.applicationforconferencemisis.Data.Firebase.NODE_USERS
 import com.example.applicationforconferencemisis.Data.Firebase.REF_DATABASE_ROOT
 import com.example.applicationforconferencemisis.Data.Models.Message
+import com.example.applicationforconferencemisis.Data.Models.User
 import com.example.applicationforconferencemisis.Data.SQLite.SQLiteHelper
 import com.example.applicationforconferencemisis.R
 import com.example.applicationforconferencemisis.asTime
+import com.example.applicationforconferencemisis.downloadAndSetImage
 import com.example.applicationforconferencemisis.makeToast
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ktx.getValue
@@ -34,6 +37,7 @@ class GroupChatAdapter(private val helper: SQLiteHelper) :
         val msgTime: TextView = view.findViewById(R.id.time)
         val userName: TextView = view.findViewById(R.id.users_name)
         val userImg: CardView = view.findViewById(R.id.img_card)
+        val userImgImg: ImageView = view.findViewById(R.id.img_user)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupChatHolder {
@@ -61,22 +65,47 @@ class GroupChatAdapter(private val helper: SQLiteHelper) :
                     for (i in it.children) {
                         list.add(i.getValue(Message::class.java)!!)
                     }
+                    REF_DATABASE_ROOT.child(NODE_USERS).child(list[position].fromUser)
+                        .addListenerForSingleValueEvent(
+                            AppValueEventListener {
+                                val user = it.getValue(User::class.java)
+                                holder.userImgImg.downloadAndSetImage(user!!.photoUrl)
+                            }
+                        )
+                })
 
-                    if (list[position] == list[list.size-1]){
+            holder.userImgImg.visibility = View.VISIBLE
+            REF_DATABASE_ROOT.child(NODE_GROUP_MESSAGE).addListenerForSingleValueEvent(
+                AppValueEventListener {
+                    var list = arrayListOf<Message>()
+                    for (i in it.children) {
+                        list.add(i.getValue(Message::class.java)!!)
+                    }
+
+                    if (list[position] == list[list.size - 1]) {
                         holder.blocUserMessage.visibility = View.GONE
                         holder.blocReceivedMessage.visibility = View.VISIBLE
                         holder.msg.text = mListMessagesCache[position].text
                         holder.msgTime.text = mListMessagesCache[position].date.toString().asTime()
                         holder.userName.text = mListMessagesCache[position].fromUser
                         holder.userImg.visibility = View.VISIBLE
-                    }else if (list[position].fromUser == list[position+1].fromUser &&
-                        list[position+1].fromUser != helper.getUser().username) {
+                        REF_DATABASE_ROOT.child(NODE_USERS).child(list[position].fromUser)
+                            .addListenerForSingleValueEvent(
+                                AppValueEventListener {
+                                    val user = it.getValue(User::class.java)
+                                    holder.userImgImg.downloadAndSetImage(user!!.photoUrl)
+                                }
+                            )
+                    } else if (list[position].fromUser == list[position + 1].fromUser &&
+                        list[position + 1].fromUser != helper.getUser().username
+                    ) {
                         holder.blocUserMessage.visibility = View.GONE
                         holder.blocReceivedMessage.visibility = View.VISIBLE
                         holder.msg.text = mListMessagesCache[position].text
                         holder.msgTime.text = mListMessagesCache[position].date.toString().asTime()
                         holder.userName.text = mListMessagesCache[position].fromUser
                         holder.userImg.visibility = View.INVISIBLE
+                        holder.userImgImg.visibility = View.INVISIBLE
                     }
                 }
             )
