@@ -98,7 +98,7 @@ class ConferenceFragment(conferenceFromSchedule: Conference, data:String, type:S
                 note.text = editNote.text.toString()
                 REF_DATABASE_ROOT.child(NODE_NOTE).child(helper.getUser().name)
                     .child(lastDateBtn)
-                    .child(fragmentName!!.text.toString())
+                    .child(types)
                     .child(conference.conferenceId).setValue(note.text)
             }
         }
