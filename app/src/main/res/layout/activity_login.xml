@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,85 +14,101 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Toolbar
-        android:id="@+id/toolbar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:background="@drawable/header"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
-
-
+        app:layout_constraintTop_toTopOf="parent">
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="36dp"
-            android:layout_marginVertical="25dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_white"
-            android:orientation="vertical"
-            android:outlineSpotShadowColor="@color/purple"
-            android:outlineAmbientShadowColor="@color/purple"
-            android:elevation="10dp"
-            android:translationZ="9dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                style="@style/font_roboto_regular_purple"
+            <Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="@drawable/header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:text="Log in"
-                android:textSize="36sp" />
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-            <EditText
-                android:id="@+id/edit_text_email"
-                style="@style/font_roboto_regular_purple"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:layout_marginBottom="18dp"
-                android:background="@drawable/input_field"
-                android:hint="Login..."
-                android:inputType="textEmailAddress"
-                android:padding="15dp" />
 
-            <EditText
-                android:id="@+id/edit_text_password"
-                style="@style/font_roboto_regular_purple"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/input_field"
-                android:hint="Password..."
-                android:inputType="textPassword"
-                android:padding="15dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="36dp"
+                    android:layout_marginVertical="25dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_white"
+                    android:elevation="10dp"
+                    android:orientation="vertical"
+                    android:outlineAmbientShadowColor="@color/purple"
+                    android:outlineSpotShadowColor="@color/purple"
+                    android:translationZ="9dp">
 
-            <ImageButton
-                android:id="@+id/buttonForLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="36dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/bg_white"
-                android:elevation="10dp"
-                android:outlineAmbientShadowColor="@color/purple"
-                android:outlineSpotShadowColor="@color/purple"
-                android:paddingVertical="15dp"
-                android:src="@drawable/ic_arrow_r" />
+                    <TextView
+                        style="@style/font_roboto_regular_purple"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center"
+                        android:text="Log in"
+                        android:textSize="36sp" />
 
+                    <EditText
+                        android:id="@+id/edit_text_email"
+                        style="@style/font_roboto_regular_purple"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="18dp"
+                        android:layout_marginBottom="18dp"
+                        android:background="@drawable/input_field"
+                        android:hint="Login..."
+                        android:inputType="textEmailAddress"
+                        android:padding="15dp" />
+
+                    <EditText
+                        android:id="@+id/edit_text_password"
+                        style="@style/font_roboto_regular_purple"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="18dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/input_field"
+                        android:hint="Password..."
+                        android:inputType="textPassword"
+                        android:padding="15dp" />
+
+                    <ImageButton
+                        android:id="@+id/buttonForLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="36dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/bg_white"
+                        android:elevation="10dp"
+                        android:outlineAmbientShadowColor="@color/purple"
+                        android:outlineSpotShadowColor="@color/purple"
+                        android:paddingVertical="15dp"
+                        android:src="@drawable/ic_arrow_r" />
+
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

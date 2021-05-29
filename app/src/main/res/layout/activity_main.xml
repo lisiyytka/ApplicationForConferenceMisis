@@ -14,187 +14,200 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Toolbar
-        android:id="@+id/toolbar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:background="@drawable/header"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
+        app:layout_constraintTop_toTopOf="parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/font_roboto_medium_purple"
+            <Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="@drawable/header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="36dp"
-                android:layout_marginTop="10dp"
-                android:text="Upcoming event"
-                android:textSize="24sp" />
-
-            <LinearLayout
-                android:id="@+id/upcoming_conference"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="36dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_purple"
                 android:orientation="vertical"
-                android:paddingHorizontal="10dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-                <TextView
-                    android:id="@+id/date_main"
-                    style="@style/font_roboto_light_white"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text=""
-                    android:textSize="36sp" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/name_main"
-                    style="@style/font_roboto_medium_white"
+                    <TextView
+                        style="@style/font_roboto_medium_purple"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="36dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Upcoming event"
+                        android:textSize="24sp" />
+
+                    <LinearLayout
+                        android:id="@+id/upcoming_conference"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="36dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_purple"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="10dp"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp">
+
+                        <TextView
+                            android:id="@+id/date_main"
+                            style="@style/font_roboto_light_white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text=""
+                            android:textSize="36sp" />
+
+                        <TextView
+                            android:id="@+id/name_main"
+                            style="@style/font_roboto_medium_white"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:layout_marginTop="5dp"
+                            android:autoSizeMaxTextSize="24sp"
+                            android:autoSizeMinTextSize="4sp"
+                            android:autoSizeStepGranularity="2sp"
+                            android:autoSizeTextType="uniform"
+                            android:gravity="center"
+                            android:text="" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="5dp"
-                    android:autoSizeMaxTextSize="24sp"
-                    android:autoSizeMinTextSize="4sp"
-                    android:autoSizeStepGranularity="2sp"
-                    android:autoSizeTextType="uniform"
-                    android:gravity="center"
-                    android:text="" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/schedule_btn"
+                            style="@style/navigation_btn"
+                            android:layout_marginStart="36dp"
+                            android:layout_weight="2"
+                            android:drawableTop="@drawable/ic_schedule"
+                            android:elevation="10dp"
+                            android:outlineAmbientShadowColor="@color/purple"
+                            android:outlineSpotShadowColor="@color/purple"
+                            android:text="Schedule"
+                            android:translationZ="9dp" />
+
+                        <Button
+                            android:id="@+id/my_schedule_btn"
+                            style="@style/navigation_btn"
+                            android:layout_marginStart="36dp"
+                            android:layout_marginEnd="36dp"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/ic_schedule"
+                            android:elevation="10dp"
+                            android:outlineAmbientShadowColor="@color/purple"
+                            android:outlineSpotShadowColor="@color/purple"
+                            android:text="My Schedule"
+                            android:translationZ="9dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/group_chat_btn"
+                            style="@style/navigation_btn"
+                            android:layout_marginStart="36dp"
+                            android:layout_marginEnd="18dp"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/ic_chat"
+                            android:elevation="10dp"
+                            android:outlineAmbientShadowColor="@color/purple"
+                            android:outlineSpotShadowColor="@color/purple"
+                            android:text="Group chat"
+                            android:translationZ="9dp" />
+
+                        <Button
+                            android:id="@+id/messages_btn"
+                            style="@style/navigation_btn"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginEnd="36dp"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/ic_messages"
+                            android:elevation="10dp"
+                            android:outlineAmbientShadowColor="@color/purple"
+                            android:outlineSpotShadowColor="@color/purple"
+                            android:text="Messages"
+                            android:translationZ="9dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/members_btn"
+                            style="@style/navigation_btn"
+                            android:layout_marginStart="36dp"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/ic_members"
+                            android:elevation="10dp"
+                            android:outlineAmbientShadowColor="@color/purple"
+                            android:outlineSpotShadowColor="@color/purple"
+                            android:text="Members"
+                            android:translationZ="9dp" />
+
+                        <Button
+                            android:id="@+id/speakers_btn"
+                            style="@style/navigation_btn"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginEnd="18dp"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/ic_speakers"
+                            android:elevation="10dp"
+                            android:outlineAmbientShadowColor="@color/purple"
+                            android:outlineSpotShadowColor="@color/purple"
+                            android:text="Speakers"
+                            android:translationZ="9dp" />
+
+                        <Button
+                            android:id="@+id/account_btn"
+                            style="@style/navigation_btn"
+                            android:layout_marginEnd="36dp"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/ic_account"
+                            android:elevation="10dp"
+                            android:outlineAmbientShadowColor="@color/purple"
+                            android:outlineSpotShadowColor="@color/purple"
+                            android:text="Account"
+                            android:translationZ="9dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/schedule_btn"
-                    style="@style/navigation_btn"
-                    android:layout_marginStart="36dp"
-                    android:layout_weight="2"
-                    android:drawableTop="@drawable/ic_schedule"
-                    android:elevation="10dp"
-                    android:outlineAmbientShadowColor="@color/purple"
-                    android:outlineSpotShadowColor="@color/purple"
-                    android:text="Schedule"
-                    android:translationZ="9dp" />
-
-                <Button
-                    android:id="@+id/my_schedule_btn"
-                    style="@style/navigation_btn"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginEnd="36dp"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/ic_schedule"
-                    android:elevation="10dp"
-                    android:outlineAmbientShadowColor="@color/purple"
-                    android:outlineSpotShadowColor="@color/purple"
-                    android:text="My Schedule"
-                    android:translationZ="9dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/group_chat_btn"
-                    style="@style/navigation_btn"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginEnd="18dp"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/ic_chat"
-                    android:elevation="10dp"
-                    android:outlineAmbientShadowColor="@color/purple"
-                    android:outlineSpotShadowColor="@color/purple"
-                    android:text="Group chat"
-                    android:translationZ="9dp" />
-
-                <Button
-                    android:id="@+id/messages_btn"
-                    style="@style/navigation_btn"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginEnd="36dp"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/ic_messages"
-                    android:elevation="10dp"
-                    android:outlineAmbientShadowColor="@color/purple"
-                    android:outlineSpotShadowColor="@color/purple"
-                    android:text="Messages"
-                    android:translationZ="9dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/members_btn"
-                    style="@style/navigation_btn"
-                    android:layout_marginStart="36dp"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/ic_members"
-                    android:elevation="10dp"
-                    android:outlineAmbientShadowColor="@color/purple"
-                    android:outlineSpotShadowColor="@color/purple"
-                    android:text="Members"
-                    android:translationZ="9dp" />
-
-                <Button
-                    android:id="@+id/speakers_btn"
-                    style="@style/navigation_btn"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginEnd="18dp"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/ic_speakers"
-                    android:elevation="10dp"
-                    android:outlineAmbientShadowColor="@color/purple"
-                    android:outlineSpotShadowColor="@color/purple"
-                    android:text="Speakers"
-                    android:translationZ="9dp" />
-
-                <Button
-                    android:id="@+id/account_btn"
-                    style="@style/navigation_btn"
-                    android:layout_marginEnd="36dp"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/ic_account"
-                    android:elevation="10dp"
-                    android:outlineAmbientShadowColor="@color/purple"
-                    android:outlineSpotShadowColor="@color/purple"
-                    android:text="Account"
-                    android:translationZ="9dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
