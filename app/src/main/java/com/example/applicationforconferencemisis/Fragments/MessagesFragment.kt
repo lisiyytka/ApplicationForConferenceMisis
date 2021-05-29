@@ -39,12 +39,12 @@ class MessagesFragment: Fragment() {
         return inflater.inflate(R.layout.fragment_messages, container, false)
     }
 
-    override fun onStart(){
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         val helper = SQLiteHelper(context!!)
         initRecyclerView(helper.getContacts())
+        fragmentName!!.text = "Messages"
     }
-
     private fun initRecyclerView(contacts: List<Contacts>){
         messagesRecyclerView = view?.findViewById(R.id.messagesRecyclerView)!!
         messagesRecyclerView.layoutManager = LinearLayoutManager(context)

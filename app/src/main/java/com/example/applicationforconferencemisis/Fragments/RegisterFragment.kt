@@ -48,13 +48,29 @@ class RegisterFragment : Fragment() {
             if (username.text.toString().isEmpty())
                 makeToast(context!!, "Fill the fields")
             else {
-                user.description = description.text.toString()
-                user.name = username.text.toString()
-                helper.deleteUser()
-                helper.insertUser(user)
-                addInfoForUser(user)
-                lastFragment = RegisterFragment()
-                startActivity(Intent(context!!, MainActivity::class.java))
+                REF_DATABASE_ROOT.child(NODE_USERS).child(user.username).addListenerForSingleValueEvent(
+                    AppValueEventListener {
+                        val userFromFire = it.getValue(User::class.java)
+                        user.description = description.text.toString()
+                        user.name = username.text.toString()
+                        user.photoUrl = userFromFire!!.photoUrl
+                        helper.deleteUser()
+                        helper.insertUser(user)
+                        addInfoForUser(user)
+                        lastFragment = RegisterFragment()
+                        startActivity(Intent(context!!, MainActivity::class.java))
+                    }
+                )
+
+
+
+//                user.description = description.text.toString()
+//                user.name = username.text.toString()
+//                helper.deleteUser()
+//                helper.insertUser(user)
+//                addInfoForUser(user)
+//                lastFragment = RegisterFragment()
+//                startActivity(Intent(context!!, MainActivity::class.java))
             }
         }
         if (lastFragment != null) {
