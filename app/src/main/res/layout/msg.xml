@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toBottomOf="@id/block_for_right_message"
             style="@style/font_roboto_regular_gray"
             android:textSize="14dp"
-            android:text="16:10"
+            android:text=""
             />
 
         <LinearLayout
@@ -44,7 +44,7 @@
                 android:maxWidth="250dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="19dp"
-                android:text="Hi!"
+                android:text=""
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -76,7 +76,7 @@
                 android:maxWidth="250dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="19dp"
-                android:text="Hi!"
+                android:text=""
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -89,7 +89,7 @@
             app:layout_constraintBottom_toBottomOf="@id/block_for_left_message"
             style="@style/font_roboto_regular_gray"
             android:textSize="14dp"
-            android:text="16:10"
+            android:text=""
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -117,7 +117,7 @@
             android:layout_marginHorizontal="18dp"
             android:layout_marginVertical="40dp"
             android:textSize="14sp"
-            android:text="     Резюме Стива Джобса для трудоустройства продадут с молотка на аукционе Charterfield, сообщает телеканал «360». Он написал его о руки в 1973 году."/>
+            android:text=""/>
 
     </ScrollView>
 

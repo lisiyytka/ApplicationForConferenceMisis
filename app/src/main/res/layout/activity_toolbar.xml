@@ -27,7 +27,7 @@
             style="@style/font_roboto_medium_purple"
             android:textSize="24sp"
             android:layout_gravity="center_horizontal"
-            android:text="Group chat"/>
+            android:text=""/>
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout

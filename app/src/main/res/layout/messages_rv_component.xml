@@ -73,7 +73,7 @@
                 android:gravity="end"
                 style="@style/font_roboto_regular_gray"
                 android:textSize="14sp"
-                android:text="16:47"/>
+                android:text=""/>
 
 
         </LinearLayout>
