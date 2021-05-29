@@ -57,7 +57,7 @@ class GroupChatAdapter(private val helper: SQLiteHelper) :
             holder.blocReceivedMessage.visibility = View.VISIBLE
             holder.msg.text = mListMessagesCache[position].text
             holder.msgTime.text = mListMessagesCache[position].date.toString().asTime()
-            holder.userName.text = mListMessagesCache[position].fromUser
+//            holder.userName.text = mListMessagesCache[position].fromUser
             holder.userImg.visibility = View.VISIBLE
             REF_DATABASE_ROOT.child(NODE_GROUP_MESSAGE).addListenerForSingleValueEvent(
                 AppValueEventListener {
@@ -69,6 +69,7 @@ class GroupChatAdapter(private val helper: SQLiteHelper) :
                         .addListenerForSingleValueEvent(
                             AppValueEventListener {
                                 val user = it.getValue(User::class.java)
+                                holder.userName.text = user!!.name
                                 holder.userImgImg.downloadAndSetImage(user!!.photoUrl)
                             }
                         )
@@ -87,12 +88,13 @@ class GroupChatAdapter(private val helper: SQLiteHelper) :
                         holder.blocReceivedMessage.visibility = View.VISIBLE
                         holder.msg.text = mListMessagesCache[position].text
                         holder.msgTime.text = mListMessagesCache[position].date.toString().asTime()
-                        holder.userName.text = mListMessagesCache[position].fromUser
+//                        holder.userName.text = mListMessagesCache[position].fromUser
                         holder.userImg.visibility = View.VISIBLE
                         REF_DATABASE_ROOT.child(NODE_USERS).child(list[position].fromUser)
                             .addListenerForSingleValueEvent(
                                 AppValueEventListener {
                                     val user = it.getValue(User::class.java)
+                                    holder.userName.text = user!!.name
                                     holder.userImgImg.downloadAndSetImage(user!!.photoUrl)
                                 }
                             )
@@ -103,7 +105,14 @@ class GroupChatAdapter(private val helper: SQLiteHelper) :
                         holder.blocReceivedMessage.visibility = View.VISIBLE
                         holder.msg.text = mListMessagesCache[position].text
                         holder.msgTime.text = mListMessagesCache[position].date.toString().asTime()
-                        holder.userName.text = mListMessagesCache[position].fromUser
+//                        holder.userName.text = mListMessagesCache[position].fromUser
+                        REF_DATABASE_ROOT.child(NODE_USERS).child(list[position].fromUser)
+                            .addListenerForSingleValueEvent(
+                                AppValueEventListener {
+                                    val user = it.getValue(User::class.java)
+                                    holder.userName.text = user!!.name
+                                }
+                            )
                         holder.userImg.visibility = View.INVISIBLE
                         holder.userImgImg.visibility = View.INVISIBLE
                     }
