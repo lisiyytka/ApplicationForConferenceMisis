@@ -68,7 +68,13 @@ class MessagesFragment: Fragment() {
                             REF_DATABASE_ROOT.child(NODE_MESSAGES).child(helper.getUser().username).child(contacts[position].usersName).addListenerForSingleValueEvent(
                                 AppValueEventListener{
                                     val lastMessage = it.children.last().getValue(Message::class.java)
-                                    holder.lastMessage.text=lastMessage!!.text
+                                    if(lastMessage!!.text.length > 20) {
+                                        holder.lastMessage.text = lastMessage.text.substring(0,19)
+                                    }
+                                    else {
+                                        holder.lastMessage.text=lastMessage!!.text
+                                    }
+//
                                     holder.time.text = lastMessage.date.toString().asTime()
                                     holder.imgProgile.downloadAndSetImage(user.photoUrl)
                                 }
