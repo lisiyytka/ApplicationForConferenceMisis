@@ -1,6 +1,7 @@
 package com.example.applicationforconferencemisis.Activities
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -45,6 +46,8 @@ class DifferentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_toolbar)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR
+
         makeToast(this, helper.getUser().username)
         val backBtn = findViewById<ImageView>(R.id.back)
         backBtn.setOnClickListener {

@@ -1,6 +1,7 @@
 package com.example.applicationforconferencemisis.Activities
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
@@ -19,6 +20,8 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_me)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR
+
         val fragmentManager = supportFragmentManager.beginTransaction()
         fragmentManager.add(R.id.container_for_register, registerFragment)
         fragmentManager.commit()

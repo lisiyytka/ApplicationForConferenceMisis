@@ -1,6 +1,7 @@
 package com.example.applicationforconferencemisis.Activities
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -17,6 +18,8 @@ class LoginActivity : AppCompatActivity() {
         initFirebase()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR
+
         val helper = SQLiteHelper(this)
         val buttonForLogin = findViewById<ImageButton>(R.id.buttonForLogin)
         val editTextEmail = findViewById<EditText>(R.id.edit_text_email)
