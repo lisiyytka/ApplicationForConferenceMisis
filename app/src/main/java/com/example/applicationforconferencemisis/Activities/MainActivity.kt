@@ -240,10 +240,6 @@ class MainActivity : AppCompatActivity() {
                 // onChildAdded() will be called for each node at the first time
                 val message = snapshot.getValue(User::class.java)
                 messageList.add(message!!)
-
-                Log.e("TAG", "onChildAdded:" + message.username)
-
-                val latest = messageList[messageList.size - 1]
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {

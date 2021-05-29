@@ -48,7 +48,6 @@ class DifferentActivity : AppCompatActivity() {
         setContentView(R.layout.activity_toolbar)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR
 
-        makeToast(this, helper.getUser().username)
         val backBtn = findViewById<ImageView>(R.id.back)
         backBtn.setOnClickListener {
             if (lastFragment == null) {
@@ -112,10 +111,6 @@ class DifferentActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         val helper = SQLiteHelper(this)
         val changeUserPhotoImage = findViewById<ImageView>(R.id.change_user_photo)
-        val nextBtn = findViewById<ImageButton>(R.id.next_btn)
-        val username = findViewById<EditText>(R.id.user_name_surname)
-        val description = findViewById<EditText>(R.id.inf_about_user)
-        val fragmentManager = supportFragmentManager.beginTransaction()
         val user = helper.getUser()
         initFirebase()
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE

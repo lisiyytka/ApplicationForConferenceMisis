@@ -116,6 +116,9 @@ class MembersAndSpeakersFragment() : Fragment() {
                     fragmentName!!.text = a[position].name
                     replaceFragment(SingleChatFragment(a[position].username))
                 }
+                holder.imgProfile.setOnClickListener {
+                    replaceFragment(UserAccFragment(a[position].username))
+                }
             }
 
             override fun getItemCount() = a.size

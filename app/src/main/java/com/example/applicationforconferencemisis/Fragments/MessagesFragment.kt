@@ -25,11 +25,11 @@ import com.example.applicationforconferencemisis.asTime
 import com.example.applicationforconferencemisis.downloadAndSetImage
 import com.example.applicationforconferencemisis.replaceFragment
 
-class MessagesFragment: Fragment() {
+class MessagesFragment : Fragment() {
 
     lateinit var adapter: RecyclerView.Adapter<MyViewHolder>
     lateinit var messagesRecyclerView: RecyclerView
-    lateinit var unicUsers:MutableList<String>
+    lateinit var unicUsers: MutableList<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +45,8 @@ class MessagesFragment: Fragment() {
         initRecyclerView(helper.getContacts())
         fragmentName!!.text = "Messages"
     }
-    private fun initRecyclerView(contacts: List<Contacts>){
+
+    private fun initRecyclerView(contacts: List<Contacts>) {
         messagesRecyclerView = view?.findViewById(R.id.messagesRecyclerView)!!
         messagesRecyclerView.layoutManager = LinearLayoutManager(context)
         adapter = object : RecyclerView.Adapter<MyViewHolder>() {
@@ -58,36 +59,44 @@ class MessagesFragment: Fragment() {
 
             override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
                 val helper = SQLiteHelper(context!!)
-                REF_DATABASE_ROOT.child(NODE_USERS).child(contacts[position].usersName).addListenerForSingleValueEvent(
-                    AppValueEventListener{
+                REF_DATABASE_ROOT.child(NODE_USERS).child(contacts[position].usersName)
+                    .addListenerForSingleValueEvent(
+                        AppValueEventListener {
 
-                        val user = it.getValue(User::class.java)
-                        if (user != null){
-                            holder.usersName.text = user.name
+                            val user = it.getValue(User::class.java)
+                            if (user != null) {
+                                holder.usersName.text = user.name
 //                            holder.lastMessage.text = "asd"
-                            REF_DATABASE_ROOT.child(NODE_MESSAGES).child(helper.getUser().username).child(contacts[position].usersName).addListenerForSingleValueEvent(
-                                AppValueEventListener{
-                                    val lastMessage = it.children.last().getValue(Message::class.java)
-                                    if(lastMessage!!.text.length > 20) {
-                                        holder.lastMessage.text = lastMessage.text.substring(0,19)
-                                    }
-                                    else {
-                                        holder.lastMessage.text=lastMessage!!.text
-                                    }
+                                REF_DATABASE_ROOT.child(NODE_MESSAGES)
+                                    .child(helper.getUser().username)
+                                    .child(contacts[position].usersName)
+                                    .addListenerForSingleValueEvent(
+                                        AppValueEventListener {
+                                            val lastMessage =
+                                                it.children.last().getValue(Message::class.java)
+                                            if (lastMessage!!.text.length > 20) {
+                                                holder.lastMessage.text =
+                                                    lastMessage.text.substring(0, 19)
+                                            } else {
+                                                holder.lastMessage.text = lastMessage!!.text
+                                            }
 //
-                                    holder.time.text = lastMessage.date.toString().asTime()
-                                    holder.imgProgile.downloadAndSetImage(user.photoUrl)
+                                            holder.time.text = lastMessage.date.toString().asTime()
+                                            holder.imgProgile.downloadAndSetImage(user.photoUrl)
+                                        }
+                                    )
+                                holder.itemView.setOnClickListener {
+                                    lastFragment = MessagesFragment()
+                                    lastBtnId = R.id.messages_btn
+                                    fragmentName!!.text = user.name
+                                    replaceFragment(SingleChatFragment(user.username))
                                 }
-                            )
-                            holder.itemView.setOnClickListener {
-                                lastFragment = MessagesFragment()
-                                lastBtnId = R.id.messages_btn
-                                fragmentName!!.text = user.name
-                                replaceFragment(SingleChatFragment(user.username))
+                                holder.imgProgile.setOnClickListener {
+                                    replaceFragment(UserAccFragment(contacts[position].usersName))
+                                }
                             }
                         }
-                    }
-                )
+                    )
 
             }
 
