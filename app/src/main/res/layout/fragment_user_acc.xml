@@ -79,6 +79,32 @@
                         android:text="Send message"/>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/lay_role"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:src="@drawable/line"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"/>
+
+                    <TextView
+                        android:id="@+id/role"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        style="@style/font_roboto_medium_white"
+                        android:textSize="18sp"
+                        android:text="Speaker"/>
+                </LinearLayout>
+
+
 
             </LinearLayout>
 

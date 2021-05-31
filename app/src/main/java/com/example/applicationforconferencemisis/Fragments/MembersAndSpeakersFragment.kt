@@ -47,6 +47,11 @@ class MembersAndSpeakersFragment() : Fragment() {
         return inflater.inflate(R.layout.fragment_members_speakers, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        fragmentName!!.text = "Speakers"
+    }
+
     override fun onStart() {
         super.onStart()
         val searchField = view!!.findViewById<EditText>(R.id.search_members)

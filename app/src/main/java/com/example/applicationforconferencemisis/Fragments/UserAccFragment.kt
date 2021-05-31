@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.applicationforconferencemisis.Activities.LoginActivity
@@ -47,12 +48,17 @@ class UserAccFragment(userOnButton:String): Fragment() {
         val sendMessage = view!!.findViewById<ImageView>(R.id.send_msg_btn)
         val imgProfile = view!!.findViewById<ImageView>(R.id.img_profile)
         val aboutUser = view!!.findViewById<TextView>(R.id.about_user)
+        val layRole = view!!.findViewById<LinearLayout>(R.id.lay_role)
         val helper = SQLiteHelper(context!!)
+        layRole.visibility = View.GONE
         initFirebase()
         REF_DATABASE_ROOT.child(NODE_USERS).child(user).addListenerForSingleValueEvent(
             AppValueEventListener{
                 val userFromFire = it.getValue(User::class.java)
-                imgProfile.downloadAndSetImage(userFromFire!!.photoUrl)
+                if (userFromFire!!.role == "Speaker") {
+                    layRole.visibility = View.VISIBLE
+                }
+                imgProfile.downloadAndSetImage(userFromFire.photoUrl)
                 aboutUser.text = userFromFire.description
             }
         )
