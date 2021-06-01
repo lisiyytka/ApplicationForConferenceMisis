@@ -68,12 +68,12 @@ fun setMainSchedule() {
         MainSchedule("Workshops (see detailed schedule)", "9:35-10:20"),
         MainSchedule("Break", "10:20-10:30"),
         MainSchedule(
-            "Conference Opening: Svetlana G. Ter-Minasova " +
-                    "Opening Plenary Talks " +
-                    "Peter Watkins " +
-                    "Reading Evolution: Helping Learners to Read Online " +
-                    "Kelley Calvert " +
-                    "Maintaining Motivation and Preventing Teacher Burnout with Student-сentered Instruction ",
+            "Conference Opening: Svetlana G. Ter-Minasova \n" +
+                    "Opening Plenary Talks \n" +
+                    "Peter Watkins \n" +
+                    "Reading Evolution: Helping Learners to Read Online \n" +
+                    "Kelley Calvert \n" +
+                    "it wrong: Maintaining Motivation and Preventing Teacher Burnout with Student-centered Instruction",
             "10:30-12:30"
         ),
         MainSchedule("Lunch", "12:30-13:30"),
@@ -82,7 +82,8 @@ fun setMainSchedule() {
         MainSchedule("Concurrent Sessions (see detailed schedule)", "15:15-16:45"),
         MainSchedule("Break", "16:45-17:00"),
         MainSchedule(
-            "Touchstone@MISIS English Language Program: 10th Anniversary Round-table",
+            "MISIS-CUP 10-year Partnership Anniversary Roundtable:\n" +
+                    "What are the Success Criteria and Impact of Educational Innovations?",
             "17:00-18:00"
         ),
     )
@@ -100,10 +101,10 @@ fun setMainSchedule() {
         MainSchedule("Break", "10:20-10:30"),
         MainSchedule(
             "Plenary Tech Talks:\n" +
-                    "Susana Anton (Cambridge University Press),\n" +
-                    "Alexey Konobeev, Mikhail Sverdlov (Skyeng),\n" +
-                    "Julia Khukalenko (Far Eastern Federal University),\n" +
-                    "Maria Anikina (Uchi.ru)", "10:30-12:30"
+                    "10:30-11:10 – Susana Anton (Cambridge University Press) – Learning to Learn with Cambridge One \n" +
+                    "11:10-11:30 – Julia Khukalenko, Vera Iushina (Far Eastern Federal University) – VARVARA: Virtual Reality for Learning English \n" +
+                    "11:30-12:10 – Alexey Konobeiev – Standards-based Development of ESL Online Courses; Mikhail Sverdlov – Education 4.0: Data Driven Approach for Education Product Development (Skyeng) \n" +
+                    "12:10-12:30 – Maria Anikina (UCHi.RU) – Improving Educational Programs Considering Motivation and Students` Emotional Experience: the Experience of Uchi.Doma", "10:30-12:30"
         ),
         MainSchedule("Lunch", "12:30-13:30"),
         MainSchedule("Concurrent Sessions (see detailed schedule)", "13:30-15:00"),
@@ -150,88 +151,95 @@ fun setConferencesWorkshop() {
             "1",
             "Digital Methodology",
             "Classroom management: online vs offline.",
-            "8:45 - 9:30",
+            "8:40 - 9:25",
             "Peresada Elena"
         ),
         Conference(
             "2",
             "New Frontiers of Testing and Assessment",
             "Energise, Optimise. Digitalise.",
-            "8:45 - 9:30",
+            "8:40 - 9:25",
             "Kovaleva Yelena, Mogunova Elena, Petrova Natalia"
         ),
         Conference(
             "3",
             "Teacher Development",
             "Developing English speaking and writing skills of B1-C1 students by means of Instagram.",
-            "8:45 - 9:30",
+            "8:40 - 9:25",
             "Kalintsev Alexey"
         ),
         Conference(
             "4",
+            "Digital Methodology",
+            "Online vs. offline: 3 simple tools to make your lessons more interactive.",
+            "8:40 - 9:25",
+            "Khodakova Anastasia"
+        ),
+        Conference(
+            "5",
             "Digital Methodology",
             "Running teacher training online.",
             "9:35-10:20",
             "Brooks Simon"
         ),
         Conference(
-            "5",
+            "6",
             "Digital Methodology",
             "Teaching speaking and critical thinking skills in a low-tech online environment: approaches, tasks, online instruments.",
             "9:35-10:20",
             "Titova Svetlana "
         ),
         Conference(
-            "6",
+            "7",
             "Teacher Development",
             "Collaborative design tools in learning.",
             "9:35-10:20",
             "Bauters Merja"
         ),
         Conference(
-            "7",
+            "8",
             "Teacher Development",
             "Building Reflexes in a Foreign Language.",
             "9:35-10:20",
             "Marcq Antoine"
         ),
         Conference(
-            "8",
+            "9",
             "Teacher Development",
             "It is while writing, that we are thinking most.",
             "9:35-10:20",
             "Ivanova Tatiana"
         ),
         Conference(
-            "9",
+            "10",
             "Learner Diversity and Inclusion",
             "International career planning: preparing students for the global workplace.",
             "9:35-10:20",
             "Mitchell Peter"
         ),
         Conference(
-            "10",
+            "11",
             "English Language Research",
             "Acquiring talent & improving performance through AI powered English testing.",
             "13:30-14:15",
             "Pandey Namita"
         ),
         Conference(
-            "11",
+            "12",
             "Digital Methodology",
             "Teaching pronunciation digitally.",
             "14:15-15:00",
             "Gordyshevskaya Polina"
         ),
         Conference(
-            "12",
+            "13",
             "English Language Research",
             "Innovation, collaboration, transformation: education for a connected world.",
             "15:00-15:45",
             "Cowin Jasmin"
         ),
         Conference(
-            "13",
+            "14",
             "Teacher Development",
             "SFL genre pedagogy: teaching language for its function in the genres of writing.",
             "16:00-16:45",
@@ -250,35 +258,35 @@ fun setConferencesWorkshop() {
             "1",
             "Digital Methodology",
             "EFLtalks - teachers teaching teachers.",
-            "8:45 - 9:30",
+            "8:40 - 9:25",
             "Howard Rob"
         ),
         Conference(
             "2",
             "Teacher Development",
             "Integrating critical thinking instruction into the Unified National Exam training programme.",
-            "8:45 - 9:30",
+            "8:40 - 9:25",
             "Kapturova Evgenia"
         ),
         Conference(
             "3",
             "New Frontiers of Testing and Assessment",
             "Mind(full)ness: keep calm and learn.",
-            "8:45 - 9:30",
+            "8:40 - 9:25",
             "Dilara Louise Hibbs"
         ),
         Conference(
             "4",
             "Teacher Development",
             "Mastering research competence & confidence: the chief editor’s view.",
-            "8:45 - 9:30",
+            "8:40 - 9:25",
             "Tverdokchlebova Irina"
         ),
         Conference(
             "5",
             "Digital Methodology",
             "Project-based learning: digital tools worth adopting.",
-            "8:45 - 9:30",
+            "8:40 - 9:25",
             "Aleshenko Olga, Ponidelko Lubov"
         ),
         Conference(
@@ -444,7 +452,12 @@ fun setConferencesSessions() {
             "14.15-14.30",
             "Gritsenko Elena, Polyakova Svetlana"
         ),
-        Conference("12", "Intercultural Communication", "TOPIC TBC", "14.15-14.30", "Rodko Olga"),
+        Conference(
+            "12",
+            "Intercultural Communication",
+            "TOPIC TBC",
+            "14.15-14.30",
+            "Rotko Olga"),
         Conference(
             "13",
             "English Language Research",
@@ -459,132 +472,124 @@ fun setConferencesSessions() {
             "14.30-14.45",
             "Panchenkova Maria"
         ),
-        Conference("15", "English Language Research", "TOPIC TBC", "14.45-15.00", "Erken Emily"),
         Conference(
-            "16",
+            "15",
             "English Language Research",
             "To the problem of revealing national peculiarity of semantics.",
             "14.45-15.00",
             "Sternina Marina"
         ),
         Conference(
-            "17",
+            "16",
             "Teacher Development",
             "English in a multilingual world: implications for teachers.",
             "15.15-15.30",
             "De Jong Ester"
         ),
         Conference(
-            "18",
+            "17",
             "English Language Research",
             "Methodological issues in digital multimodal literacy research.",
             "15.15-15.30",
             "Yi Youngjoo"
         ),
         Conference(
-            "19",
+            "18",
             "Digital Methodology",
             "Expanding meaning-making possibilities through multimodal composition.",
             "15.15-15.30",
             "Smith Blaine"
         ),
         Conference(
-            "20",
+            "19",
             "Teacher Development",
             "Professional self-development of teachers in online environment.",
             "15.30-15.45",
             "Avdeeva Yulia, Grashchenkova Galina"
         ),
         Conference(
-            "21",
+            "20",
             "English Language Research",
             "Information literacy for classroom research.",
             "15.30-15.45",
             "Safonkina Olga"
         ),
         Conference(
-            "22",
+            "21",
             "Digital Methodology",
             "Blended Learning via Distance Learning: New Approaches in Teaching English.",
             "15.30-15.45",
             "Igonina Galina"
         ),
         Conference(
-            "23",
+            "22",
             "Teacher Development",
             "Designing the course \"ICT in Education\" for beginning ESL teachers at Astrakhan State University.",
             "15.45-16.00",
             "Galichkina Elena"
         ),
         Conference(
-            "24",
+            "23",
             "English Language Research",
             "CLIL-approach as extra motivation for students aged 10-12.",
             "15.45-16.00",
             "Yepova Olga"
         ),
         Conference(
-            "25",
+            "24",
             "Digital Methodology",
             "Hybrid environment: managing a class.",
             "15.45-16.00",
             "Ponidelko Lyubov, Petrova Natalya"
         ),
         Conference(
-            "26",
+            "25",
             "Teacher Development",
             "In-service training for ELT: project-based learning with authentic mass media.",
             "16.00-16.15",
             "Dvorghets Olga"
         ),
         Conference(
-            "27",
+            "26",
             "English Language Research",
             "Mind mapping and its implementation into educational process.",
             "16.00-16.15",
             "Krivenko Lyudmila"
         ),
         Conference(
-            "28",
+            "27",
             "Digital Methodology",
             "The peculiarities of teaching ESP online only.",
             "16.00-16.15",
             "Klochko Konstantin"
         ),
         Conference(
-            "29",
+            "28",
             "Teacher Development",
             "Adapting teachers to changes in the curriculum.",
             "16.15-16.30",
             "Kiryukina Natalya"
         ),
         Conference(
-            "30",
+            "29",
             "English Language Research",
             "Linguodidactic features of teaching English at the primary level.",
             "16.15-16.30",
             "Skachkova Sofia"
         ),
         Conference(
-            "31",
+            "30",
             "Digital Methodology",
-            "Establishing productive learning environment under any technical circumstances.",
+            "Mobile learning and foreign language teaching. How do they align?",
             "16.15-16.30",
-            "Kovaleva Yelena"
+            "Golova Ekaterina"
         ),
         Conference(
-            "32",
+            "31",
             "English Language Research",
             "TOPIC TBC",
             "16.30-16.45",
             "Kolesnikova Marina"
-        ),
-        Conference(
-            "33",
-            "Digital Methodology",
-            "Mobile learning and foreign language teaching. How do they align?",
-            "16.30-16.45",
-            "Golova Ekaterina"
         )
     )
 
