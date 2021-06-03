@@ -3109,7 +3109,7 @@ fun addUsers() {
         ),
         User("Smirnova.polina1999@gmail.com",
         "Polina",
-        "ST-Polina",
+        "ST-Polina1",
         "nate20Polina21"
         ),
         User("ms.sobelnikova@mail.ru",
@@ -3249,7 +3249,7 @@ fun addUsers() {
         ),
         User("sofya1251@yandex.ru",
         "Sofia Mesiatseva",
-        "ST-Sofia",
+        "ST-Sofia1",
             "nate20Sofia21"
         ),
         User("paulleena@gmail.com",
@@ -3624,7 +3624,7 @@ fun addUsers() {
         ),
         User("polifed29@gmail.com",
             "Polina Fedorova",
-            "ST-Polina",
+            "ST-Polina2",
             "nate20Polina21"
         ),
         User("shumaevaolga18@gmail.com",
@@ -3895,7 +3895,7 @@ fun addUsers() {
         ),
         User("m1906167@edu.misis.ru",
             "Parfenova Anastasia",
-            "ST-Parfenova",
+            "ST-Parfenova1",
             "nate20Parfenova21"
         ),
         User("eostankovich@gmail.com",
@@ -3930,7 +3930,7 @@ fun addUsers() {
         ),
         User("milanasopova10@gmail.com",
             "Milana Sopova",
-            "ST-Milana",
+            "ST-Milana1",
             "nate20Milana21"
         ),
         User("kseniadementy@gmail.com",

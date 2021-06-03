@@ -221,10 +221,10 @@ class MainActivity : AppCompatActivity() {
             startDifActivity(accountButton.id)
         }
 
-        addUsers()
-        setMainSchedule()
-        setConferencesWorkshop()
-        setConferencesSessions()
+//        addUsers()
+//        setMainSchedule()
+//        setConferencesWorkshop()
+//        setConferencesSessions()
     }
 
 

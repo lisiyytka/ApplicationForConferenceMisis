@@ -57,11 +57,12 @@ class LoginActivity : AppCompatActivity() {
                                 makeToast(this, "Wrong Password")
                             }
                         } else {
-                            val user = User(email, "", "","", pswrd, "")
-                            addNewUser(user)
-                            helper.deleteAllPersonalData()
-                            helper.insertUser(user)
-                            startActivity(Intent(this, RegisterActivity::class.java))
+//                            val user = User(email, "", "","", pswrd, "")
+//                            addNewUser(user)
+//                            helper.deleteAllPersonalData()
+//                            helper.insertUser(user)
+//                            startActivity(Intent(this, RegisterActivity::class.java))
+                            makeToast(this, "There is no such user")
                         }
                     }
                 )
