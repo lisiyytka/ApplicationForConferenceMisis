@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         val formmaterForSdf: DateTimeFormatter = DateTimeFormatter.ofPattern("dd")
         val currentDate = zdt.format(formmaterForSdf)
         ////
-        val qwe = DateTimeFormatter.ofPattern("hh")
+        val qwe = DateTimeFormatter.ofPattern("HH")
         val currentHours = zdt.format(qwe)
         /////
         val asd = DateTimeFormatter.ofPattern("mm")
@@ -222,9 +222,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         addUsers()
-//        setMainSchedule()
-//        setConferencesWorkshop()
-//        setConferencesSessions()
+        setMainSchedule()
+        setConferencesWorkshop()
+        setConferencesSessions()
     }
 
 
